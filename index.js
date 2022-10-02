@@ -27,7 +27,7 @@ app.post('/', (req, res) => {
     let city = req.body.locale;
     let url = process.env.WEATHER_VISUALCROSSING_API_BASE_URI;
     
-    /* https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Fremont%2C%20CA?unitGroup=us&contentType=json&key=E5PZ48U2C8EB6692GBD39U9LC */
+    /* https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Fremont%2C%20CA?unitGroup=us&contentType=json&key=apiKey */
     let uriStr = `${url}${city}?unitGroup=us&contentType=json&key=${apiKey}`;
     console.log(uriStr);
     request(uriStr, async function (err, response, body) {
@@ -62,6 +62,6 @@ let port = process.env.PORT || 3210;
 
 // creating a server that is listening on ${port} for connections.
 app.listen(port, () => {
-    console.log(`Staging app is listening on port ${port}`);
+    console.log(`StagingWeather report app is listening on port ${port}`);
 });
 

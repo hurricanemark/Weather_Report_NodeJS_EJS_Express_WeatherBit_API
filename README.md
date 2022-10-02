@@ -1,9 +1,11 @@
-# Local Weather Service
+# Weather Service
+
+Ever wonder why your phone shows weather data of your immediate vincinity on your travel?  This project demnonstrates the use of Navigator.geolocation API that is part of NodeJS to pin point your immediate location.  The geolocation method gets current position in longitude and latitude.  The weather app uses these values to call to a weather service API for weather data.
 
 ## The Value of Weather Information 
 Weather information is powerful knowledge used in forcasting the production of certain operation to help determining the economic bottom line.  There are countless human endearvours affecting by the weather factors.  Rain is good for growers, fore warning is valuable in extreme weather, while sunny sky, windy days could be good for energy production.  For examples, solar power production needs to know the number of hours of sunlight specific to geographical location.  The travel and hospitality industry is most affected by dynamic weather patterns.  From Agriculture to space faring, weather plays the key role in the decision making process.
 
-This project demnonstrates how you can use the geolocation function to get current position in longitude and latitude.  Then, to get pin point weather data, you will construct an API query for weather statistics using the lng-lat value.
+There are weather detection stations situated in and around you.  The inner working of making data available is not of interest to the populous but it is vital to a functioning society.  Although, the National Weather service is a government agency whose diseminate data free of charge.  Weather data has been monetized by repackaging in ways the population can consume.  Local TV news reserve a segment devoted to weather ubiqutously.  Weather data is available on your finger tips.  It all factored into a transferable cost by some service providers you're currently paying.
 
 <br />
 
