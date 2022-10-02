@@ -1,8 +1,8 @@
 # Core Logic
 
-In order to obtain the pin point weather data, earth location is a required parameter.  For this, the longitude and latitude would surfice programmatically.  For the interactive option, a physical postal address (partial address of City, State, Country) is needed.  Optionally, you could also register with google map service (*additional charge will incur*).  Then, integrate google-map API where the user can point to location on the map to trigger locolized weather report.
+To obtain the pinpoint weather data, earth location is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, integrate google-map API where the user can point to a location on the map to trigger a localized weather report.
 
-* The geolocation of a known address can be obtained by using the client-side javascript [Windows Navigator](https://www.w3schools.com/jsref/obj_navigator.asp).  Your browser uses different types and sources of information to identify your location. These include your IP address, geolocation via HTML5 in your browser, and your PC's language and time settings.  For more detail how Navigator.geolocation is determined, [read more here](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition).
+* The geolocation of a known address can be obtained by using the client-side javascript [Windows Navigator](https://www.w3schools.com/jsref/obj_navigator.asp).  Your browser uses different types and sources of information to identify your location. These include your IP address, geolocation via HTML5 in your browser, and your PC's language and time settings.  For more detail on how Navigator.geolocation is determined, [read more here](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition).
 
 Sample code for client-side geolocation:
 
@@ -31,7 +31,7 @@ Sample code for client-side geolocation:
 
     and **API_ACCESS_KEY** can be obtained from registering with an API provider.
 
-* With the return JSON object representing the weather data, you wrap the individual data objects in grid to make it user friendly.
+* With the return JSON object representing the weather data, you wrap the individual data objects in a grid to make it user-friendly.
 
 <br />
 
@@ -59,7 +59,7 @@ Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provid
 
 **Decision:**  
 
-You would want to live free and die harder, let's make the client calls the server whose in turn requests weather data and sends responses back.  The client then can parse the response into a grid for display.  This means, the server will need to provide GET requests!
+You would want to live free and die harder, let's make the client calls the server which in turn requests weather data and sends responses back.  The client then can parse the response into a grid for display.  This means the server will need to provide GET requests!
 
 ---
 
@@ -84,19 +84,19 @@ e.g.
 
 <strong><span style="color:gray; font-size:18px"> Staying within the Free Tier Limit</span> </strong>
 
-A typical free daily allowance cycle consists of up to 1000 free API queries.  In which case, the user has to wait until the begining of the next free tier cycle.  To avoid being charged, this source code has a *a server-side accounting logic* to pause querying the weathercrossing API once its periodic allowance has been reached.  Unpause is automatic once the clock rolls to the begin of a new daily free tier cycle.
+A typical free daily allowance cycle consists of up to 1000 free API queries.  In this case, the user has to wait until the beginning of the next free tier cycle.  To avoid being charged, this source code has a *a server-side accounting logic* to pause querying the weathercrossing API once its periodic allowance has been reached.  Unpause is automatic once the clock rolls to the beginning of a new daily free tier cycle.
 
 >*Potential development needed to notify the server admin if demands grew and if there are ways to monetize it.*
 
 <strong><span style="color:gray; font-size:18px">Caching the Weather Data</span></strong>
 
-Weather forecast data from `visualcrossing.com` typically contains infomation spanning 15 days, each day contains 24 hourly objects.  Additional queries within the same period would usually resulted in the same data.  We need to cache this information so not to incur needless and sometimes costly API calls.  
+Weather forecast data from `visualcrossing.com` typically contains information spanning 15 days, each day contains 24 hourly objects.  Additional queries within the same period would usually result in the same data.  We need to cache this information so as not to incur needless and sometimes costly API calls.  
 
 We could elect to use the DOM Storage API, also called the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) methods: `Window.sessionStorage` where data persists as long as the session is running, or `Window.localStorage` which has no expiration.  Note: when the last private tab is closed, data stored in the localStorage object of a site opened in a private tab or incognito mode is cleared.
 
 <br />
 
-<span style="color:green">**IMPORTANT:**</span>  Web Storage API needs to be implemented on the the browser side (client with the DOM).  In this case, we make sure to place the javascript script at the bottom of HTML body section.
+<span style="color:green">**IMPORTANT:**</span>  Web Storage API needs to be implemented on the browser side (client with the DOM).  In this case, we make sure to place the javascript script at the bottom of the HTML body section.
 
 >Another option is to use no-sql storage such as `redis`.  A topic not in the scope of this exercise.  
 
@@ -152,10 +152,10 @@ A sample of Web Storage API test:
 
 ## Next Phases
 
-The followings are potential developments in subsequent iterations to this weather report project:
+The followings are potential developments in subsequent iterations of this weather report project:
 
 * Integrate the server with auth0 and/or passport authentication
 
-* Registered members have access to full blown dashboard with maritime alerts, historical weather data, extended forecast, etc.
+* Registered members have access to a full-blown dashboard with maritime alerts, historical weather data, extended forecasts, etc.
 
 * Build and make mobile apps available to subscribed members.
