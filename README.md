@@ -16,7 +16,7 @@ There are weather detection stations situated in and around you.  The inner work
 
 ## NodeJS and Express
 
-I recently wrote this Local Weather app using the cloud editor `replit` where the bootstraping of node JS is hidden.  All I had to do was to focus on the core logic in app.js, style.css, and index.html.  To create a fully functional development environment locally, I needed to bootstrap NodeJS, Express to my replit code.  
+I recently wrote this weather reporting app using the cloud editor `replit` where the bootstraping of node JS is hidden.  All I had to do was to focus on the core logic in app.js, style.css, and index.html.  To create a fully functional development environment locally, I needed to bootstrap NodeJS, Express to my replit code.  
 
 Here is how I add scalffolding my Nodejs project.
 
