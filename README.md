@@ -10,7 +10,7 @@ There are weather detection stations situated in and around you.  The inner work
 
 <br />
 
-> Below is the template for rudimentary completion of an example on interfacing with a weather data provider.  For indepth logics and real life data implementation, continue to [here](public/REAME.md).
+> Below is the template for rudimentary completion of an example on interfacing with a weather data provider.  For indepth logics and real life data implementation, continue to [here](public/README.md).
 
 <br />
 
