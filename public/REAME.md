@@ -70,7 +70,7 @@ You need to implement a middleware to retrieve weather data and serve it to the 
 - or `ReactJS`.
 
 **Decision:**  
-Let's introduce the EJS middleware as embedded template rendering weather data.
+Let's introduce the Embedded Javascript (EJS) middleware template rendering weather data upon client requestt.
 
 e.g. 
 ```c
