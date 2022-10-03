@@ -32,7 +32,7 @@ First, you will need to change your `package.json` to include:
 ...
 ```
 
-Then, use imports in your `app.js`.  Here is an express start with dotenv:
+Then, use imports in your `index.js`.  Here is an express start with dotenv:
 
 ```c
 import dotenv  from "dotenv"
@@ -65,7 +65,7 @@ Step 2:  Initialize the folder as a node project
     
     ` npm init -y`
 
-Step 3:  Install *express* to confiure a lightweight Node server
+Step 3:  Install *express* to configure a lightweight Node server
     
     `npm install express`
 
@@ -73,13 +73,13 @@ Step 4:  Install *helmet* to configure runtime security
     
     `nmp install helmet`
 
-Now, you are good to start developing and runing from VSCode.
+Now, you are good to start developing and running from VSCode.
 
 ### Project Layout
 
 It is a typical NodeJS project layout.  
 
-'app.js' - server file
+'index.js' - server file
 
 './public/script.js' - interface to https://weather-proxy.freecodecamp.rocks/api/
 

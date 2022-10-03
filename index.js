@@ -15,11 +15,13 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// get the locale from the client-side via the ejs form
 app.get('/', (req, res) => {
-    // res.status(200).send("Welcome to the staging app -- current weather conditions.");
     res.render('index');
 })
 
+
+// post weather data to the client-side
 app.post('/', (req, res) => {
     console.log(req.body.locale);
     // call weatherAPI for data

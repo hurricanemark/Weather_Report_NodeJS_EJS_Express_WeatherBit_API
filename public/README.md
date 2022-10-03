@@ -74,14 +74,155 @@ Obviously, many developers have accountered this issue.  Lucky for us, `EJS`, `R
 **Decision:**  
 Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs)) middleware template rendering weather data upon client requestt.
 
-e.g. 
+## Steps to Employ EJS Into the Project
+
+<strong>Partial files to be injected to other ejs files.</strong>
+
+1.  Create sub-directory `partials` under `views`.
+
+    The project tree structure will look as follow:
+    ```c
+        + public
+            + css
+                - style.css
+        + views
+            + partials
+                - head.ejs
+                - header.ejs
+                - footer.ejs
+            - about.ejs
+            - index.ejs
+            README.md
+        - Dockerfile
+        - index.js
+        - package-lock.json
+        - package.json
+        - README.md
+    ```
+
+2.  Create partial file `head.ejs`
+
 ```c
-    app.post("/geoLngLatWeather", (req, res) => {...})
+    <meta charset="UTF-8">
+    <title>Staging Weather Report with EJS Template</title>
 
-    app.get("/geoLngLatWeather", (req, res) => {...})
-
-    app.get("/physicalAddrWeather", (req, res, next) => {...})
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    body { padding-top:20px; }
 ```
+
+3.  Create partial file `header.ejs`
+```c
+    <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="/">TechRolEmi</a>
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+        </ul>
+    </nav>
+```
+
+4.  Create a partial file `footer.ejs`
+```c
+    <!-- This code contains copyright information and uses several classes from Bootstrap for styling. -->
+    <p class="text-center text-muted" style="
+        position:fixed;
+        bottom:0;
+        left:20px;
+    ">&copy; Copyright 2022 by The Awesome TechRolEmi</p>
+```
+
+5.  Create an ejs template file `about.ejs`
+    The template file will be injected with partial files created above.  This accomplishes two things: reuse partial code, and make sure the presentation is consistent between ejs templates under the `views` folder.
+    
+```c
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <%- include('./partials/head'); %>
+    </head>
+
+    <body  class="container">
+
+        <header>
+            <%- include('./partials/header2'); %>
+        </header>
+
+        <main>
+        <!-- design your main page here -->
+        </main>
+
+        <footer>
+            <%- include('./partials/footer'); %>
+        </footer>
+
+    </body>
+
+    </html>
+```
+
+6.  Create ejs template file `index.ejs`, and inject partial files as follow.
+
+```c
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <%- include('./partials/head'); %>
+    </head>
+
+    <body  class="container">
+    <header>
+        <%- include('./partials/header2'); %>
+    </header>
+
+    <main>
+        <!-- fill in with embedded javascript logic here -->
+    </main>
+
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+    </body>
+    </html>
+```
+
+<strong>Implement server-side routings </strong>
+
+1. Add routing for the `about` page
+
+```c
+    // about page
+    app.get('/about', function(req, res) {
+        res.render('about');
+    });
+```
+
+2. Add routing for GET
+
+```c
+    // get the user input from the client-side via the ejs form
+    app.get('/', (req, res) => {
+        res.render('index');
+    })
+
+```
+
+3.  Add routing for PUT
+
+```c
+    // post weather data to the client-side
+    app.post('/', (req, res) => { ... })
+```
+
+
 <br />
 
 <strong><span style="color:gray; font-size:18px"> Staying within the Free Tier Limit</span> </strong>
