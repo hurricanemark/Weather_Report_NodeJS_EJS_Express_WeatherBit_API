@@ -25,7 +25,7 @@ Sample code for client-side geolocation:
 
 * The API query for weather data can be describe as follow.
 
-    > <https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/LOCATION?unitGroup=metric&key=API_ACCESS_KEY&contentType=json>
+    > <https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${LOCATION}?unitGroup=metric&key=${API_ACCESS_KEY}&contentType=json>
 
     Where, **LOCATION** can be City, State
 
@@ -74,7 +74,7 @@ Obviously, many developers have accountered this issue.  Lucky for us, `EJS`, `R
 **Decision:**  
 Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs)) middleware template rendering weather data upon client requestt.
 
-## Steps to Employ EJS Into the Project
+## Steps to Implement EJS In the Project
 
 <strong>Partial files to be injected to other ejs files.</strong>
 
