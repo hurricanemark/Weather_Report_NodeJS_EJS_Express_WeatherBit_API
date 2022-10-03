@@ -194,7 +194,7 @@ Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs
     </html>
 ```
 
-<strong>Implement server-side routing </strong>
+<strong>Implement server-side routings </strong>
 
 1. Add routing for the `about` page
 
