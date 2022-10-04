@@ -95,12 +95,13 @@ It is a typical NodeJS project layout.
 
 
 
-## Build and Run Docker Image
+## Build Once, Run Anywhere!
+
+<strong> Generate A Docker Image</strong>
 
 Build a docker image base on the given Dockerfile and .dockerignore is this folder.  After successful docker build, run the image to verify correctness.  Then it can be pushed to dockerhub or your favorite cloud provider.  
 
-### Build
-Docker container is built and saved to current working directory.  Replace tag name 'hurricanemark' with your own username.
+The Docker container is built and saved to current working directory.  Replace tag name 'hurricanemark' with your own github username.
 
 `docker build -t hurricanemark/localweather:1.0 .`
 
@@ -122,7 +123,7 @@ Docker container is built and saved to current working directory.  Replace tag n
  => => naming to docker.io/hurricanemark/localweather:1.0    
 ```
 
-** List the image **
+**List the image**
 
 ```c
 PS D:\DEVEL\NODEJS\BrainUnscramblers\LocalWeather> docker image ls
