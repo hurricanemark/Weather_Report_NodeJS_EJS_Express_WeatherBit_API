@@ -301,7 +301,7 @@ The followings are potential developments in subsequent iterations of this weath
 
 * Registered members have access to a full-blown dashboard with maritime alerts, historical weather data, extended forecasts, etc.
 
-* Switch to `build once run anywhere` mode.  Build and make mobile apps available to subscribed members.
+* Switch to `write once run anywhere` mode.  Build and make mobile apps available to subscribed members.
 
 * Collect user geolocation information for sale pitch to advertizers.
 
