@@ -24,33 +24,94 @@ app.get('/weatherbit', (req, res) => {
   res.render('weatherbit');
 })
 
+// Posting data to the client-side requires two API calls.
+// We implement the Promise.all() below to call and wait for all data to come back.
 app.post('/weatherbit', (req, res) => {
-  let apiKey = process.env.WEATHERBIT_KEY;
   let city = req.body.locale;
-  let url = process.env.WEATHERBIT_URI;
-  /*WEATHERBIT_URI=https://api.weatherbit.io/v2.0/current?city=HCM&country=Vietnam&units=I&key=${weatherbit_key} */
-  let uriWeatherBitStr = `${url}&city=${city}&key=${apiKey}`;
-  console.log(uriWeatherBitStr);
-  try  {
-    request(uriWeatherBitStr, async function (err, response, body) { 
-      console.log(response.statusCode);
-      if (response.statusCode === 400) {
-        res.render('weatherbit', { locale: city, resStatus: 400, resData: null, error: "Please check your input." });
-      } 
-      if (response.statusCode == 200) {
-          
-          let weather = await JSON.parse(body).data[0];
-          console.log(weather);
+  let promisedData = gatherWeatheBits(city);
+  promisedData.then( (data) => {
+    res.render('weatherbit', data);
+  })
+});
 
-          res.render('weatherbit', { locale: city, resStatus: 200, resData: weather, error: null });
-      } else {
-        res.render('weatherbit', { locale: city, resStatus: 500, resData: null, error: 'Error, please check your input.'});
+/* 
+ * Function retrieves weatherbit.io current conditions.
+ * Used in the Promise call below. 
+*/
+function getWeatherBitCurrentConditions(city){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      let apiKey = process.env.WEATHERBIT_KEY;
+      let url = process.env.WEATHERBIT_URI;
+      let uriWeatherBitStr = `${url}current?units=I&city=${city}&key=${apiKey}`;
+      let retCode;
+      console.log(uriWeatherBitStr);
+      try {
+        request(uriWeatherBitStr, async function (err, response, body) {
+          console.log(response.statusCode);
+          if (response.statusCode == 200) {
+              let weather = await JSON.parse(body).data[0];
+              resolve(weather);
+          } else {
+            resolve(null);
+          }
+        })
+      } catch (err) {
+        console.log(err);
       }
     })
-  } catch (err) {
-    console.log(err);
+  }, 300);
+}
+
+
+/* 
+ * Function retrieves weatherbit.io daily forecast.
+ * Used in the Promise call below.
+*/
+function getWeatherBitDailyForecast(city){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      let apiKey = process.env.WEATHERBIT_KEY;
+      let url = process.env.WEATHERBIT_URI;
+      let uriWeatherBitStr = `${url}forecast/daily?units=I&city=${city}&key=${apiKey}`;
+      let retCode;
+      // console.log(uriWeatherBitStr);
+      try {
+        request(uriWeatherBitStr, async function (err, response, body) {
+          console.log(response.statusCode);
+
+          if (response.statusCode == 200) {
+            retCode = await JSON.parse(body);
+            resolve(retCode);
+          } else {
+            resolve(null);
+          }
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }, 500);
+  })
+}
+
+/*
+ * Return multiple promises consists of currentConditions and dailyForecast data.
+ */
+async function gatherWeatheBits(city) {
+  const [currentConditions, dailyForecast] = await Promise.all([
+    getWeatherBitCurrentConditions(city),
+    getWeatherBitDailyForecast(city)
+  ]);
+
+  // Since daily forecast might take longer, check its promise here.
+  if (dailyForecast  !== null) {
+    // combine 2 promises: 
+    let combinedData = { locale: city, curStatus: 200, curData: currentConditions, foreStatus: 200, foreData: dailyForecast, error: null };
+    return combinedData;
+  } else {
+    return { locale: city, curStatus: 400, curData: null, foreStatus: 400, foreData: null, error: null };
   }
-});
+}
 
 // post weather data to the client-side
 app.post('/', (req, res) => {
