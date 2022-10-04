@@ -149,7 +149,7 @@ Local Weather is listening on port 8080
 
 <br />
 
-![Docker container]("./public/DockerImage.PNG)
+![Docker container](./public/DockerImage.PNG)
 
 <hr />
 
