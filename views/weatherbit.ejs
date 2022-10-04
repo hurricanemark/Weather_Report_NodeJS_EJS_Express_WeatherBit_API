@@ -142,9 +142,7 @@
                 <th>Date</th>
                 <th>Condition</th>
                 <th>Max/Min Temperature</th>
-                
-                <th>Temperature</th>
-                
+                <th>Temperature(F)</th>
                 <th>Pressure</th>
                 <th>Humidity</th>
                 <th>Wind Gust</th>
@@ -153,8 +151,7 @@
                 <th>Cloud Cover</th>
                 <th>Visibility</th>
                 <th>UV Index</th>
-                <th>Sunrise</th>
-                <th>Sunset</th>
+                <th>Sunrise/Sunset</th>
                 <th>Moonphase</th>
               </tr>
             </thead>
@@ -169,7 +166,7 @@
                     <%= forecast[i].weather.description %>
                   </td>
                   <td>
-                    <%= forecast[i].app_max_temp %>/<%= forecast[i].app_min_temp %>
+                    <%= forecast[i].app_max_temp %> , <%= forecast[i].app_min_temp %>
                   </td>
                   <td>
                     <%= forecast[i].temp %>
@@ -202,10 +199,7 @@
                     <%= forecast[i].uv %>
                   </td>
                   <td>
-                    <%= forecast[i].sunrise_ts %>
-                  </td>
-                  <td>
-                    <%= forecast[i].sunset_ts %>
+                    <%= forecast[i].sunrise_ts %> , <%= forecast[i].sunset_ts %>
                   </td>
                   <td>
                     <%= forecast[i].moon_phase_lunation %>
