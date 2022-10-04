@@ -215,7 +215,7 @@ Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs
 
 ```
 
-3.  Add routing for PUT
+3.  Add routing for POST
 
 ```c
     // post weather data to the client-side
@@ -301,4 +301,8 @@ The followings are potential developments in subsequent iterations of this weath
 
 * Registered members have access to a full-blown dashboard with maritime alerts, historical weather data, extended forecasts, etc.
 
-* Build and make mobile apps available to subscribed members.
+* Switch to `build once run anywhere` mode.  Build and make mobile apps available to subscribed members.
+
+* Collect user geolocation information for sale pitch to advertizers.
+
+* Look into how you can monetize this sucker.  [Read more](https://www.smaato.com/blog/how-to-best-monetize-your-weather-app/).
