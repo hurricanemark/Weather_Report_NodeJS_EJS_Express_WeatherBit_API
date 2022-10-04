@@ -138,14 +138,7 @@ Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a 
 
 `docker run -p 4321:8080 bb89b0646be4 -e WEATHER_VISUALCROSSING_API_KEY=Actual_Secret_Key_for_VisualCrossing -e WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit`
 
-```c
-PS D:\DEVEL\NODEJS\BrainUnscramblers\LocalWeather> docker run -p 4321:8080 bb89b0646be4
 
-> LocalWeather@1.0.0 start /app
-> node app.js
-
-Local Weather is listening on port 8080
-```
 
 <br />
 
