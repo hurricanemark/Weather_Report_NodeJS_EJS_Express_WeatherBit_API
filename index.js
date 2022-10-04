@@ -49,6 +49,10 @@ function getWeatherBitCurrentConditions(city){
       try {
         request(uriWeatherBitStr, async function (err, response, body) {
           console.log(response.statusCode);
+          if (response.statusCode == 429) {
+            console.log("WARNING: You have exceeded your API call limit with weatherbit.io!");
+            resolve(null);
+          }          
           if (response.statusCode == 200) {
               let weather = await JSON.parse(body).data[0];
               resolve(weather);
@@ -80,6 +84,10 @@ function getWeatherBitDailyForecast(city){
         request(uriWeatherBitStr, async function (err, response, body) {
           console.log(response.statusCode);
 
+          if (response.statusCode == 429) {
+            console.log("WARNING: You have exceeded your API call limit with weatherbit.io!");
+            resolve(null);
+          }
           if (response.statusCode == 200) {
             retCode = await JSON.parse(body);
             resolve(retCode);
@@ -128,6 +136,10 @@ app.post('/', (req, res) => {
       request(uriStr, async function (err, response, body) {
         console.log(response.statusCode);
         
+        if (response.statusCode == 429) {
+          console.log("You have exceeded your API call limit with visualcrossing.com!");
+          res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Visualcrossing API call limit exceeded." });
+        }
         if (response.statusCode == 400) {
           res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Please check your input." });
         } 
