@@ -136,6 +136,10 @@ app.post('/', (req, res) => {
       request(uriStr, async function (err, response, body) {
         console.log(response.statusCode);
         
+        if (response.statusCode == 429) {
+          console.log("You have exceeded your API call limit with visualcrossing.com!");
+          res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Visualcrossing API call limit exceeded." });
+        }
         if (response.statusCode == 400) {
           res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Please check your input." });
         } 
