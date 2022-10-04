@@ -2,6 +2,10 @@
 
 Ever wonder why your phone shows weather data of your immediate vicinity on your travel?  This project demonstrates the use of Navigator.geolocation API that is part of NodeJS to pinpoint your immediate location.  The geolocation method gets the current position in longitude and latitude.  The weather app uses these values to call a weather service API for weather data.  This non-interactive process happens automatically for your convenience.
 
+<strong>Sample output</strong>
+
+![codepen.io output](./public/Runtime.PNG)
+
 ## The Value of Weather Information 
 
 Weather information is powerful knowledge used in forecasting the production of certain operations to help determine the economic bottom line.  There are countless human endeavors affected by weather factors.  Rain is good for growers, and forewarning is valuable in extreme weather, while the sunny sky and windy days could be good for energy production.  For example, solar power production needs to know the number of hours of sunlight specific to geographical location.  Wind farm needs to know wind speed, direction, etc. The travel and hospitality industry is most affected by dynamic weather patterns.  From Agriculture to space-faring, weather plays a key role in the decision-making process.
@@ -89,9 +93,7 @@ It is a typical NodeJS project layout.
 
 `npm start`
 
-<strong>Output</strong>
 
-![codepen.io output](./public/Runtime.PNG)
 
 ## Build and Run Docker Image
 
