@@ -4,7 +4,7 @@ Ever wonder why your phone shows weather data of your immediate vicinity on your
 
 <strong>Sample output</strong>
 
-![codepen.io output](./public/Runtime.PNG)
+![Client display](./public/Runtime.PNG)
 
 ## The Value of Weather Information 
 
