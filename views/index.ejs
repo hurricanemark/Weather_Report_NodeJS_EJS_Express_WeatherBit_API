@@ -10,17 +10,23 @@
     <%- include('./partials/header2'); %>
   </header>
   <main>
+    <br />
+    <div>
+      <fieldset>
+        <form action="/" method="post">
+          <a>Visual Crossing ;-) </a>
+          <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
+          <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get Weather">
+        </form>
+      </fieldset>
+      <hr />
+    </div>
+
     <div class="row">
       <div class="col-sm-10">
         <h5>Current Weather Conditions</h5>
         <div class="jumbotron jumbotron-fluid">
-          <fieldset>
-            <form action="/" method="post">
-              <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
-              <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get Weather">
-            </form>
-          </fieldset>
-          <br />
+
 
           <% if( typeof(error)==="undefined" || status !==200 ){ %>
             <p style="color:gray"> Waiting new user input.</p>

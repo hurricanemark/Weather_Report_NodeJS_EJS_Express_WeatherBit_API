@@ -10,26 +10,31 @@
     <%- include('./partials/header2'); %>
   </header>
   <main>
+    <br />
+    <div>
+      <fieldset>
+        <form action="/" method="post">
+          <a>WeatherBit :-) </a>
+          <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
+          <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get Weather">
+        </form>
+      </fieldset>
+      <hr />
+    </div>
+
     <div class="row">
       <div class="col-sm-8">
-        <h5>WeatherBit.io Report</h5>
+        <h5>Current Conditions</h5>
         <div class="jumbotron jumbotron-fluid">
-          <fieldset>
-            <form action="/weatherbit" method="post">
-              <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
-              <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get WeatherBit.io">
-            </form>
-          </fieldset>
-          <br />
-          <% if( typeof(error)==="undefined" || resStatus !==200 ){ %>
+          <% if( typeof(error) === "undefined"  || curStatus === 400 ){ %>
             <p style="color:gray"> Try a new input.</p>
             <% } else { %>
-              <p style="color:gray"><strong>City</strong>: <%= resData.city_name %> , <%= resData.state_code %>
+              <p style="color:gray"><strong>City</strong>: <%= curData.city_name %> , <%= curData.state_code %>
                     <br />
-                    <strong>Geolocation</strong>: <%= resData.lat %>, <%= resData.lon %>
+                    <strong>Geolocation</strong>: <%= curData.lat %>, <%= curData.lon %>
                         <br />
                         <strong>Time zone: </strong>
-                        <%= resData.timezone %>
+                        <%= curData.timezone %>
                           <br />
                           <hr />
               </p>
@@ -37,77 +42,77 @@
                 <tr class="active-row">
                   <th>Datetime: </th>
                   <td>
-                    <%= resData.ob_time %>
+                    <%= curData.ob_time %>
                   </td>
                 </tr>
                 <th>Cloud cover(%): </th>
                 <td>
-                  <%= resData.clouds %>
+                  <%= curData.clouds %>
                 </td>
                 </tr>
                 <th>Temperature(F): </th>
                 <td>
-                  <%= resData.temp %>
+                  <%= curData.temp %>
                 </td>
                 </tr>
                 <th>Feels like(F): </th>
                 <td>
-                  <%= resData.app_temp %>
+                  <%= curData.app_temp %>
                 </td>
                 </tr>
                 <th>Relative humidity (%): </th>
                 <td>
-                  <%= resData.rh %>
+                  <%= curData.rh %>
                 </td>
                 </tr>
                 <th>Visibility: </th>
                 <td>
-                  <%= resData.vis %>
+                  <%= curData.vis %>
                 </td>
                 </tr>
                 <th>Pressure(mb): </th>
                 <td>
-                  <%= resData.pres %>
+                  <%= curData.pres %>
                 </td>
                 </tr>
                 <th>Sea Level Pressure(mb): </th>
                 <td>
-                  <%= resData.slp %>
+                  <%= curData.slp %>
                 </td>
                 </tr>
                 <th>Wind Speed(m/s): </th>
                 <td>
-                  <%= resData.wind_spd %>
+                  <%= curData.wind_spd %>
                 </td>
                 </tr>
                 <th>Wind Direction: </th>
                 <td>
-                  <%= resData.wind_cdir_full %>
+                  <%= curData.wind_cdir_full %>
                 </td>
                 </tr>
                 <th>Snowfall(mm/hr): </th>
                 <td>
-                  <%= resData.snow %>
+                  <%= curData.snow %>
                 </td>
                 </tr>
                 <th>UV Index: </th>
                 <td>
-                  <%= resData.uv %>
+                  <%= curData.uv %>
                 </td>
                 </tr>
                 <th>Air Quality Index: </th>
                 <td>
-                  <%= resData.aqi %>
+                  <%= curData.aqi %>
                 </td>
                 </tr>
                 <th>Sunrise: </th>
                 <td>
-                  <%= resData.sunrise %>
+                  <%= curData.sunrise %>
                 </td>
                 </tr>
                 <th>Sunset: </th>
                 <td>
-                  <%= resData.sunset %>
+                  <%= curData.sunset %>
                 </td>
                 </tr>
               </table>
@@ -126,7 +131,91 @@
   </div>
     <div class="row">
       <div class="col-sm-12">
-        <h5>Extended Weather Forecast</h5>
+        <h5>Extended Forecast</h5>
+        <div class="jumbotron jumbotron-fluid">
+          <% if( typeof(error) === "undefined" || foreStatus === 400 ){ %>
+            <p style="color:gray"> Waiting new user input.</p>
+          <% } else { %>
+          <table class="styled-table">
+            <thead>
+              <tr class="w-35">
+                <th>Date</th>
+                <th>Condition</th>
+                <th>Max/Min Temperature</th>
+                
+                <th>Temperature</th>
+                
+                <th>Pressure</th>
+                <th>Humidity</th>
+                <th>Wind Gust</th>
+                <th>Wind Speed</th>
+                <th>Wind Direction</th>
+                <th>Cloud Cover</th>
+                <th>Visibility</th>
+                <th>UV Index</th>
+                <th>Sunrise</th>
+                <th>Sunset</th>
+                <th>Moonphase</th>
+              </tr>
+            </thead>
+            <% let forecast = foreData.data; %>                
+            <% for (let i=0; i < forecast.length; i++) { %>
+              <tbody>
+                <tr class="active-row">
+                  <td>
+                    <%= forecast[i].datetime %>
+                  </td>
+                  <td>
+                    <%= forecast[i].weather.description %>
+                  </td>
+                  <td>
+                    <%= forecast[i].app_max_temp %>/<%= forecast[i].app_min_temp %>
+                  </td>
+                  <td>
+                    <%= forecast[i].temp %>
+                  </td>
+                  <td>
+                    <%= forecast[i].slp %>
+                  </td>
+                  <td>
+                    <%= forecast[i].rh %>
+                  </td>
+                  <td>
+                    <%= forecast[i].windgust %>
+                  </td>
+                  <td>
+                    <%= forecast[i].wind_spd %>
+                  </td>
+                  <td>
+                    <%= forecast[i].wind_gust_spd %>
+                  </td>
+                  <td>
+                    <%= forecast[i].wind_cdir_full %>
+                  </td>
+                  <td>
+                    <%= forecast[i].clouds %>
+                  </td>
+                  <td>
+                    <%= forecast[i].vis %>
+                  </td>
+                  <td>
+                    <%= forecast[i].uv %>
+                  </td>
+                  <td>
+                    <%= forecast[i].sunrise_ts %>
+                  </td>
+                  <td>
+                    <%= forecast[i].sunset_ts %>
+                  </td>
+                  <td>
+                    <%= forecast[i].moon_phase_lunation %>
+                  </td>
+                </tr>
+              </tbody>
+            <% }} %>
+          </table>
+        </div>
+
       </div>
 
     </div>
