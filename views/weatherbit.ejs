@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+  <header>
+    <%- include('./partials/header2'); %>
+  </header>
+  <main>
+    <div class="row">
+      <div class="col-sm-8">
+        <h5>WeatherBit.io Report</h5>
+        <div class="jumbotron jumbotron-fluid">
+          <fieldset>
+            <form action="/weatherbit" method="post">
+              <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
+              <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get WeatherBit.io">
+            </form>
+          </fieldset>
+          <br />
+          <% if( typeof(error)==="undefined" || resStatus !==200 ){ %>
+            <p style="color:gray"> Try a new input.</p>
+            <% } else { %>
+              <p style="color:gray"><strong>City</strong>: <%= resData.city_name %> , <%= resData.state_code %>
+                    <br />
+                    <strong>Geolocation</strong>: <%= resData.lat %>, <%= resData.lon %>
+                        <br />
+                        <strong>Time zone: </strong>
+                        <%= resData.timezone %>
+                          <br />
+                          <hr />
+              </p>
+              <table class="styled-table">
+                <tr class="active-row">
+                  <th>Datetime: </th>
+                  <td>
+                    <%= resData.ob_time %>
+                  </td>
+                </tr>
+                <th>Cloud cover(%): </th>
+                <td>
+                  <%= resData.clouds %>
+                </td>
+                </tr>
+                <th>Temperature(F): </th>
+                <td>
+                  <%= resData.temp %>
+                </td>
+                </tr>
+                <th>Feels like(F): </th>
+                <td>
+                  <%= resData.app_temp %>
+                </td>
+                </tr>
+                <th>Relative humidity (%): </th>
+                <td>
+                  <%= resData.rh %>
+                </td>
+                </tr>
+                <th>Visibility: </th>
+                <td>
+                  <%= resData.vis %>
+                </td>
+                </tr>
+                <th>Pressure(mb): </th>
+                <td>
+                  <%= resData.pres %>
+                </td>
+                </tr>
+                <th>Sea Level Pressure(mb): </th>
+                <td>
+                  <%= resData.slp %>
+                </td>
+                </tr>
+                <th>Wind Speed(m/s): </th>
+                <td>
+                  <%= resData.wind_spd %>
+                </td>
+                </tr>
+                <th>Wind Direction: </th>
+                <td>
+                  <%= resData.wind_cdir_full %>
+                </td>
+                </tr>
+                <th>Snowfall(mm/hr): </th>
+                <td>
+                  <%= resData.snow %>
+                </td>
+                </tr>
+                <th>UV Index: </th>
+                <td>
+                  <%= resData.uv %>
+                </td>
+                </tr>
+                <th>Air Quality Index: </th>
+                <td>
+                  <%= resData.aqi %>
+                </td>
+                </tr>
+                <th>Sunrise: </th>
+                <td>
+                  <%= resData.sunrise %>
+                </td>
+                </tr>
+                <th>Sunset: </th>
+                <td>
+                  <%= resData.sunset %>
+                </td>
+                </tr>
+              </table>
+
+              <% } %>
+        </div>
+      </div>
+    
+
+      <h5>Weather Alerts</h5>  
+    <div class="col-sm-3">
+      <div class="well">
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Extended Weather Forecast</h5>
+      </div>
+
+    </div>
+
+
+  </main>
+  <footer>
+    <%- include('./partials/footer'); %>
+  </footer>
+</body>
+
+</html>

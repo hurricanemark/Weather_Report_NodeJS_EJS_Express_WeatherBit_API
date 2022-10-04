@@ -5,14 +5,14 @@
   <%- include('./partials/head'); %>
 </head>
 
-<body  class="container">
+<body class="container">
   <header>
     <%- include('./partials/header2'); %>
   </header>
   <main>
     <div class="row">
       <div class="col-sm-10">
-        <h4>Current Weather Report</h4>
+        <h5>Current Weather Conditions</h5>
         <div class="jumbotron jumbotron-fluid">
           <fieldset>
             <form action="/" method="post">
@@ -22,98 +22,83 @@
           </fieldset>
           <br />
 
-          <% if( typeof(error)==="undefined" ){ %>
-            <p style="color:gray"> Awaiting user input.</p>
-            <% } else { %>
-              <h6><%= locale %></h6>
+          <% if( typeof(error)==="undefined" || status !==200 ){ %>
+            <p style="color:gray"> Waiting new user input.</p>
+          <% } else { %>
+            <% let forecast = data.days; %>
+            <% let currCond = data.currentConditions; %>
+              <h6>
+                <%= locale %>
+              </h6>
               <div class="container-fluid">
-              <table class="styled-table">
-                <thead>
-                  <tr class="w-35">
-                    <th>Time</th>
-                    <th>Condition</th>
-                    <th>Temperature</th>
-                    <th>FeelsLike</th>                    
-                    <th>Sunrise</th>
-                    <th>Sunset</th>
-                    <th>Moon_Phase</th>
-                    <th>Visibility</th>
-                    <th>Cloud_Cover</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="active-row">
-                    <td>
-                      <%= data.datetime %>
-                    </td>
-                    <td>
-                      <%= data.icon %>
-                    </td>
-                    <td>
-                      <%= data.temp %>
-                    </td>
-                    <td>
-                      <%= data.feelslike %>
-                    </td>
-                    <td>
-                      <%= data.sunrise %>
-                    </td>
-                    <td>
-                      <%= data.sunset %>
-                    </td>
-                    <td>
-                      <%= data.moonphase %>
-                    </td>
-                    <td>
-                      <%= data.visibility %>
-                    </td>
-                    <td>
-                      <%= data.cloudcover %>
-                    </td>
-
-                  </tr>
-                </tbody>
-                <thead>
-                  <tr class="w-35">
-                    <th> Humidity</th>
-                    <th> Dew_like </th>
-                    <th> Precipitation </th>
-                    <th> Snow_Depth </th>
-                    <th> Wind_Gust </th>
-                    <th> Wind_Speed </th>
-                    <th> Wind_Direction </th>
-                    <th> Barimetric_Pressure </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="active-row">
-                    <td>
-                      <%= data.humidity %>
-                    </td>                    
-                    <td>
-                      <%= data.dew %>
-                    </td>
-                    <td>
-                      <%= data.precip %>
-                    </td>
-                    <td>
-                      <%= data.snowdepth %>
-                    </td>
-                    <td>
-                      <%= data.windgust %>
-                    </td>
-                    <td>
-                      <%= data.windspd %>
-                    </td>
-                    <td>
-                      <%= data.winddir %>
-                    </td>
-                    <td>
-                      <%= data.pressure %>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                <table class="styled-table">
+                  <thead>
+                    <tr class="w-35">
+                      <th>Time</th>
+                      <th>Condition</th>
+                      <th>Temperature</th>
+                      <th>FeelsLike</th>
+                      <th>Sunrise</th>
+                      <th>Sunset</th>
+                      <th>Moon_Phase</th>
+                      <th>Visibility</th>
+                      <th>Cloud_Cover</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="active-row">
+                      <td> <%= currCond.datetime %> </td>
+                      <td> <%= currCond.icon %> </td>
+                      <td> <%= currCond.temp %> </td>
+                      <td> <%= currCond.feelslike %> </td>
+                      <td> <%= currCond.sunrise %> </td>
+                      <td> <%= currCond.sunset %> </td>
+                      <td> <%= currCond.moonphase %> </td>
+                      <td> <%= currCond.visibility %> </td>
+                      <td> <%= currCond.cloudcover %> </td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr class="w-35">
+                      <th> Humidity</th>
+                      <th> Dew_like </th>
+                      <th> Precipitation </th>
+                      <th> Snow_Depth </th>
+                      <th> Wind_Gust </th>
+                      <th> Wind_Speed </th>
+                      <th> Wind_Direction </th>
+                      <th> Barimetric_Pressure </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="active-row">
+                      <td>
+                        <%= currCond.humidity %>
+                      </td>
+                      <td>
+                        <%= currCond.dew %>
+                      </td>
+                      <td>
+                        <%= currCond.precip %>
+                      </td>
+                      <td>
+                        <%= currCond.snowdepth %>
+                      </td>
+                      <td>
+                        <%= currCond.windgust %>
+                      </td>
+                      <td>
+                        <%= currCond.windspd %>
+                      </td>
+                      <td>
+                        <%= currCond.winddir %>
+                      </td>
+                      <td>
+                        <%= currCond.pressure %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <% } %>
 
@@ -126,8 +111,94 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-10">
-        <h5>Extended Weather Forecast</h5>
+      <div class="col-sm-12">
+        <h5>Extended Forecast</h5>
+        <div class="jumbotron jumbotron-fluid">
+          <% if( typeof(error)==="undefined" || status !==200 ){ %>
+            <p style="color:gray"> Waiting new user input.</p>
+          <% } else { %>
+          <table class="styled-table">
+            <thead>
+              <tr class="w-35">
+                <th>Date</th>
+                <th>Condition</th>
+                <th>Max/Min Temperature</th>
+                
+                <th>Temperature</th>
+                <th>Feels Like</th>
+                <th>Pressure</th>
+                <th>Humidity</th>
+                <th>Wind Gust</th>
+                <th>Wind Speed</th>
+                <th>Wind Direction</th>
+                <th>Cloud Cover</th>
+                <th>Visibility</th>
+                <th>UV Index</th>
+                <th>Sunrise</th>
+                <th>Sunset</th>
+                <th>Moonphase</th>
+              </tr>
+            </thead>
+            <% let forecast = data.days; %>                
+            <% for (let i=0; i < forecast.length; i++) { %>
+              <tbody>
+                <tr class="active-row">
+                  <td>
+                    <%= forecast[i].datetime %>
+                  </td>
+                  <td>
+                    <%= forecast[i].conditions %>
+                  </td>
+                  <td>
+                    <%= forecast[i].tempmax %>/<%= forecast[i].tempmin %>
+                  </td>
+                  <td>
+                    <%= forecast[i].temp %>
+                  </td>
+                  <td>
+                    <%= forecast[i].feelslike %>
+                  </td>
+                  <td>
+                    <%= forecast[i].pressure %>
+                  </td>
+                  <td>
+                    <%= forecast[i].humidity %>
+                  </td>
+                  <td>
+                    <%= forecast[i].windgust %>
+                  </td>
+                  <td>
+                    <%= forecast[i].windspeed %>
+                  </td>
+                  <td>
+                    <%= forecast[i].windgust %>
+                  </td>
+                  <td>
+                    <%= forecast[i].winddir %>
+                  </td>
+                  <td>
+                    <%= forecast[i].cloudcover %>
+                  </td>
+                  <td>
+                    <%= forecast[i].visibility %>
+                  </td>
+                  <td>
+                    <%= forecast[i].uvindex %>
+                  </td>
+                  <td>
+                    <%= forecast[i].sunrise %>
+                  </td>
+                  <td>
+                    <%= forecast[i].sunset %>
+                  </td>
+                  <td>
+                    <%= forecast[i].moonphase %>
+                  </td>
+                </tr>
+              </tbody>
+            <% }} %>
+          </table>
+        </div>
       </div>
     </div>
 
