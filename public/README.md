@@ -227,9 +227,12 @@ Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs
 
 <strong><span style="color:gray; font-size:18px"> Staying within the Free Tier Limit</span> </strong>
 
-A typical free daily allowance cycle consists of up to 1000 free API queries.  In this case, the user has to wait until the beginning of the next free tier cycle.  To avoid being charged, this source code has a *a server-side accounting logic* to pause querying the weathercrossing API once its periodic allowance has been reached.  Unpause is automatic once the clock rolls to the beginning of a new daily free tier cycle.
+A typical free daily allowance cycle consists of up to 1000 free API calls.  In this case, the user has to wait until the beginning of the next free tier cycle.  To avoid being charged, this source code has a *a server-side accounting logic* to pause querying the weathercrossing API once its periodic allowance has been reached.  Unpause is automatic once the clock rolls to the beginning of a new daily free tier cycle.
 
->*Potential development needed to notify the server admin if demands grew and if there are ways to monetize it.*
+What happens when I exceed a rate limit?
+When you exceed a daily limit (calls per day) the API will return an HTTP 429 error until the rate limit resets at 00 UTC. When you exceed a per second limit (calls per second) the requests in excess of this limit will receive an HTTP 429 error from the API.
+
+>*The server admin should monitor for demands and if there are ways to monetize it.*
 
 <strong><span style="color:gray; font-size:18px">Caching the Weather Data</span></strong>
 
