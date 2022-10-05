@@ -49,7 +49,7 @@ Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provid
 4. Write an async function to incorporate the API call and retrieve the weather data.
 
 
-> On the server, the `API_KEY` is hidden in the `.env` file.  By design, environment variables are not accessible to the client. For the client to directly query weather data, the API_KEY has to be available on the browser.  This will break the security of our application!
+> On the server, the `API_KEY` is hidden in the `.env` file when `NODE_ENV=development`.  By design, environment variables are not accessible to the client. For the client to directly query weather data, the API_KEY has to be available on the browser.  This will break the security of our application!  However, technology has solved this problem in way, way, way back.
 
 **Options**:
 
@@ -59,13 +59,13 @@ Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provid
 
 **Decision:**  
 
-You would want to live free and die harder, let's make the client calls the server which in turn requests weather data and sends responses back.  The client then can parse the response into a grid for display.  This means the server will need to provide GET requests!
+You would want to live free and die harder, let's make the client calls the server which in turn requests weather data and sends responses back.  The client then can parse the response into a grid for display.  This means the server will need to provide GET and POST routings!
 
 ---
 
 **Options**: 
 
-You need to implement a middleware to retrieve weather data and serve it to the client using either
+You will need to implement a middleware to retrieve weather data and serve it to the client using either
 - `EJS` embedded templates 
 - or `ReactJS`.
 

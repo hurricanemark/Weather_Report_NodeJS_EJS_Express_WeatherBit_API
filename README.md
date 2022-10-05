@@ -6,6 +6,8 @@ Ever wonder why your phone shows weather data of your immediate vicinity on your
 
 ![Client display](./public/Runtime.PNG)
 
+---
+
 ## The Value of Weather Information 
 
 Weather information is powerful knowledge used in forecasting the production of certain operations to help determine the economic bottom line.  There are countless human endeavors affected by weather factors.  Rain is good for growers, and forewarning is valuable in extreme weather, while the sunny sky and windy days could be good for energy production.  For example, solar power production needs to know the number of hours of sunlight specific to geographical location.  Wind farm needs to know wind speed, direction, etc. The travel and hospitality industry is most affected by dynamic weather patterns.  From agriculture to space-faring, weather plays a key role in the decision-making process.
@@ -17,6 +19,7 @@ There are weather detection stations situated in and around you.  The inner work
 > Below is the template for rudimentary completion of an example on interfacing with a weather data provider.  For indepth logics and real life data implementation, continue to [here](public/README.md).
 
 <br />
+
 
 ## NodeJS and Express
 
@@ -93,6 +96,8 @@ It is a typical NodeJS project layout.
 
 `npm start`
 
+<br />
+
 
 
 ## Build Once, Run Anywhere!
@@ -130,6 +135,15 @@ PS D:\DEVEL\NODEJS\BrainUnscramblers\LocalWeather> docker image ls
 REPOSITORY                   TAG         IMAGE ID       CREATED         SIZE
 hurricanemark/localweather   1.0         bb89b0646be4   6 minutes ago   949MB
 ```
+
+
+
+**On the DockerHub registry**
+
+A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is available to the public on the DockerHub registry.  You can pull it with the command below:
+
+```docker pull marknre/techrolemiweatherapp:latest```
+
 
 ### Run docker
 
