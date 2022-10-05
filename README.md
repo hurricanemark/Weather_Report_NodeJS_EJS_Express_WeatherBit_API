@@ -20,7 +20,7 @@ There are weather detection stations situated in and around you.  The inner work
 
 <br />
 
----
+
 ## NodeJS and Express
 
 I recently wrote this weather reporting app using the cloud editor `replit` where the bootstraping of node JS is hidden.  All I had to do was to focus on the core logic in app.js, style.css, and index.html.  To create a fully functional development environment locally, I needed to bootstrap NodeJS, Express to my replit code.  
@@ -98,7 +98,7 @@ It is a typical NodeJS project layout.
 
 <br />
 
----
+
 
 ## Build Once, Run Anywhere!
 
@@ -136,7 +136,7 @@ REPOSITORY                   TAG         IMAGE ID       CREATED         SIZE
 hurricanemark/localweather   1.0         bb89b0646be4   6 minutes ago   949MB
 ```
 
----
+
 
 **On the DockerHub registry**
 
@@ -144,7 +144,7 @@ A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is a
 
 ```docker pull marknre/techrolemiweatherapp:latest```
 
----
+
 ### Run docker
 
 Notice that environment variables (secret keys) required to run the app is not being included in the Dockerfile.  These secret keys will be stated with the container.  eg.  ` ... -e WEATHER_VISUALCROSSING_API_KEY=XXXXX -e WEATHERBIT_KEY=XXXXXXX`
