@@ -160,12 +160,12 @@ A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is a
 
 ### Run docker
 
-Notice that environment variables (secret keys) required to run the app is not being included in the Dockerfile.  These secret keys will be stated with the container.  eg.  ` ... -e WEATHERBIT_KEY=XXXXXXX`
+Notice that environment variables (secret keys) required to run the app is not being included in the Dockerfile.  These secret keys will be stated with the container.  
+eg.  `... -e WEATHERBIT_KEY=XXXXXXX`
 
 Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a port on your local machine.  i.e. `LOCAL_PORT:CONTAINER_PORT` for example  *4321:8080*
 
-`docker run -p 4321:8080 -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit  bb89b0646be4`
-
+`docker run -p 4321:8080 --memory=128m -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit  bb89b0646be4`
 
 <br />
 
