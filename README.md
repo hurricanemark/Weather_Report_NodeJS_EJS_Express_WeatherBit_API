@@ -151,9 +151,11 @@ marknre/techrolemiweatherapp            1.0          dc6e0acce1d7   2 days ago  
 
 **On the DockerHub registry**
 
-A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is available to the public on the DockerHub registry.  You can pull it with the command below:
+A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is available to the public on the [DockerHub registry](https://hub.docker.com/r/marknre/techrolemiweatherapp).  You can pull it with the command below:
 
 ```docker pull marknre/techrolemiweatherapp:latest```
+
+
 
 
 ### Run docker
