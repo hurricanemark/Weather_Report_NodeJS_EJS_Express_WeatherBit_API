@@ -1,5 +1,7 @@
 # Core Logic
 
+![](./ChapterSubject_WeatherAPI.PNG)
+
 To obtain the pinpoint weather data, earth location is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, integrate google-map API where the user can point to a location on the map to trigger a localized weather report.
 
 * The geolocation of a known address can be obtained by using the client-side javascript [Windows Navigator](https://www.w3schools.com/jsref/obj_navigator.asp).  Your browser uses different types and sources of information to identify your location. These include your IP address, geolocation via HTML5 in your browser, and your PC's language and time settings.  For more detail on how Navigator.geolocation is determined, [read more here](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition).
