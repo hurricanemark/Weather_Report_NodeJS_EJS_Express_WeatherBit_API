@@ -9,6 +9,8 @@ To obtain the pinpoint weather data, earth location is a required parameter.  Fo
 Sample code for client-side geolocation:
 
 ```c
+    <p id="geo-coord"></p>
+
     <script type=javascript>
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -26,8 +28,8 @@ Sample code for client-side geolocation:
 ```
 
 * The API query for weather data can be describe as follow.
-
-    > <https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${LOCATION}?unitGroup=metric&key=${API_ACCESS_KEY}&contentType=json>
+    
+    > `https://api.weatherbit.io/v2.0/history/airquality?city=${LOCATION}&start_date=2022-10-03&end_date=2022-10-04&tz=local&key=${API_ACCESS_KEY}`
 
     Where, **LOCATION** can be City, State
 
@@ -39,7 +41,7 @@ Sample code for client-side geolocation:
 
 # Getting Real Data from A Paid API Provider
 
-Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provider via a paid subscription. In this project, you can use the API service from the [VisualCrossing.com](https://www.visualcrossing.com).  The good news is if you registered to use the free tier, a good fit for demonstration purposes, there is no charge as long as you stay within the allowed call limit.  Read [here](https://www.visualcrossing.com/resources/blog/five-easy-weather-api-calls-to-get-the-weather-data-you-need/) to learn ways to make weather API calls.
+Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provider via a paid subscription. In this project, you can use the API service from the [weatherbit.io](https://api.weatherbit.io/v2.0/).  The good news is no credit card is required (at the time I develop this app).  You registered to use the free tier, and there is no charge as long as you stay within the allowed call limit of 1500 calls/day.  You will get errorCode 429 when you'd reached the limit. Read [here](https://www.weatherbit.io/faq) to learn ways to make weather API calls.
 
 <br />
 
@@ -238,7 +240,7 @@ When you exceed a daily limit (calls per day) the API will return an HTTP 429 er
 
 <strong><span style="color:gray; font-size:18px">Caching the Weather Data</span></strong>
 
-Weather forecast data from `visualcrossing.com` typically contains information spanning 15 days, each day contains 24 hourly objects.  Additional queries within the same period would usually result in the same data.  We need to cache this information so as not to incur needless and sometimes costly API calls.  
+Weather forecast data from `weatherbit.io` typically contains information spanning 15 days, each day contains 24 hourly objects.  Additional queries within the same period would usually result in the same data.  We need to cache this information so as not to incur needless and sometimes costly API calls.  
 
 We could elect to use the DOM Storage API, also called the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) methods: `Window.sessionStorage` where data persists as long as the session is running, or `Window.localStorage` which has no expiration.  Note: when the last private tab is closed, data stored in the localStorage object of a site opened in a private tab or incognito mode is cleared.
 
