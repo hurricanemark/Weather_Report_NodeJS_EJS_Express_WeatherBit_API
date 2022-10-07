@@ -1,6 +1,6 @@
-# Core Logic
-
 ![](./ChapterSubject_WeatherAPI.PNG)
+
+# Core Logic
 
 To obtain the pinpoint weather data, earth location is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, integrate google-map API where the user can point to a location on the map to trigger a localized weather report.
 
