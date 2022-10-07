@@ -140,9 +140,11 @@ docker build -t marknre/techrolemiweatherapp:2.0 .
 **List the image**
 
 ```c
-PS D:\DEVEL\NODEJS\BrainUnscramblers\LocalWeather> docker image ls
-REPOSITORY                   TAG         IMAGE ID       CREATED         SIZE
-hurricanemark/localweather   1.0         bb89b0646be4   6 minutes ago   949MB
+PS D:\DEVEL\NODEJS\BrainUnscramblers\StagingProjs> docker image ls
+REPOSITORY                              TAG          IMAGE ID       CREATED              SIZE
+marknre/techrolemiweatherapp            2.0          08134bd887f1   About a minute ago   954MB
+marknre/techrolemiweatherapp            1.0          dc6e0acce1d7   2 days ago           947MB
+
 ```
 
 
@@ -161,7 +163,6 @@ Notice that environment variables (secret keys) required to run the app is not b
 Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a port on your local machine.  i.e. `LOCAL_PORT:CONTAINER_PORT` for example  *4321:8080*
 
 `docker run -p 4321:8080 -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit  bb89b0646be4`
-
 
 
 <br />
