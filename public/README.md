@@ -306,6 +306,9 @@ A sample of Web Storage API test:
     </script>
 ```
 
+## Et, Voila`
+
+![](Home.PNG)
 
 ## Next Phases
 
