@@ -1,3 +1,5 @@
 node_modules
 .env
 public/ePub
+views/header2.ejs
+index-temp.ejs

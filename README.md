@@ -96,6 +96,10 @@ It is a typical NodeJS project layout.
 
 `npm start`
 
+>Initially, the browser might pop up asking if you would allow it to detect your location.  A 'Allow' will enable GPS pinpoint weather report.  A 'Block' will disable GPS for current and subsequent session.
+
+![Browser popup](./public/PermitGeolocation.PNG)
+
 <br />
 
 
@@ -111,22 +115,27 @@ The Docker container is built and saved to current working directory.  Replace t
 `docker build -t hurricanemark/localweather:1.0 .`
 
 ```c
-[+] Building 139.3s (11/11) FINISHED
- => [internal] load build definition from Dockerfile                                              0.1s 
- => => transferring dockerfile: 210B                                                              0.1s 
- => [internal] load .dockerignore           
-...
- => [internal] load build context                                                                 0.8s 
- => => transferring context: 143.24kB                                                             0.6s 
- => [2/5] WORKDIR /app                                                                            1.2s 
- => [3/5] COPY package.json ./                                                                    0.1s 
- => [4/5] RUN npm install                                                                         6.6s 
- => [5/5] COPY . .                                                                                0.2s 
- => exporting to image                                                                            0.4s 
- => => exporting layers                                                                           0.3s 
- => => writing image sha256:bb89b0646be41055287fdac18ea1e405a2a19ef4b2919a0a02c213b9dc947b34      0.0s 
- => => naming to docker.io/hurricanemark/localweather:1.0    
-```
+docker build -t marknre/techrolemiweatherapp:2.0 .      
+
+[+] Building 3.1s (11/11) FINISHED
+ => [internal] load build definition from Dockerfile                                                  0.0s 
+ => => transferring dockerfile: 32B                                                                   0.0s 
+ => [internal] load .dockerignore                                                                     0.0s 
+ => => transferring context: 2B                                                                       0.0s 
+ => [internal] load metadata for docker.io/library/node:16.17.0                                       1.1s 
+ => [auth] library/node:pull token for registry-1.docker.io                                           0.0s 
+ => [internal] load build context                                                                     0.4s
+ => => transferring context: 635.22kB                                                                 0.3s
+ => [1/5] FROM docker.io/library/node:16.17.0@sha256:a5d9200d3b8c17f0f3d7717034a9c215015b7aae70cb2a9  0.0s
+ => CACHED [2/5] WORKDIR /app                                                                         0.0s
+ => CACHED [3/5] COPY package.json ./                                                                 0.0s
+ => CACHED [4/5] RUN npm install                                                                      0.0s
+ => [5/5] COPY . .                                                                                    0.9s
+ => exporting to image                                                                                0.7s
+ => => exporting layers                                                                               0.6s
+ => => writing image sha256:1c4db40ce8799665d8226aea4ae5759b3dc17c0538992b95e59b2e74375da1c7          0.0s
+ => => naming to docker.io/marknre/techrolemiweatherapp:2.0                                           0.0s
+ ```
 
 **List the image**
 
@@ -147,11 +156,11 @@ A docker image built with this `git-tag`:`Phase1-Extened-Weather-Forecasts` is a
 
 ### Run docker
 
-Notice that environment variables (secret keys) required to run the app is not being included in the Dockerfile.  These secret keys will be stated with the container.  eg.  ` ... -e WEATHER_VISUALCROSSING_API_KEY=XXXXX -e WEATHERBIT_KEY=XXXXXXX`
+Notice that environment variables (secret keys) required to run the app is not being included in the Dockerfile.  These secret keys will be stated with the container.  eg.  ` ... -e WEATHERBIT_KEY=XXXXXXX`
 
 Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a port on your local machine.  i.e. `LOCAL_PORT:CONTAINER_PORT` for example  *4321:8080*
 
-`docker run -p 4321:8080 bb89b0646be4 -e WEATHER_VISUALCROSSING_API_KEY=Actual_Secret_Key_for_VisualCrossing -e WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit`
+`docker run -p 4321:8080 bb89b0646be4 -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit`
 
 
 
