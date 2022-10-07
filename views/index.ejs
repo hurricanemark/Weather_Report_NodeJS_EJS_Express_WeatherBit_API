@@ -7,211 +7,45 @@
 
 <body class="container">
   <header>
-    <%- include('./partials/header2'); %>
+    <%- include('./partials/header'); %>
+    <title>TechRolEmi Weather42</title>
   </header>
-  <main>
-    <br />
+  <body>
+    <h1>Geolocation Pinpoint Weather</h1>
+    <div class="xcode" style="display: none;"></div>
+    <input type="hidden" id="xcree" name="xcree" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=">
+    <div id="geoLatLng" action="showPosition()">
+        <!-- pinpoint positon verbish will be loaded into here -->
+        <!-- <p><%= xkey %></p> -->
+    </div>
+    <hr>
+    <p>Weather information is powerful knowledge used in forecasting the production of certain operations to help determine the economic bottom line. There are countless human endeavors affected by weather factors. Rain is good for growers, and forewarning is valuable in extreme weather, while the sunny sky and windy days could be good for energy production. For example, solar power production needs to know the number of hours of sunlight specific to geographical location. Wind farm needs to know wind speed, direction, etc. The travel and hospitality industry is most affected by dynamic weather patterns. From agriculture to space-faring, weather plays a key role in the decision-making process.</p>
+<hr />
+    <p>There are weather detection stations situated in and around you. The inner working of making data available is not of interest to the populous but it is vital to a functioning society. Although, the National Weather Service is a government agency that disseminates data free of charge. Weather data has been monetized by repackaging in ways the population can consume. e.g. Local TV news reserve a segment devoted to weather ubiquitously. Weather data is available at your fingertips. It is all factored into a transferable cost by some service providers you're currently paying. For weather application developers, the effective cost per thousand impressions (eCPM) metric is higher compared to educational apps. You can effectively monetize your project if you do it right.</p>
     <div>
-      <fieldset>
-        <form action="/" method="post">
-          <a>Visual Crossing ;-) </a>
-          <input name="locale" type="text" class="ghost-input" placeholder="Enter a City" required>
-          <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Get Weather">
-        </form>
-      </fieldset>
-      <hr />
+    <hr>
+    <br />
+    <a href="https://github.com/hurricanemark/Weather_Report_NodeJS_EJS_Express_VisualCrossing_API" target="_blank">GitHub source</a>
+
+    <br />
+    <a href="https://hub.docker.com/u/marknre" target = "_blank">Docker image</a>
+    
+        <fieldset>
+            <form action="/weatherbit" method="post">
+                <input name="xcode" type="hidden" class="xcode" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=" required>
+          </form>
+        </fieldset>
     </div>
 
-    <div class="row">
-      <div class="col-sm-10">
-        <h5>Current Weather Conditions</h5>
-        <div class="jumbotron jumbotron-fluid">
 
+    <main>
+        <div class="currentConds"></div>
+  
+    </main>
+<footer>
+  <%- include('./partials/footer'); %>
+</footer>
+    <script type="module" src="geolocation.js"></script>
 
-          <% if( typeof(error)==="undefined" || status !==200 ){ %>
-            <p style="color:gray"> Waiting new user input.</p>
-          <% } else { %>
-            <% let forecast = data.days; %>
-            <% let currCond = data.currentConditions; %>
-              <h6>
-                <%= locale %>
-              </h6>
-              <div class="container-fluid">
-                <table class="styled-table">
-                  <thead>
-                    <tr class="w-35">
-                      <th>Time</th>
-                      <th>Condition</th>
-                      <th>Temperature</th>
-                      <th>FeelsLike</th>
-                      <th>Sunrise</th>
-                      <th>Sunset</th>
-                      <th>Moon_Phase</th>
-                      <th>Visibility</th>
-                      <th>Cloud_Cover</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="active-row">
-                      <td> <%= currCond.datetime %> </td>
-                      <td> <%= currCond.icon %> </td>
-                      <td> <%= currCond.temp %> </td>
-                      <td> <%= currCond.feelslike %> </td>
-                      <td> <%= currCond.sunrise %> </td>
-                      <td> <%= currCond.sunset %> </td>
-                      <td> <%= currCond.moonphase %> </td>
-                      <td> <%= currCond.visibility %> </td>
-                      <td> <%= currCond.cloudcover %> </td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr class="w-35">
-                      <th> Humidity</th>
-                      <th> Dew_like </th>
-                      <th> Precipitation </th>
-                      <th> Snow_Depth </th>
-                      <th> Wind_Gust </th>
-                      <th> Wind_Speed </th>
-                      <th> Wind_Direction </th>
-                      <th> Barimetric_Pressure </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="active-row">
-                      <td>
-                        <%= currCond.humidity %>
-                      </td>
-                      <td>
-                        <%= currCond.dew %>
-                      </td>
-                      <td>
-                        <%= currCond.precip %>
-                      </td>
-                      <td>
-                        <%= currCond.snowdepth %>
-                      </td>
-                      <td>
-                        <%= currCond.windgust %>
-                      </td>
-                      <td>
-                        <%= currCond.windspd %>
-                      </td>
-                      <td>
-                        <%= currCond.winddir %>
-                      </td>
-                      <td>
-                        <%= currCond.pressure %>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <% } %>
-
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="well">
-          <h5 style="color:gray">Reserved Ad space</h5>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <h5>Extended Forecast</h5>
-        <div class="jumbotron jumbotron-fluid">
-          <% if( typeof(error)==="undefined" || status !==200 ){ %>
-            <p style="color:gray"> Waiting new user input.</p>
-          <% } else { %>
-          <table class="styled-table">
-            <thead>
-              <tr class="w-35">
-                <th>Date</th>
-                <th>Condition</th>
-                <th>Max/Min Temperature</th>
-                
-                <th>Temperature</th>
-                <th>Feels Like</th>
-                <th>Pressure</th>
-                <th>Humidity</th>
-                <th>Wind Gust</th>
-                <th>Wind Speed</th>
-                <th>Wind Direction</th>
-                <th>Cloud Cover</th>
-                <th>Visibility</th>
-                <th>UV Index</th>
-                <th>Sunrise</th>
-                <th>Sunset</th>
-                <th>Moonphase</th>
-              </tr>
-            </thead>
-            <% let forecast = data.days; %>                
-            <% for (let i=0; i < forecast.length; i++) { %>
-              <tbody>
-                <tr class="active-row">
-                  <td>
-                    <%= forecast[i].datetime %>
-                  </td>
-                  <td>
-                    <%= forecast[i].conditions %>
-                  </td>
-                  <td>
-                    <%= forecast[i].tempmax %>/<%= forecast[i].tempmin %>
-                  </td>
-                  <td>
-                    <%= forecast[i].temp %>
-                  </td>
-                  <td>
-                    <%= forecast[i].feelslike %>
-                  </td>
-                  <td>
-                    <%= forecast[i].pressure %>
-                  </td>
-                  <td>
-                    <%= forecast[i].humidity %>
-                  </td>
-                  <td>
-                    <%= forecast[i].windgust %>
-                  </td>
-                  <td>
-                    <%= forecast[i].windspeed %>
-                  </td>
-                  <td>
-                    <%= forecast[i].windgust %>
-                  </td>
-                  <td>
-                    <%= forecast[i].winddir %>
-                  </td>
-                  <td>
-                    <%= forecast[i].cloudcover %>
-                  </td>
-                  <td>
-                    <%= forecast[i].visibility %>
-                  </td>
-                  <td>
-                    <%= forecast[i].uvindex %>
-                  </td>
-                  <td>
-                    <%= forecast[i].sunrise %>
-                  </td>
-                  <td>
-                    <%= forecast[i].sunset %>
-                  </td>
-                  <td>
-                    <%= forecast[i].moonphase %>
-                  </td>
-                </tr>
-              </tbody>
-            <% }} %>
-          </table>
-        </div>
-      </div>
-    </div>
-
-  </main>
-  <footer>
-    <%- include('./partials/footer'); %>
-  </footer>
-</body>
-
+    </body>
 </html>

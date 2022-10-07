@@ -3,6 +3,7 @@ dotenv.config()
 import request from 'request';
 import express from 'express';
 import bodyParser from 'body-parser';
+import {encrypt, decrypt} from './crypto.js'
 
 // Create network routing
 const app = express();
@@ -17,20 +18,39 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // get the locale from the client-side via the ejs form
 app.get('/', (req, res) => {
-    res.render('index');
+  // console.dir(req.params);
+  // console.dir(req.body);
+  let apikey = encrypt(process.env.WEATHERBIT_KEY);
+  res.render('index1', {xkey: apikey});
 })
 
+
+
 app.get('/weatherbit', (req, res) => {
-  res.render('weatherbit');
+  // console.log('render get weatherbit:');
+  // console.dir(req.params)
+  // console.dir(req.body);
+  let apikey = encrypt(process.env.WEATHERBIT_KEY);
+  res.render('pages/weatherbit', { key: apikey});
 })
 
 // Posting data to the client-side requires two API calls.
 // We implement the Promise.all() below to call and wait for all data to come back.
+
 app.post('/weatherbit', (req, res) => {
   let city = req.body.locale;
-  let promisedData = gatherWeatheBits(city);
+  let coords = [ req.body.lat, req.body.lng ];
+  let promisedData;
+  if (city.length > 0) {
+    // get data by address
+    promisedData = gatherWeatheBits(city);
+  } else if (typeof(coords[0]) === "string") {
+    // get data by latitude/longitude
+    promisedData = gatherWeatheBits(coords);
+  }
+
   promisedData.then( (data) => {
-    res.render('weatherbit', data);
+    res.render('pages/weatherbit', data);
   })
 });
 
@@ -40,12 +60,17 @@ app.post('/weatherbit', (req, res) => {
 */
 function getWeatherBitCurrentConditions(city){
   return new Promise(resolve => {
+    if (Array.isArray(city) === true && typeof(city[0]) === "string") {
+      city = "&lat=" + city[0] + "&lon=" + city[1];
+    } else {
+      city = "&city=" + city;
+    }
     setTimeout(() => {
       let apiKey = process.env.WEATHERBIT_KEY;
       let url = process.env.WEATHERBIT_URI;
-      let uriWeatherBitStr = `${url}current?units=I&city=${city}&key=${apiKey}`;
+      let uriWeatherBitStr = `${url}current?units=I${city}&key=${apiKey}`;
       let retCode;
-      console.log(uriWeatherBitStr);
+      // console.log(uriWeatherBitStr);
       try {
         request(uriWeatherBitStr, async function (err, response, body) {
           console.log(response.statusCode);
@@ -74,10 +99,15 @@ function getWeatherBitCurrentConditions(city){
 */
 function getWeatherBitDailyForecast(city){
   return new Promise(resolve => {
+    if (Array.isArray(city) === true && typeof(city[0]) === "string") {
+      city = "&lat=" + city[0] + "&lon=" + city[1];
+    } else {
+      city = "&city=" + city;
+    }
     setTimeout(() => {
       let apiKey = process.env.WEATHERBIT_KEY;
       let url = process.env.WEATHERBIT_URI;
-      let uriWeatherBitStr = `${url}forecast/daily?units=I&city=${city}&key=${apiKey}`;
+      let uriWeatherBitStr = `${url}forecast/daily?units=I${city}&key=${apiKey}`;
       let retCode;
       // console.log(uriWeatherBitStr);
       try {
@@ -102,28 +132,86 @@ function getWeatherBitDailyForecast(city){
   })
 }
 
+function getWeatherBitAirQuality(city) {
+  /* API_URL = https://api.weatherbit.io/v2.0/history/airquality?city=${city}&start_date=2022-10-03&end_date=2022-10-04&tz=local&key=${apikey} */
+  return new Promise(resolve => {
+    if (Array.isArray(city) === true && typeof(city[0]) === "string") {
+      city = "?lat=" + city[0] + "&lon=" + city[1];
+    } else {
+      city = "?city=" + city;
+    }
+    setTimeout(() => {
+      let apiKey = process.env.WEATHERBIT_KEY;
+      let url = process.env.WEATHERBIT_URI;
+      let e =  new Date().toISOString().slice(0, 16).replace('T', ' ')
+      
+      let enddate = e.split(' ')[0];
+      // add 1 day to enddate
+      let s = new Date(enddate);
+      s.setDate(s.getDate() - 1);
+      s = s.toISOString().slice(0, 16).replace('T', ' ');
+      let startdate = s.split(' ')[0];
+
+      let retCode;
+      let uriWeatherBitAPIStr = `${url}history/airquality${city}&start_date=${startdate}&end_date=${enddate}&key=${apiKey}`;
+
+      // console.log(uriWeatherBitAPIStr);
+      try {
+        request(uriWeatherBitAPIStr, async function (err, response, body) {
+          console.log(response.statusCode);
+
+          if (response.statusCode == 429) {
+            console.log("WARNING: You have exceeded your API call limit with weatherbit.io!");
+            resolve(null);
+          }
+          if (response.statusCode == 200) {
+            retCode = await JSON.parse(body);
+            resolve(retCode);
+          } else {
+            resolve(null);
+          }
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }, 300);
+
+  })
+}
+
+
+
 /*
  * Return multiple promises consists of currentConditions and dailyForecast data.
  */
 async function gatherWeatheBits(city) {
-  const [currentConditions, dailyForecast] = await Promise.all([
+  const [dailyForecast, currentConditions, airQuality,] = await Promise.all([
+    getWeatherBitDailyForecast(city),
     getWeatherBitCurrentConditions(city),
-    getWeatherBitDailyForecast(city)
+    getWeatherBitAirQuality(city)
   ]);
 
-  // Since daily forecast might take longer, check its promise here.
-  if (dailyForecast  !== null) {
-    // combine 2 promises: 
-    let combinedData = { locale: city, curStatus: 200, curData: currentConditions, foreStatus: 200, foreData: dailyForecast, error: null };
+
+  // Make sure all promisses fulfilled.
+  if (dailyForecast  !== null && airQuality !== null && currentConditions !== null ) {
+    let currentHour = new Date().getHours(); 
+    // combine 3 promises into a huge rendering passing paramters: 
+    let combinedData = { locale: city, curStatus: 200, curData: currentConditions, foreStatus: 200, foreData: dailyForecast, airqStatus: 200, airqData: airQuality.data[currentHour], error: null };
     return combinedData;
   } else {
-    return { locale: city, curStatus: 400, curData: null, foreStatus: 400, foreData: null, error: null };
+    return { locale: city, curStatus: 400, curData: null, foreStatus: 400, foreData: null, airqStatus: 400, airqData: null, error: null };
   }
 }
 
 // post weather data to the client-side
 app.post('/', (req, res) => {
-    console.log(req.body.locale);
+    // currentLoc();
+    // console.log(currentLoc);
+    // console.log("Lng: " + longitude + ", Lat: " + latitude);
+    console.dir(req.params);
+    console.dir(req.body);
+
+    return;
     // call weatherAPI for data
     let apiKey = process.env.WEATHER_VISUALCROSSING_API_KEY;
     let city = req.body.locale;
@@ -154,14 +242,14 @@ app.post('/', (req, res) => {
       });
   
     } catch (err) {
-      res.render('index', { locale: city, data: null, forecast: null, error: err.message });
+      res.render('index1', { locale: city, data: null, forecast: null, error: err.message });
     }
 });
 
 
 // about page
 app.get('/about', function(req, res) {
-    res.render('about');
+    res.render('pages/about');
 });
 
 let port = process.env.PORT || 3210;
