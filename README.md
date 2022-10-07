@@ -160,7 +160,7 @@ Notice that environment variables (secret keys) required to run the app is not b
 
 Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a port on your local machine.  i.e. `LOCAL_PORT:CONTAINER_PORT` for example  *4321:8080*
 
-`docker run -p 4321:8080 bb89b0646be4 -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit`
+`docker run -p 4321:8080 -e  WEATHERBIT_KEY=Actual_Secret_Key_for_Weatherbit  bb89b0646be4`
 
 
 
