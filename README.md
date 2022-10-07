@@ -96,7 +96,7 @@ It is a typical NodeJS project layout.
 
 `npm start`
 
->Initially, the browser might pop up asking if you would allow it to detect your location.  A 'Allow' will enable GPS pinpoint weather report.  A 'Block' will disable GPS for current and subsequent session.
+>Initially, the browser might pop up asking if you would allow it to detect your location.  An 'Allow' will enable GPS pinpoint weather report.  A 'Block' will disable GPS for current and subsequent session.
 
 ![Browser popup](./public/PermitGeolocation.PNG)
 
