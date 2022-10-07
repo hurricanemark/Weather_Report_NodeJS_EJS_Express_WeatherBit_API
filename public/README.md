@@ -2,7 +2,7 @@
 
 # Core Logic
 
-To obtain the pinpoint weather data, earth location is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, integrate google-map API where the user can point to a location on the map to trigger a localized weather report.
+To obtain the pinpoint weather data non-interactively, earth location(GPS) is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, input of a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, a touch or click event on the google map will yield the latitide and longitude among other values.
 
 * The geolocation of a known address can be obtained by using the client-side javascript [Windows Navigator](https://www.w3schools.com/jsref/obj_navigator.asp).  Your browser uses different types and sources of information to identify your location. These include your IP address, geolocation via HTML5 in your browser, and your PC's language and time settings.  For more detail on how Navigator.geolocation is determined, [read more here](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition).
 
@@ -27,25 +27,30 @@ Sample code for client-side geolocation:
     </script>
 ```
 
-* The API query for weather data can be describe as follow.
+
+<br />
+
+## Getting Real Data from A Paid API Provider
+
+In this project (file: public/scripts.js), you can use the API service from the [weatherbit.io](https://api.weatherbit.io/v2.0/).  The good news is no credit card is required (at the time I develop this app).  You registered to use the free tier, and there is no charge as long as you stay within the allowed call limit of 1500 calls/day.  You will get errorCode 429 when you'd reached the daily limit, in which case, wait until the next daily cycle begins. Read [here](https://www.weatherbit.io/faq) to learn ways to make weather API calls.
+
+* A typical API query for weather data can be described as follow.
     
-    > `https://api.weatherbit.io/v2.0/history/airquality?city=${LOCATION}&start_date=2022-10-03&end_date=2022-10-04&tz=local&key=${API_ACCESS_KEY}`
+    > `https://api.weatherbit.io/v2.0/history/airquality?city=${LOCATION}&start_date=${START_DATE}&end_date=${END_DATE}&tz=local&key=${API_ACCESS_KEY}`
 
-    Where, **LOCATION** can be City, State
+    Where, 
+    
+    **LOCATION** can be City, State.
 
-    and **API_ACCESS_KEY** can be obtained from registering with an API provider.
+    **START_DATE, END_DATE** in 'YYYY-MM-DD' format and evaluate to datetime range.
 
-* With the return JSON object representing the weather data, you wrap the individual data objects in a grid to make it user-friendly.
+    **API_ACCESS_KEY** can be obtained from registering with an API provider.
 
-<br />
-
-# Getting Real Data from A Paid API Provider
-
-Replace freecodecamp proxy URI (file: public/scripts.js) for weather data provider via a paid subscription. In this project, you can use the API service from the [weatherbit.io](https://api.weatherbit.io/v2.0/).  The good news is no credit card is required (at the time I develop this app).  You registered to use the free tier, and there is no charge as long as you stay within the allowed call limit of 1500 calls/day.  You will get errorCode 429 when you'd reached the limit. Read [here](https://www.weatherbit.io/faq) to learn ways to make weather API calls.
+* Parse the return JSON object from the API call into a GUI grid for presentation.
 
 <br />
 
-# Steps to Integrate A New API Provider
+## Steps to Integrate A New API Provider
 
 1. Register with a weather reporting service.  Consult with their API documentation on how to call their APIs.
 2. Obtain the API access key from the same provider above.
@@ -70,19 +75,21 @@ You would want to live free and die harder, let's make the client calls the serv
 **Options**: 
 
 You will need to implement a middleware to retrieve weather data and serve it to the client using either
-- `EJS` embedded templates 
+- `EJS` embedded javascript templates 
 - or `ReactJS`.
 
 Obviously, many developers have accountered this issue.  Lucky for us, `EJS`, `ReactJS` typically solves this problem.  EJS is an easier choice having less of a learning curve.
 
 **Decision:**  
-Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs)) middleware template rendering weather data upon client requestt.
+Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs)) middleware template rendering weather data upon client requests.
 
 ## Steps to Implement EJS In the Project
 
 <strong>Partial files to be injected to other ejs files.</strong>
 
 1.  Create sub-directory `partials` under `views`.
+
+Partial files are pieces of reusable code segment that typically appear again and again throughout your project.
 
     The project tree structure will look as follow:
     ```c
