@@ -112,7 +112,7 @@ Build a docker image base on the given Dockerfile and .dockerignore is this fold
 
 The Docker container is built and saved to current working directory.  Replace tag name 'hurricanemark' with your own github username.
 
-`docker build -t hurricanemark/localweather:1.0 .`
+`docker build -t marknre/techrolemiweatherapp:2.0 .`
 
 ```c
 docker build -t marknre/techrolemiweatherapp:2.0 .      
