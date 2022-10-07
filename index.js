@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   // console.dir(req.params);
   // console.dir(req.body);
   let apikey = encrypt(process.env.WEATHERBIT_KEY);
-  res.render('index1', {xkey: apikey});
+  res.render('index', {xkey: apikey});
 })
 
 
@@ -242,7 +242,7 @@ app.post('/', (req, res) => {
       });
   
     } catch (err) {
-      res.render('index1', { locale: city, data: null, forecast: null, error: err.message });
+      res.render('index', { locale: city, data: null, forecast: null, error: err.message });
     }
 });
 
