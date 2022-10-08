@@ -3,3 +3,5 @@ node_modules
 public/ePub
 views/header2.ejs
 index-temp.ejs
+utils.js
+public/AirQIdx_Guide.png

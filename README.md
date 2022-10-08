@@ -108,9 +108,12 @@ It is a typical NodeJS project layout.
 
 <strong> Generate A Docker Image</strong>
 
-Build a docker image base on the given Dockerfile and .dockerignore is this folder.  After successful docker build, run the image to verify correctness.  Then it can be pushed to dockerhub or your favorite cloud provider.  
+If you pulled or cloned this code base, replace my dockerhub username 'marknre' with your own DockerHub's username.  
+Using the correct DockerHub username ensures error free `docker push` operation.
 
-The Docker container is built and saved to current working directory.  Replace tag name 'hurricanemark' with your own github username.
+Build a docker image base on the given Dockerfile and .dockerignore is this folder.  
+After successful docker build, run the image to verify correctness.  
+Then it can be pushed to dockerhub or your favorite cloud provider.  
 
 `docker build -t marknre/techrolemiweatherapp:2.0 .`
 
