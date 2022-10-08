@@ -3,7 +3,8 @@ dotenv.config()
 import request from 'request';
 import express from 'express';
 import bodyParser from 'body-parser';
-import {encrypt, decrypt} from './crypto.js'
+import {encrypt, decrypt} from './crypto.js';
+
 
 // Create network routing
 const app = express();
@@ -31,7 +32,7 @@ app.get('/weatherbit', (req, res) => {
   // console.dir(req.params)
   // console.dir(req.body);
   let apikey = encrypt(process.env.WEATHERBIT_KEY);
-  res.render('pages/weatherbit', { key: apikey});
+  res.render('pages/weatherbit', { key: apikey });
 })
 
 // Posting data to the client-side requires two API calls.
