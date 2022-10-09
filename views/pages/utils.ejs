@@ -23,9 +23,13 @@ trendingTemperature = (dataArr) => {
     let average = sum / dataArr.length;
     let diff = average - dataArr[0].temp;
     if ( diff > 0 ) {
-        return "Warming trend ahead.";
+        if (diff <= 3){ return "Slight warming trend ahead."; }
+        else if (diff > 3 && diff <= 10) { return "Moderate warming trend ahead."; }
+        else { return "Considerable warming trend ahead."; }
     } else {
-        return "Cooling trend ahead.";
+        if (diff >= -3){ return "Slight cooling trend ahead."; }
+        else if (diff < -3 && diff <= -10) { return "Moderate cooling trend ahead."; }
+        else { return "Considerable warming trend ahead."; }
     }
 }
 %>
