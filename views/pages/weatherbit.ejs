@@ -10,7 +10,7 @@
   <header>
     <%- include('./../partials/header'); %>
   </header>
-  <main onload="">
+  <main>
     <br />
     <div>
       <fieldset>
@@ -36,22 +36,18 @@
                 <br />
                   <strong>Geolocation</strong>: <%= curData.lat %>, <%= curData.lon %>
                 <br />
-                <strong>Time zone: </strong>
-                <%= curData.timezone %>
+                  <strong>Datetime</strong>: <%= curData.ob_time %>
+                <br />
+                <strong>Time zone</strong>: <%= curData.timezone %>
                 <br />
                 <hr />
               </p>
               <table class="styled-table">
                 <tr class="active-row">
-                  <th>Datetime: </th>
+                  <th>Cloud cover(%): </th>
                   <td>
-                    <%= curData.ob_time %>
+                    <%= curData.clouds %>
                   </td>
-                </tr>
-                <th>Cloud cover(%): </th>
-                <td>
-                  <%= curData.clouds %>
-                </td>
                 </tr>
                 <th>Temperature(F): </th>
                 <td>
@@ -201,7 +197,7 @@
           <% if( typeof(error)==="undefined" || foreStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
             <% } else { %>
-              <table class="styled-table">
+              <table class="styled-table" style="overflow-x: auto;">
                 <thead>
                   <tr class="w-35">
                     <th style="color:black;"> Date</th>
@@ -210,8 +206,7 @@
                     <th style="color:rgb(27, 119, 223);"> Temperature(°F) </th>
                     <th style="color:rgba(20, 15, 177, 0.474);"> Pressure(㎧)</th>
                     <th style="color:green;"> Humidity</th>
-                    <th style="color:rgb(198, 73, 15);"> Wind Speed</th>
-                    <th style="color:rgb(198, 15, 195);"> Wind Gust</th>
+                    <th style="color:rgb(198, 15, 195);"> Wind</th>
                     <th style="color:rgb(15, 22, 207);"> Cloud Cover(%)</th>
                     <th style="color:rgb(30, 140, 224);"> Visibility</th>
                     <th style="color:rgb(78, 122, 80);"> UV Index</th>
@@ -241,9 +236,6 @@
                         </td>
                         <td style="color:green;">
                           <%= forecast[i].rh %>
-                        </td>
-                        <td style="color:rgb(198, 73, 15);">
-                          <%= forecast[i].wind_gust_spd %>
                         </td>
                         <td style="color:rgb(198, 15, 195);">
                           <%= forecast[i].wind_gust_spd %> <%= forecast[i].wind_cdir %>
