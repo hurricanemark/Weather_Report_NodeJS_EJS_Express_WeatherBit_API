@@ -179,33 +179,8 @@ Partial files are pieces of reusable code segment that typically appear again an
     </html>
 ```
 
-6.  Create ejs template file `index.ejs`, and inject partial files as follow.
 
-```c
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-    <%- include('./partials/head'); %>
-    </head>
-
-    <body  class="container">
-    <header>
-        <%- include('./partials/header2'); %>
-    </header>
-
-    <main>
-        <!-- fill in with embedded javascript logic here -->
-    </main>
-
-    <footer>
-        <%- include('./partials/footer'); %>
-    </footer>
-    </body>
-    </html>
-```
-
-7.  Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
+6.  Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
 
 ```c
     <%
@@ -245,6 +220,34 @@ Partial files are pieces of reusable code segment that typically appear again an
         }
     }
     %>
+```
+
+
+7.  Create ejs template file `index.ejs`, and inject partial files as follow.
+
+```c
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <%- include('./partials/head'); %>
+        <%- include('./utils.js'); %>
+    </head>
+
+    <body  class="container">
+    <header>
+        <%- include('./partials/header2'); %>
+    </header>
+
+    <main>
+        <!-- fill in with embedded javascript logic here -->
+    </main>
+
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+    </body>
+    </html>
 ```
 
 <br />
