@@ -179,14 +179,59 @@ Partial files are pieces of reusable code segment that typically appear again an
     </html>
 ```
 
-6.  Create ejs template file `index.ejs`, and inject partial files as follow.
+
+6.  Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
+
+```c
+    <%
+
+    // Convert Unix_TimeStamp to Local DateTime.
+    unixTsToLocalTime = (unix_ts) => {
+        // Create a new JavaScript Date object based on the timestamp
+        // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+        var date = new Date(unix_ts * 1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        // Seconds part from the timestamp
+        var seconds = "0" + date.getSeconds();
+
+        // Will display time in 10:30:23 format
+        return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    }
+
+    // Return verbish based on temperature trending.
+    trendingTemperature = (dataArr) => {
+        var sum = 0;
+        for (var item of dataArr) {
+            sum += item.temp;
+        }
+        let average = sum / dataArr.length;
+        let diff = average - dataArr[0].temp;
+        if ( diff > 0 ) {
+            if (diff <= 3){ return "Slight warming trend ahead."; }
+            else if (diff > 3 && diff <= 10) { return "Moderate warming trend ahead."; }
+            else { return "Considerable warming trend ahead."; }
+        } else {
+            if (diff >= -3){ return "Slight cooling trend ahead."; }
+            else if (diff < -3 && diff <= -10) { return "Moderate cooling trend ahead."; }
+            else { return "Considerable warming trend ahead."; }
+        }
+    }
+    %>
+```
+
+
+7.  Create ejs template file `index.ejs`, and inject partial files as follow.
 
 ```c
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-    <%- include('./partials/head'); %>
+        <%- include('./partials/head'); %>
+        <%- include('./pages/utils'); %>
     </head>
 
     <body  class="container">
@@ -204,6 +249,8 @@ Partial files are pieces of reusable code segment that typically appear again an
     </body>
     </html>
 ```
+
+<br />
 
 <strong>Implement server-side routings </strong>
 
