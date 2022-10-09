@@ -193,10 +193,12 @@
     <div class="row">
       <div class="col-sm-12">
         <h5>Extended Forecast</h5>
+        
         <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
           <% if( typeof(error)==="undefined" || foreStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
             <% } else { %>
+              <div style="color:rgb(18, 83, 175);"><%= trendingTemperature(foreData.data) %></div>
               <table class="styled-table" style="overflow-x: auto;">
                 <thead>
                   <tr class="w-35">
