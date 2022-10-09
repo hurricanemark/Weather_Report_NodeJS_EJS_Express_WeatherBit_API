@@ -31,8 +31,7 @@ app.get('/weatherbit', (req, res) => {
   // console.log('render get weatherbit:');
   // console.dir(req.params)
   // console.dir(req.body);
-  let apikey = encrypt(process.env.WEATHERBIT_KEY);
-  res.render('pages/weatherbit', { key: apikey });
+  res.render('pages/weatherbit');
 })
 
 // Posting data to the client-side requires two API calls.
@@ -181,7 +180,6 @@ function getWeatherBitAirQuality(city) {
 }
 
 
-
 /*
  * Return multiple promises consists of currentConditions and dailyForecast data.
  */
@@ -204,56 +202,12 @@ async function gatherWeatheBits(city) {
   }
 }
 
-// post weather data to the client-side
-app.post('/', (req, res) => {
-    // currentLoc();
-    // console.log(currentLoc);
-    // console.log("Lng: " + longitude + ", Lat: " + latitude);
-    console.dir(req.params);
-    console.dir(req.body);
-
-    return;
-    // call weatherAPI for data
-    let apiKey = process.env.WEATHER_VISUALCROSSING_API_KEY;
-    let city = req.body.locale;
-    let url = process.env.WEATHER_VISUALCROSSING_API_BASE_URI;
-
-    /*VISUALCROSSING_URI=https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&contentType=json&key=${apiKey} */
-    let uriStr = `${url}${city}?unitGroup=us&contentType=json&key=${apiKey}`;
-    // console.log(uriStr);
-    try {
-      request(uriStr, async function (err, response, body) {
-        console.log(response.statusCode);
-        
-        if (response.statusCode == 429) {
-          console.log("You have exceeded your API call limit with visualcrossing.com!");
-          res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Visualcrossing API call limit exceeded." });
-        }
-        if (response.statusCode == 400) {
-          res.render('index', { locale: city, status: response.statusCode, data: null,  error: "Please check your input." });
-        } 
-        if (response.statusCode === 200) {
-          
-            let weather = await JSON.parse(body);
-            res.render('index', { locale: city, status: response.statusCode, data: weather, error: null });
-        } else {
-          res.render('index', { locale: city, status: response.statusCode, data: null, error: 'Error, please check your input.'});
-        }
-
-      });
-  
-    } catch (err) {
-      res.render('index', { locale: city, data: null, forecast: null, error: err.message });
-    }
-});
-
-
 // about page
 app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
-let port = process.env.PORT || 3210;
+let port = process.env.PORT || 3000;
 
 // creating a server that is listening on ${port} for connections.
 app.listen(port, () => {
