@@ -226,7 +226,7 @@ Partial files are pieces of reusable code segment that typically appear again an
         return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     }
 
-    // Return verbish base on temperature trending.
+    // Return verbish based on temperature trending.
     trendingTemperature = (dataArr) => {
         var sum = 0;
         for (var item of dataArr) {
