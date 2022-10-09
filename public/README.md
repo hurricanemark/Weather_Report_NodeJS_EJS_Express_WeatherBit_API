@@ -231,7 +231,7 @@ Partial files are pieces of reusable code segment that typically appear again an
 
     <head>
         <%- include('./partials/head'); %>
-        <%- include('./utils.ejs'); %>
+        <%- include('./pages/utils'); %>
     </head>
 
     <body  class="container">
