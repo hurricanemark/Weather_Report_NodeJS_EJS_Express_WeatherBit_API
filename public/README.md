@@ -91,25 +91,26 @@ Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs
 
 Partial files are pieces of reusable code segment that typically appear again and again throughout your project.
 
-    The project tree structure will look as follow:
-    ```c
-        + public
-            + css
-                - style.css
-        + views
-            + partials
-                - head.ejs
-                - header.ejs
-                - footer.ejs
-            - about.ejs
-            - index.ejs
-            README.md
-        - Dockerfile
-        - index.js
-        - package-lock.json
-        - package.json
-        - README.md
-    ```
+The project tree structure will look as follow:
+
+```c
+    + public
+        + css
+            - style.css
+    + views
+        + partials
+            - head.ejs
+            - header.ejs
+            - footer.ejs
+        - about.ejs
+        - index.ejs
+        README.md
+    - Dockerfile
+    - index.js
+    - package-lock.json
+    - package.json
+    - README.md
+```
 
 2.  Create partial file `head.ejs`
 
@@ -124,6 +125,7 @@ Partial files are pieces of reusable code segment that typically appear again an
 ```
 
 3.  Create partial file `header.ejs` for responsive navbar display.
+
 ```c
     <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
 
@@ -159,6 +161,7 @@ Partial files are pieces of reusable code segment that typically appear again an
 ```
 
 4.  Create a partial file `footer.ejs`
+
 ```c
     <!-- This code contains copyright information and uses several classes from Bootstrap for styling. -->
     <p class="text-center text-muted" style="
