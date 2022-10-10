@@ -27,7 +27,6 @@ Sample code for client-side geolocation:
     </script>
 ```
 
-
 <br />
 
 ## Getting Real Data from A Paid API Provider
@@ -35,11 +34,11 @@ Sample code for client-side geolocation:
 In this project (file: public/scripts.js), you can use the API service from the [weatherbit.io](https://api.weatherbit.io/v2.0/).  The good news is no credit card is required (at the time I develop this app).  You registered to use the free tier, and there is no charge as long as you stay within the allowed call limit of 1500 calls/day.  You will get errorCode 429 when you'd reached the daily limit, in which case, wait until the next daily cycle begins. Read [here](https://www.weatherbit.io/faq) to learn ways to make weather API calls.
 
 * A typical API query for weather data can be described as follow.
-    
+
     > `https://api.weatherbit.io/v2.0/history/airquality?city=${LOCATION}&start_date=${START_DATE}&end_date=${END_DATE}&tz=local&key=${API_ACCESS_KEY}`
 
-    Where, 
-    
+    Where,
+
     **LOCATION** can be City, State.
 
     **START_DATE, END_DATE** in 'YYYY-MM-DD' format and evaluate to datetime range.
@@ -57,7 +56,6 @@ In this project (file: public/scripts.js), you can use the API service from the 
 3. Build an API https query and manually test it out.
 4. Write an async function to incorporate the API call and retrieve the weather data.
 
-
 > On the server, the `API_KEY` is hidden in the `.env` file when `NODE_ENV=development`.  By design, environment variables are not accessible to the client. For the client to directly query weather data, the API_KEY has to be available on the browser.  This will break the security of our application!  However, technology has solved this problem in way, way, way back.
 
 **Options**:
@@ -72,11 +70,12 @@ You would want to live free and die harder, let's make the client calls the serv
 
 ---
 
-**Options**: 
+**Options**:
 
 You will need to implement a middleware to retrieve weather data and serve it to the client using either
-- `EJS` embedded javascript templates 
-- or `ReactJS`.
+
+* `EJS` embedded javascript templates
+* or `ReactJS`.
 
 Obviously, many developers have accountered this issue.  Lucky for us, `EJS`, `ReactJS` typically solves this problem.  EJS is an easier choice having less of a learning curve.
 
@@ -87,7 +86,7 @@ Let's introduce the Embedded Javascript ([EJS](https://www.npmjs.com/package/ejs
 
 <strong>Partial files to be injected to other ejs files.</strong>
 
-1.  Create sub-directory `partials` under `views`.
+1. Create sub-directory `partials` under `views`.
 
 Partial files are pieces of reusable code segment that typically appear again and again throughout your project.
 
@@ -112,7 +111,7 @@ The project tree structure will look as follow:
     - README.md
 ```
 
-2.  Create partial file `head.ejs`
+2. Create partial file `head.ejs`
 
 ```c
     <meta charset="UTF-8">
@@ -124,7 +123,7 @@ The project tree structure will look as follow:
     body { padding-top:20px; }
 ```
 
-3.  Create partial file `header.ejs` for responsive navbar display.
+3. Create partial file `header.ejs` for responsive navbar display.
 
 ```c
     <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
@@ -160,7 +159,7 @@ The project tree structure will look as follow:
     </nav>
 ```
 
-4.  Create a partial file `footer.ejs`
+4. Create a partial file `footer.ejs`
 
 ```c
     <!-- This code contains copyright information and uses several classes from Bootstrap for styling. -->
@@ -171,9 +170,9 @@ The project tree structure will look as follow:
     ">&copy; Copyright 2022 by The Awesome TechRolEmi</p>
 ```
 
-5.  Create an ejs template file `about.ejs`
+5. Create an ejs template file `about.ejs`
     The template file will be injected with partial files created above.  This accomplishes two things: reuse partial code, and make sure the presentation is consistent between ejs templates under the `views` folder.
-    
+
 ```c
     <!DOCTYPE html>
     <html lang="en">
@@ -201,8 +200,7 @@ The project tree structure will look as follow:
     </html>
 ```
 
-
-6.  Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
+6. Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
 
 ```c
     <%
@@ -244,8 +242,7 @@ The project tree structure will look as follow:
     %>
 ```
 
-
-7.  Create ejs template file `index.ejs`, and inject partial files as follow.
+7. Create ejs template file `index.ejs`, and inject partial files as follow.
 
 ```c
     <!DOCTYPE html>
@@ -295,13 +292,12 @@ The project tree structure will look as follow:
 
 ```
 
-3.  Add routing for POST
+3. Add routing for POST
 
 ```c
     // post weather data to the client-side
     app.post('/', (req, res) => { ... })
 ```
-
 
 <br />
 
