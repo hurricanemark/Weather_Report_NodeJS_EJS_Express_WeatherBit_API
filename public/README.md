@@ -123,7 +123,7 @@ Partial files are pieces of reusable code segment that typically appear again an
     body { padding-top:20px; }
 ```
 
-3.  Create partial file `header.ejs`
+3.  Create partial file `header.ejs` for responsive navbar display.
 ```c
     <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
 
