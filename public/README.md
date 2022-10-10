@@ -126,17 +126,37 @@ Partial files are pieces of reusable code segment that typically appear again an
 3.  Create partial file `header.ejs`
 ```c
     <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="/">TechRolEmi</a>
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">TechRolEmi</a>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+            <a class="nav-link" href="/weatherbit">Weather <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="/about">About</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+        </li>
+
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
     </nav>
+
 ```
 
 4.  Create a partial file `footer.ejs`
