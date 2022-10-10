@@ -32,6 +32,7 @@
           <% if( typeof(error)==="undefined" || curStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
             <% } else { %>
+
               <p style="color:gray"><strong>City</strong>: <%= curData.city_name %> , <%= curData.state_code %>
                 <br />
                   <strong>Geolocation</strong>: <%= curData.lat %>, <%= curData.lon %>
@@ -190,16 +191,16 @@
     </div>
     
 
-    <div class="row">
+    <div class="row" style="display:flex; flex-flow:row wrap;">
       <div class="col-sm-12">
         <h5>Extended Forecast</h5>
         
-        <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
+        <div class="jumbotron jumbotron-fluid"  style="padding:10px 5px 15px 20px; overflow-x:auto;">
           <% if( typeof(error)==="undefined" || foreStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
             <% } else { %>
               <div style="color:rgb(18, 83, 175);"><%= trendingTemperature(foreData.data) %></div>
-              <table class="styled-table" style="overflow-x: auto;">
+              <table class="styled-table">
                 <thead>
                   <tr class="w-35">
                     <th style="color:black;"> Date</th>
