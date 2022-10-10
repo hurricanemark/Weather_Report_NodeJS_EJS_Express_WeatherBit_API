@@ -156,7 +156,6 @@ Partial files are pieces of reusable code segment that typically appear again an
         </form>
     </div>
     </nav>
-
 ```
 
 4.  Create a partial file `footer.ejs`
