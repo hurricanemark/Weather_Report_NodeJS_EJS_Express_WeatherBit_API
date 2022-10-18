@@ -16,7 +16,10 @@ import awssdk from 'aws-sdk';
 
 
 
-if (process.env.NODE_ENV === 'awsdeploy') {
+if (process.env.NODE_ENV == 'production') {
+  // Code for AWS Production Mode
+  getAwsSecrets();
+} else if (process.env.NODE_ENV === 'awsdeploy') {
   WEATHERBIT_URI="https://api.weatherbit.io/v2.0/";
   WEATHERBIT_KEY="U2FsdGVkX18HMV5UUT9rJN76hOtIHDw1bH0beQYWH8a6E7uzKqskdgHvc6Nq2lO6O+GAb2vrcL+X8ZDqcGPuLw==";
 console.log("AWSDEPLOY mode!");

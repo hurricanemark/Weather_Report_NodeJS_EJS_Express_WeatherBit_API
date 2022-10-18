@@ -179,3 +179,15 @@ Notice also that Dockerfile exposes port 8080.  This needs to be forwarded to a 
 To access the Local Weather app running in docker container, point your browser to the forwarding port 4321.
 
 `http:/localhost:4321`
+
+<br />
+
+## Hosting on A Public Site
+
+For the purpose of hosting this app, we select [Cyclic free-for-life tier](https://app.cyclic.sh/api/login).
+Cyclic deploys full stack NodeJS apps on AWS infrastructure directly from GitHub. It works by integrating with your GitHub repos. It will build and deploy your code on every merge or push to your default branch.
+
+Please do not abuse this live website below.  Thank you!
+[Live demo](https://techrolemiweather.cyclic.app/about)
+
+**Recommend Cylic** https://app.cyclic.sh/#/join/hurricanemark
