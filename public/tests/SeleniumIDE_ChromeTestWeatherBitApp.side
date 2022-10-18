@@ -1,0 +1,65 @@
+{
+  "id": "aeab0038-9054-48cb-95f2-122a75adad4a",
+  "version": "2.0",
+  "name": "TestWeatherBitApp",
+  "url": "localhost:1111",
+  "tests": [{
+    "id": "d23d883e-bf88-47ce-833d-ce98f95a5d5a",
+    "name": "Untitled",
+    "commands": [{
+      "id": "fdf7489e-1db8-40b3-8b27-622dc7f25190",
+      "comment": "",
+      "command": "echo",
+      "target": "Selenium IDE Test Preparation Target: TechRolEmi Weather APP",
+      "targets": [],
+      "value": "Selenium IDE Test Preparation Target: TechRolEmi Weather APP"
+    }, {
+      "id": "4f303c9a-bc59-4a79-be04-843c9594505a",
+      "comment": "Test open browser URL: https://techrolemiweather.cyclic.app/about",
+      "command": "open",
+      "target": "https://techrolemiweather.cyclic.app/about",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7d00be3c-88a0-4020-80a2-5f73f0fc2166",
+      "comment": "Test open browser URL: https://techrolemiweather.cyclic.app/weatherbit",
+      "command": "open",
+      "target": "https://techrolemiweather.cyclic.app/weatherbit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "364172e9-9e27-40ea-98b4-1f0d12c217f2",
+      "comment": "Test input text area",
+      "command": "type",
+      "target": "name=locale",
+      "targets": [
+        ["name=locale", "name"],
+        ["css=.ghost-input", "css:finder"],
+        ["xpath=//input[@name='locale']", "xpath:attributes"],
+        ["xpath=//fieldset/form/input", "xpath:position"]
+      ],
+      "value": "New York, NY"
+    }, {
+      "id": "72d25dbb-8f58-45fb-8acb-41a960c6225d",
+      "comment": "Test submit button `Pinpoint Weather`",
+      "command": "clickAt",
+      "target": "css=.btn-sm",
+      "targets": [
+        ["css=.btn-sm", "css:finder"],
+        ["xpath=//input[@value='Pinpoint Weather']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "f7d69008-2385-4c7f-807a-048eb4f1a883",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d23d883e-bf88-47ce-833d-ce98f95a5d5a"]
+  }],
+  "urls": ["localhost:1111"],
+  "plugins": []
+}
