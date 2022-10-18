@@ -1,6 +1,6 @@
 # A Responsive NodeJS-Express Web App With Stepwise Implementation
 
-This project is intended for the beginner to novice javascript developers who are interested in the nuts and bolts of implementing a working web application using various frameworks and libaries.  Although this only scratches the surface of a real-life software development, you will experience what it takes to bring an idea to fruition.
+This project is intended for the beginner to novice javascript developers who are interested in the nuts and bolts of implementing a working web application using various frameworks and libaries.  Although this only scratches the surface of a real-life software development project, you will experience what it takes to bring an idea to fruition.
 
 <br />
 
