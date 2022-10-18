@@ -80,73 +80,73 @@ app.post('/weatherbit', (req, res) => {
 });
 
 
-// /*
-//  * function get AWS environment variables
-//  */
-// function getAwsSecrets() {
-//   var AWS = awssdk,
-//   region = "us-east-1",
-//   secretName = "techrolemi_weather_secret",
-//   secret,
-//   decodedBinarySecret;
+/*
+ * function get AWS environment variables
+ */
+function getAwsSecrets() {
+  var AWS = awssdk,
+  region = "us-east-1",
+  secretName = "techrolemi_weather_secret",
+  secret,
+  decodedBinarySecret;
 
-//   // Create a Secrets Manager client
-//   var client = new AWS.SecretsManager({
-//     region: region
-//   });
+  // Create a Secrets Manager client
+  var client = new AWS.SecretsManager({
+    region: region
+  });
 
 
-//   client.getSecretValue({SecretId: secretName}, function(err, data) {
-//     if (err) {
-//       if (err.code === 'DecryptionFailureException')
-//           // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-//           // Deal with the exception here, and/or rethrow at your discretion.
-//           throw err;
-//       else if (err.code === 'InternalServiceErrorException')
-//           // An error occurred on the server side.
-//           // Deal with the exception here, and/or rethrow at your discretion.
-//           throw err;
-//       else if (err.code === 'InvalidParameterException')
-//           // You provided an invalid value for a parameter.
-//           // Deal with the exception here, and/or rethrow at your discretion.
-//           throw err;
-//       else if (err.code === 'InvalidRequestException')
-//           // You provided a parameter value that is not valid for the current state of the resource.
-//           // Deal with the exception here, and/or rethrow at your discretion.
-//           throw err;
-//       else if (err.code === 'ResourceNotFoundException')
-//           // We can't find the resource that you asked for.
-//           // Deal with the exception here, and/or rethrow at your discretion.
-//           throw err;
-//     }
-//     else {
-//       // Decrypts secret using the associated KMS key.
-//       // Depending on whether the secret is a string or binary, one of these fields will be populated.
-//       // console.log(data);
-//       if ('SecretString' in data) {
-//         secret = data.SecretString;
-//         var aesParams = JSON.parse(secret);
-//         // console.log(data.Name + " : " + data.SecretString);
-//         Object.entries(aesParams).forEach((entry) => {
-//           var [key, value] = entry;
-//           if (`${key}` === "WEATHERBIT_KEY") {
-//             WEATHERBIT_KEY = `${value}`;
-//             console.log("WEATHERBIT_KEY="+ WEATHERBIT_KEY);
-//           }
-//           else if (`${key}` === "WEATHERBIT_URI") {
-//             WEATHERBIT_URI = `${value}`;
-//             console.log("WEATHERBIT_URI="+WEATHERBIT_URI);
-//           }
-//         });
+  client.getSecretValue({SecretId: secretName}, function(err, data) {
+    if (err) {
+      if (err.code === 'DecryptionFailureException')
+          // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+      else if (err.code === 'InternalServiceErrorException')
+          // An error occurred on the server side.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+      else if (err.code === 'InvalidParameterException')
+          // You provided an invalid value for a parameter.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+      else if (err.code === 'InvalidRequestException')
+          // You provided a parameter value that is not valid for the current state of the resource.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+      else if (err.code === 'ResourceNotFoundException')
+          // We can't find the resource that you asked for.
+          // Deal with the exception here, and/or rethrow at your discretion.
+          throw err;
+    }
+    else {
+      // Decrypts secret using the associated KMS key.
+      // Depending on whether the secret is a string or binary, one of these fields will be populated.
+      // console.log(data);
+      if ('SecretString' in data) {
+        secret = data.SecretString;
+        var aesParams = JSON.parse(secret);
+        // console.log(data.Name + " : " + data.SecretString);
+        Object.entries(aesParams).forEach((entry) => {
+          var [key, value] = entry;
+          if (`${key}` === "WEATHERBIT_KEY") {
+            WEATHERBIT_KEY = `${value}`;
+            console.log("WEATHERBIT_KEY="+ WEATHERBIT_KEY);
+          }
+          else if (`${key}` === "WEATHERBIT_URI") {
+            WEATHERBIT_URI = `${value}`;
+            console.log("WEATHERBIT_URI="+WEATHERBIT_URI);
+          }
+        });
           
-//       } else {
-//           let buff = new Buffer(data.SecretBinary, 'base64');
-//           decodedBinarySecret = buff.toString('ascii');
-//           console.log("decodedBinarySecret: " + decodedBinarySecret);
-//       }
-//     }
-//   })
-// }
+      } else {
+          let buff = new Buffer(data.SecretBinary, 'base64');
+          decodedBinarySecret = buff.toString('ascii');
+          console.log("decodedBinarySecret: " + decodedBinarySecret);
+      }
+    }
+  })
+}
 
 
 
