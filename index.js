@@ -1,9 +1,33 @@
 import * as dotenv from 'dotenv';
-dotenv.config()
+let WEATHERBIT_KEY = "";
+let WEATHERBIT_URI = "";
+
+dotenv.config();
+
+// dotenv.config()
 import request from 'request';
 import express from 'express';
 import bodyParser from 'body-parser';
-import {encrypt, decrypt} from './crypto.js';
+import {encryptAES, decryptAES} from './crypto.js';
+
+
+import awssdk from 'aws-sdk';
+
+
+
+
+if (process.env.NODE_ENV == 'production') {
+  // Code for AWS Production Mode
+  getAwsSecrets();
+} else if (process.env.NODE_ENV === 'awsdeploy') {
+  WEATHERBIT_URI="https://api.weatherbit.io/v2.0/";
+  WEATHERBIT_KEY="U2FsdGVkX18HMV5UUT9rJN76hOtIHDw1bH0beQYWH8a6E7uzKqskdgHvc6Nq2lO6O+GAb2vrcL+X8ZDqcGPuLw==";
+console.log("AWSDEPLOY mode!");
+} else {
+  // Code for Development Mode
+  WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
+  WEATHERBIT_URI = process.env.WEATHERBIT_URI;
+}
 
 
 // Create network routing
@@ -21,7 +45,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   // console.dir(req.params);
   // console.dir(req.body);
-  let apikey = encrypt(process.env.WEATHERBIT_KEY);
+  let apikey = encryptAES(WEATHERBIT_KEY);
   res.render('index', {xkey: apikey});
 })
 
@@ -41,6 +65,7 @@ app.post('/weatherbit', (req, res) => {
   let city = req.body.locale;
   let coords = [ req.body.lat, req.body.lng ];
   let promisedData;
+  // console.log(coords[0], coords[1]);
   if (city.length > 0) {
     // get data by address
     promisedData = gatherWeatheBits(city);
@@ -54,6 +79,77 @@ app.post('/weatherbit', (req, res) => {
   })
 });
 
+
+// /*
+//  * function get AWS environment variables
+//  */
+// function getAwsSecrets() {
+//   var AWS = awssdk,
+//   region = "us-east-1",
+//   secretName = "techrolemi_weather_secret",
+//   secret,
+//   decodedBinarySecret;
+
+//   // Create a Secrets Manager client
+//   var client = new AWS.SecretsManager({
+//     region: region
+//   });
+
+
+//   client.getSecretValue({SecretId: secretName}, function(err, data) {
+//     if (err) {
+//       if (err.code === 'DecryptionFailureException')
+//           // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+//           // Deal with the exception here, and/or rethrow at your discretion.
+//           throw err;
+//       else if (err.code === 'InternalServiceErrorException')
+//           // An error occurred on the server side.
+//           // Deal with the exception here, and/or rethrow at your discretion.
+//           throw err;
+//       else if (err.code === 'InvalidParameterException')
+//           // You provided an invalid value for a parameter.
+//           // Deal with the exception here, and/or rethrow at your discretion.
+//           throw err;
+//       else if (err.code === 'InvalidRequestException')
+//           // You provided a parameter value that is not valid for the current state of the resource.
+//           // Deal with the exception here, and/or rethrow at your discretion.
+//           throw err;
+//       else if (err.code === 'ResourceNotFoundException')
+//           // We can't find the resource that you asked for.
+//           // Deal with the exception here, and/or rethrow at your discretion.
+//           throw err;
+//     }
+//     else {
+//       // Decrypts secret using the associated KMS key.
+//       // Depending on whether the secret is a string or binary, one of these fields will be populated.
+//       // console.log(data);
+//       if ('SecretString' in data) {
+//         secret = data.SecretString;
+//         var aesParams = JSON.parse(secret);
+//         // console.log(data.Name + " : " + data.SecretString);
+//         Object.entries(aesParams).forEach((entry) => {
+//           var [key, value] = entry;
+//           if (`${key}` === "WEATHERBIT_KEY") {
+//             WEATHERBIT_KEY = `${value}`;
+//             console.log("WEATHERBIT_KEY="+ WEATHERBIT_KEY);
+//           }
+//           else if (`${key}` === "WEATHERBIT_URI") {
+//             WEATHERBIT_URI = `${value}`;
+//             console.log("WEATHERBIT_URI="+WEATHERBIT_URI);
+//           }
+//         });
+          
+//       } else {
+//           let buff = new Buffer(data.SecretBinary, 'base64');
+//           decodedBinarySecret = buff.toString('ascii');
+//           console.log("decodedBinarySecret: " + decodedBinarySecret);
+//       }
+//     }
+//   })
+// }
+
+
+
 /* 
  * Function retrieves weatherbit.io current conditions.
  * Used in the Promise call below. 
@@ -65,12 +161,24 @@ function getWeatherBitCurrentConditions(city){
     } else {
       city = "&city=" + city;
     }
+
+    var Xcode = "";
+    if (process.env.NODE_ENV === 'awsdeploy') {
+      Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
+    } else { 
+      Xcode = WEATHERBIT_KEY;
+    }
+
     setTimeout(() => {
-      let apiKey = process.env.WEATHERBIT_KEY;
-      let url = process.env.WEATHERBIT_URI;
-      let uriWeatherBitStr = `${url}current?units=I${city}&key=${apiKey}`;
+
+      let uriWeatherBitStr = `${WEATHERBIT_URI}current?units=I${city}&key=${Xcode}`;
       let retCode;
-      // console.log(uriWeatherBitStr);
+      if (WEATHERBIT_URI.length === 0) {
+        console.log('Failed to get aws secrets!');
+        return null;
+      } else {
+        console.log(uriWeatherBitStr);
+      }
       try {
         request(uriWeatherBitStr, async function (err, response, body) {
           console.log(response.statusCode);
@@ -104,10 +212,16 @@ function getWeatherBitDailyForecast(city){
     } else {
       city = "&city=" + city;
     }
+
+    var Xcode = "";
+    if (process.env.NODE_ENV === 'awsdeploy') {
+      Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
+    } else { 
+      Xcode = WEATHERBIT_KEY;
+    }
+
     setTimeout(() => {
-      let apiKey = process.env.WEATHERBIT_KEY;
-      let url = process.env.WEATHERBIT_URI;
-      let uriWeatherBitStr = `${url}forecast/daily?units=I${city}&key=${apiKey}`;
+      let uriWeatherBitStr = `${WEATHERBIT_URI}forecast/daily?units=I${city}&key=${Xcode}`;
       let retCode;
       // console.log(uriWeatherBitStr);
       try {
@@ -140,11 +254,16 @@ function getWeatherBitAirQuality(city) {
     } else {
       city = "?city=" + city;
     }
+
+    var Xcode = "";
+    if (process.env.NODE_ENV === 'awsdeploy') {
+      Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
+    } else { 
+      Xcode = WEATHERBIT_KEY;
+    }
+
     setTimeout(() => {
-      let apiKey = process.env.WEATHERBIT_KEY;
-      let url = process.env.WEATHERBIT_URI;
       let e =  new Date().toISOString().slice(0, 16).replace('T', ' ')
-      
       let enddate = e.split(' ')[0];
       // add 1 day to enddate
       let s = new Date(enddate);
@@ -153,7 +272,7 @@ function getWeatherBitAirQuality(city) {
       let startdate = s.split(' ')[0];
 
       let retCode;
-      let uriWeatherBitAPIStr = `${url}history/airquality${city}&start_date=${startdate}&end_date=${enddate}&key=${apiKey}`;
+      let uriWeatherBitAPIStr = `${WEATHERBIT_URI}history/airquality${city}&start_date=${startdate}&end_date=${enddate}&key=${Xcode}`;
 
       // console.log(uriWeatherBitAPIStr);
       try {
@@ -211,6 +330,6 @@ let port = process.env.PORT || 3000;
 
 // creating a server that is listening on ${port} for connections.
 app.listen(port, () => {
-    console.log(`StagingWeather report app is listening on port ${port}`);
+    console.log(`TechRolEmi weather report is listening on port ${port}`);
 });
 
