@@ -1,3 +1,9 @@
+# A Responsive NodeJS-Express Web App With Stepwise Implementation
+
+This project is intended for the beginner to novice javascript developers who are interested in the nuts and bolts of implementing a working web application using various frameworks and libaries.  Although this only scratches the surface of a real-life software development project, you will experience what it takes to bring an idea to fruition.
+
+<br />
+
 # Weather Service
 
 Ever wonder why your phone shows weather data of your immediate vicinity on your travel?  This project demonstrates the use of Navigator.geolocation API that is part of NodeJS to pinpoint your immediate location.  The geolocation method gets the current position in longitude and latitude.  The weather app uses these values to call a weather service API for weather data.  This non-interactive process happens automatically for your convenience.
