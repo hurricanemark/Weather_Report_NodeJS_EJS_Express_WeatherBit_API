@@ -1,7 +1,7 @@
 {
   "name": "TechRolEmiWeather",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Nodejs Express app integrating weatherbit.io APIs.",
   "main": "index.js",
   "type": "module",
   "scripts": {
