@@ -191,3 +191,15 @@ Please do not abuse this live website below.  Thank you!
 [Live demo](https://techrolemiweather.cyclic.app/about)
 
 **Recommend Cylic** https://app.cyclic.sh/#/join/hurricanemark
+
+## Test Automation
+
+[Selenium](https://www.selenium.dev/documentation/) is an opensource providing QA testing environment best fit for test automation.  Selenium supports multiple languages such as Java, Python,CSharp, Ruby, Javascript, and Kotlin.
+
+We will choose [Selenium IDE chrome extension](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd) to configure and run a simple user-interface automation test project.  
+
+1. On the Chrome browser, download selenium chrome extension.
+
+2. Write test cases as follow and click `Run all tests`:
+
+![UI-Automation](./public/SeleniumIDEAutomation.PNG)
