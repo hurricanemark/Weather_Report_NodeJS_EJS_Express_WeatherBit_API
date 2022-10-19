@@ -5,7 +5,7 @@
   "url": "localhost:1111",
   "tests": [{
     "id": "d23d883e-bf88-47ce-833d-ce98f95a5d5a",
-    "name": "Untitled",
+    "name": "UITests",
     "commands": [{
       "id": "fdf7489e-1db8-40b3-8b27-622dc7f25190",
       "comment": "",
@@ -17,14 +17,14 @@
       "id": "4f303c9a-bc59-4a79-be04-843c9594505a",
       "comment": "Test open browser URL: https://techrolemiweather.cyclic.app/about",
       "command": "open",
-      "target": "https://techrolemiweather.cyclic.app/about",
+      "target": "http://localhost:111/about",
       "targets": [],
       "value": ""
     }, {
       "id": "7d00be3c-88a0-4020-80a2-5f73f0fc2166",
       "comment": "Test open browser URL: https://techrolemiweather.cyclic.app/weatherbit",
       "command": "open",
-      "target": "https://techrolemiweather.cyclic.app/weatherbit",
+      "target": "http://localhost:1111/weatherbit",
       "targets": [],
       "value": ""
     }, {
