@@ -119,15 +119,13 @@
 
 
 
-        <div class="col-sm-6">
+      <div class="col-sm-6">
           <h5>Current Air Quality</h5>
           <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
             <% if( typeof(error)==="undefined" || airqStatus===400 ) { %>
               <p style="color:gray"> Waiting for data.</p>
               <% } else { %>
                 <p style="color:gray"><strong>Local hourly</strong>: <%= airqData.timestamp_local.split('T')[1] %> 
-
- 
                 </p>     
                 <hr />           
                 <table class="styled-table">
@@ -186,6 +184,32 @@
                 </table>
                 <% } %>
           </div>
+
+          <h5>Severe Weather Alerts</h5>
+          <p style="font-size: 0.53em ">(Data available in the USA, EU member nations, Israel, and Canada).</p>
+          <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
+            <% if( typeof(error)==="undefined" || alertStatus===400 ) { %>
+              <p style="color:gray"> None.</p>
+            <% } else if(alertData !== null) { %>
+              <p style="color:orange"> <%= alertData.title %></p>
+              
+            <table class="styled-table">
+              <tr>
+                <th>severity: </th>
+                <td>
+                  <%= alertData.serverity %>
+                </td>
+              </tr>
+              <tr>
+                <th>description: </th>
+                <td>
+                  <%= alertData.description %>
+                </td>
+              </tr>
+            </table>
+            <% } %>
+          </div>
+
         </div>
       </div>
     </div>
