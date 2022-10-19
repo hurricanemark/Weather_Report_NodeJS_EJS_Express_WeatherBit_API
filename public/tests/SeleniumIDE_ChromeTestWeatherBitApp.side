@@ -7,13 +7,6 @@
     "id": "d23d883e-bf88-47ce-833d-ce98f95a5d5a",
     "name": "UITests",
     "commands": [{
-      "id": "fdf7489e-1db8-40b3-8b27-622dc7f25190",
-      "comment": "",
-      "command": "echo",
-      "target": "Selenium IDE Test Preparation Target: TechRolEmi Weather APP",
-      "targets": [],
-      "value": "Selenium IDE Test Preparation Target: TechRolEmi Weather APP"
-    }, {
       "id": "4f303c9a-bc59-4a79-be04-843c9594505a",
       "comment": "Test open browser URL: https://techrolemiweather.cyclic.app/about",
       "command": "open",
@@ -42,8 +35,8 @@
     }, {
       "id": "72d25dbb-8f58-45fb-8acb-41a960c6225d",
       "comment": "Test submit button `Pinpoint Weather`",
-      "command": "clickAt",
-      "target": "css=.btn-sm",
+      "command": "click",
+      "target": "xpath=//input[@value='Pinpoint Weather']",
       "targets": [
         ["css=.btn-sm", "css:finder"],
         ["xpath=//input[@value='Pinpoint Weather']", "xpath:attributes"],

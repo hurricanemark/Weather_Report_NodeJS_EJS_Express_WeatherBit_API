@@ -209,3 +209,32 @@ We will choose [Selenium IDE chrome extension](https://chrome.google.com/webstor
 2. Write test cases as follow and click `Run all tests`:
 
 ![UI-Automation](./public/SeleniumIDEAutomation.PNG)
+
+<br />
+
+3. Save the Selenium script as `./public/tests/SeleniumIDE_ChromeTestWeatherBitApp.side`
+
+4. Install [`selenium-side-runner`](https://www.selenium.dev/selenium-ide/docs/en/introduction/command-line-runner), then run the test script above from the command console.
+
+```c
+  StagingProjs> selenium-side-runner .\public\tests\SeleniumIDE_ChromeTestWeatherBitApp.side -c "browserName=chrome"
+
+  info: Running test UITests
+  info: Building driver for chrome
+
+  RUNS  C:/Users/markn/AppData/Roaming/npm/node_modules/selenium-side-runner/dist/main.test.js
+  info: Driver has been built for chrome
+  info: Finished test UITests Success
+  PASS  C:/Users/markn/AppData/Roaming/npm/node_modules/selenium-side-runner/dist/main.test.js
+    Running project TestWeatherBitApp
+      Running suite Default Suite
+        √ Running test UITests (2086 ms)
+
+  Test Suites: 1 passed, 1 total
+  Tests:       1 passed, 1 total
+  Snapshots:   0 total
+  Time:        2.75 s, estimated 7 s
+  Ran all test suites within paths "C:\Users\markn\AppData\Roaming\npm\node_modules\selenium-side-runner\dist\main.test.js".
+
+  StagingProjs>
+```
