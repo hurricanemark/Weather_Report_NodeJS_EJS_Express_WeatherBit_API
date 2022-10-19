@@ -248,5 +248,3 @@ Before you invest time and effort developing mobile-native, convert this hosting
 Often, this is enough to demonstrate proof of concept.  You can use it to make further decision in your mobile development.
 
 ![iOS Data Screen](./public/iOSScreenRaw.PNG)  ![iOS Screenshot](./public/iOSScreen1Raw.PNG) 
-
-![Android Screenshot](./public/AndroidScreen.png)
