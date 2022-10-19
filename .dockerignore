@@ -10,3 +10,4 @@
 **/.aws
 **/dist
 **/utils.js
+**/index.copy.js
