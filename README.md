@@ -238,3 +238,13 @@ We will choose [Selenium IDE chrome extension](https://chrome.google.com/webstor
 
   StagingProjs>
 ```
+
+## Convert Web App into Mobile App
+
+The advantage of designing and implementing a responsive web app earlier is now paying off.  If you were to open it using the browser on your phone.  Its looks-and-feel is fine.  
+
+Before you invest time and effort developing mobile-native, convert this hosting URL using online converter such as [GoNative](https://gonative.io/app/0n4pabzw75m638htrqkvkmw5hw).
+
+Often, this is enough to demonstrate proof of concept.  You can use it to make further decision in your mobile development.
+
+![iOS Data Screen](./public/iOSScreenRaw.PNG)  ![iOS Screenshot](./public/iOSScreen1Raw.PNG) 
