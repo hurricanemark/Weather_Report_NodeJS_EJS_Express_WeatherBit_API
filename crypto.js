@@ -30,13 +30,5 @@ const toLocalDt = (unix_ts) => {
   return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 }
 
-function test() {
-    let enStr = encryptAES("e88e1a8096cd4897b79b230a9c49b243");
-    console.log("Encrypted Key: " + enStr);
-    // WEATHERBIT_KEY = Object.entries(Xcode).value;
-    console.log("Decrypted key: " + JSON.parse(decryptAES(enStr)).text);
 
-}
-
-// test();
 export {encrypt, decrypt, encryptAES, decryptAES, toLocalDt};
