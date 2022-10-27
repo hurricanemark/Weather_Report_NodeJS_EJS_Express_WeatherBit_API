@@ -245,7 +245,7 @@ The advantage of designing and implementing a responsive web app earlier is now 
 
 Before you invest time and effort developing mobile-native, convert this hosting URL using online converter such as [GoNative](https://gonative.io/app/0n4pabzw75m638htrqkvkmw5hw).
 
-We also select [AppsGeyzer](https://appsgeyzer.com) to make another conversion for good measure.  Download mobile image [here](https://appsgeyser.io/16161262/TechRolEmiWeather).
+We also select [AppsGeyzer](https://appsgeyser.com/blog/convert-website-to-mobile-app-free-software/) to make another conversion for good measure.  Download mobile image [here](https://appsgeyser.io/16161262/TechRolEmiWeather).
 
 Often, this is enough to demonstrate proof of concept.  You can use it to make further decision in your mobile development.
 
