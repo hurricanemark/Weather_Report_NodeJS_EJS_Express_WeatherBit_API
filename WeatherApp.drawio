@@ -1,1 +1,74 @@
-<mxfile host="app.diagrams.net" modified="2022-10-26T21:11:46.591Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" version="20.5.1" etag="y7bmKzxygoqt_M7jzLfe" type="github"><diagram id="WiCHa1WhsjDegjLb84WS">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-10-27T18:41:24.103Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="tYwVJsSSLtWsAguf6EVZ" version="20.5.1" type="github">
+  <diagram id="WiCHa1WhsjDegjLb84WS" name="Page-1">
+    <mxGraphModel dx="1297" dy="694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OPkBnLGld1baVavcbmju-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-1" target="OPkBnLGld1baVavcbmju-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="35" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object label="User" id="OPkBnLGld1baVavcbmju-1">
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+            <mxGeometry x="20" y="160" width="30" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="OPkBnLGld1baVavcbmju-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-4" target="OPkBnLGld1baVavcbmju-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-4" value="User App&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;ul&gt;&lt;li&gt;GET &#39;/&#39;&lt;/li&gt;&lt;li&gt;POST &#39;/&#39;&lt;/li&gt;&lt;li&gt;GET &#39;/weatherbit&#39;&lt;/li&gt;&lt;li&gt;POST &#39;/weatherbit&#39;&lt;/li&gt;&lt;li&gt;GET &#39;\about&#39;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="110" y="135" width="200" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-6" value="&lt;h1&gt;TechRolEmi Weather Cast&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji&quot;&gt;An Embedded JavaScript&amp;nbsp;(EJS) responsive web app using NodeJS-Express scaffolding to call weather API providers for weather reports.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="720" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-14" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-11" target="OPkBnLGld1baVavcbmju-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="565" y="197.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-11" target="OPkBnLGld1baVavcbmju-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-17" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="OPkBnLGld1baVavcbmju-16">
+          <mxGeometry x="-0.2994" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-11" value="&lt;br&gt;&lt;br&gt;Geolocator Allowed?" style="rhombus;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="360" y="147.5" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;fontColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-18" target="OPkBnLGld1baVavcbmju-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-25" value="JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#000000;" vertex="1" connectable="0" parent="OPkBnLGld1baVavcbmju-24">
+          <mxGeometry x="-0.5569" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-18" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial; box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace;&quot; class=&quot;pl-c1&quot;&gt;1. Geolocation&lt;/span&gt;&lt;span style=&quot;background-color: initial; box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace;&quot; class=&quot;pl-kos&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;background-color: initial; box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace;&quot; class=&quot;pl-en&quot;&gt;getCurrentPosition&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;pl-en&quot; style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial; box-sizing: border-box;&quot; class=&quot;pl-en&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;getLocalWeather(longitude, latitude, secret, 0);&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot; class=&quot;pl-en&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="150" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;fontColor=#000000;" edge="1" parent="1" source="OPkBnLGld1baVavcbmju-19" target="OPkBnLGld1baVavcbmju-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-26" value="JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#000000;" vertex="1" connectable="0" parent="OPkBnLGld1baVavcbmju-22">
+          <mxGeometry x="-0.2218" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-19" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;1.&amp;nbsp; ReadInput(cityName)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2.&amp;nbsp; getLocalWeather(cityName, secret, 0);&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="180" y="320" width="295" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OPkBnLGld1baVavcbmju-21" value="&lt;span class=&quot;pl-s1&quot; style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;pl-kos&quot; style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pl-c1&quot; style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot;&gt;innerHTML&lt;/span&gt;&lt;span style=&quot;font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot;&gt; &lt;/span&gt;&lt;span class=&quot;pl-c1&quot; style=&quot;box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &amp;quot;SF Mono&amp;quot;, Menlo, Consolas, &amp;quot;Liberation Mono&amp;quot;, monospace; text-align: start;&quot;&gt;= JSON.parse(xhttp.responseText);&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="267.5" y="450" width="502.5" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
