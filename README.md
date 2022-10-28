@@ -4,6 +4,8 @@ This project is intended for the beginner to novice javascript developers who ar
 
 <br />
 
+![wireframe](./public/WeatherApp.drawio.png)
+
 # Weather Service
 
 Ever wonder why your phone shows weather data of your immediate vicinity on your travel?  This project demonstrates the use of Navigator.geolocation API that is part of NodeJS to pinpoint your immediate location.  The geolocation method gets the current position in longitude and latitude.  The weather app uses these values to call a weather service API for weather data.  This non-interactive process happens automatically for your convenience.
@@ -245,7 +247,7 @@ The advantage of designing and implementing a responsive web app earlier is now 
 
 Before you invest time and effort developing mobile-native, convert this hosting URL using online converter such as [GoNative](https://gonative.io/app/0n4pabzw75m638htrqkvkmw5hw).
 
-We also select [AppsGeyzer](https://appsgeyzer.com) to make another conversion for good measure.  Download mobile image [here](https://appsgeyser.io/16161262/TechRolEmiWeather).
+We also select [AppsGeyzer](https://appsgeyser.com/blog/convert-website-to-mobile-app-free-software/) to make another conversion for good measure.  Download mobile image [here](https://appsgeyser.io/16161262/TechRolEmiWeather).
 
 Often, this is enough to demonstrate proof of concept.  You can use it to make further decision in your mobile development.
 
