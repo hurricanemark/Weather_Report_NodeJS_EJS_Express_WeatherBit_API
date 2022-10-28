@@ -4,6 +4,8 @@ This project is intended for the beginner to novice javascript developers who ar
 
 <br />
 
+![wireframe](./public/WeatherApp.drawio.png)
+
 # Weather Service
 
 Ever wonder why your phone shows weather data of your immediate vicinity on your travel?  This project demonstrates the use of Navigator.geolocation API that is part of NodeJS to pinpoint your immediate location.  The geolocation method gets the current position in longitude and latitude.  The weather app uses these values to call a weather service API for weather data.  This non-interactive process happens automatically for your convenience.
