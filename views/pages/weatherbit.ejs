@@ -31,6 +31,8 @@
         <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
           <% if( typeof(error)==="undefined" || curStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
+            <% } else if ( typeof(error)!="undefined" && curStatus===403 ) { %>
+              <p style="color:gray">We apologize.  <%= error %></p>
             <% } else { %>
 
               <p style="color:gray"><strong>City</strong>: <%= curData.city_name %> , <%= curData.state_code %>
@@ -122,8 +124,11 @@
       <div class="col-sm-6">
           <h5>Current Air Quality</h5>
           <div class="jumbotron jumbotron-fluid" style="padding:10px 5px 15px 20px;">
+
             <% if( typeof(error)==="undefined" || airqStatus===400 ) { %>
               <p style="color:gray"> Waiting for data.</p>
+            <% } else if ( typeof(error)!="undefined" && airqStatus===403 ) { %>
+                <p style="color:gray"> <%= error %></p>
               <% } else { %>
                 <p style="color:gray"><strong>Local hourly</strong>: <%= airqData.timestamp_local.split('T')[1] %> 
                 </p>     
@@ -222,6 +227,8 @@
         <div class="jumbotron jumbotron-fluid"  style="padding:10px 5px 15px 20px; overflow-x:auto;">
           <% if( typeof(error)==="undefined" || foreStatus===400 ){ %>
             <p style="color:gray"> Waiting for data.</p>
+            <% } else if ( typeof(error)!="undefined" && foreStatus===403 ) { %>
+              <p style="color:gray"> <%= error %></p>            
             <% } else { %>
               <div style="color:rgb(18, 83, 175);"><%= trendingTemperature(foreData.data) %></div>
               <table class="styled-table">

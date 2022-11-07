@@ -277,11 +277,14 @@ function getWeatherBitDailyForecast(city){
       // console.log(uriWeatherBitStr);
       try {
         request(uriWeatherBitStr, async function (err, response, body) {
-          console.log(response.statusCode);
-
           if (response.statusCode == 429) {
             console.log("WARNING: You have exceeded your API call limit with weatherbit.io!");
             resolve(null);
+          }
+          if (response.statusCode == 403) {
+            console.log("WARNING: Free plan limit is used up.  Data will be available again on the 3rd of next month.");
+            retCode = JSON.parse(body);
+            resolve(retCode);
           }
           if (response.statusCode == 200) {
             retCode = await JSON.parse(body);
@@ -362,8 +365,12 @@ async function gatherWeatheBits(city) {
   ]);
 
 
+  // Check is the service trial expired
+  if (dailyForecast.error === 'API key not valid, or not yet activated.') {
+    return { locale: city, alertStatus: 403, alertData: null, curStatus: 403, curData: null, foreStatus: 403, foreData: null, airqStatus: 403, airqData: null, error: 'Free plan has reached its limit.  Data will be available again on the 3rd of next month.' };    
+  } 
   // Make sure all promisses fulfilled.
-  if (dailyForecast  !== null && alerts !== null && airQuality !== null && currentConditions !== null ) {
+  else if (dailyForecast  !== null && alerts !== null && airQuality !== null && currentConditions !== null ) {
     let currentHour = new Date().getHours(); 
     let aStatus = 200;
     let aData = alerts;
