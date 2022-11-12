@@ -55,23 +55,18 @@ app.get('/exchange', (req, res) => {
 
 app.post('/exchange', (req, res) => {
   let cdat = JSON.stringify(currencyCodes);
-  console.log("POST exchange: " + JSON.stringify(req.body));
+  // console.log("POST exchange: " + JSON.stringify(req.body));
   let amnt = req.body.amount;
   let Fc = req.body.fromCurrency;
   let Tc = req.body.toCurrency;
-  console.log("Amount: " + amnt + " From: " + Fc + " To: " + Tc);
+  // console.log("Amount: " + amnt + " From: " + Fc + " To: " + Tc);
 
   // get currencyconversion
   let promiseData;
   promiseData = getExchangeRateData(Fc, Tc, amnt);
 
   promiseData.then ( (data) => {
-    // let c_data = JSON.parse(data);
-
-    console.log("Exchange data: " + data.conversion_result);
-//    res.status(200).send({ exchange: data });
-    
-    // res.send('index', { exchange: data });
+    // console.log("Exchange data: " + data.conversion_result);
     res.render('pages/exchangeRate', {  Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data});
   });
 });
