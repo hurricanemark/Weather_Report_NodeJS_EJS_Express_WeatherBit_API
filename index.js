@@ -10,7 +10,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {encryptAES, decryptAES} from './crypto.js';
 
-
+import { data as currencyCodes } from 'currency-codes';
 import awssdk from 'aws-sdk';
 
 
@@ -45,6 +45,70 @@ app.get('/', (req, res) => {
   let apikey = encryptAES(WEATHERBIT_KEY);
   res.render('index', {xkey: apikey});
 })
+
+
+app.get('/exchange', (req, res) => {
+  // console.log(currencyCodes);
+  let cdat = JSON.stringify(currencyCodes);
+  res.render('pages/exchangeRate', { Cdata: cdat });
+});
+
+app.post('/exchange', (req, res) => {
+  let cdat = JSON.stringify(currencyCodes);
+  console.log("POST exchange: " + JSON.stringify(req.body));
+  let amnt = req.body.amount;
+  let Fc = req.body.fromCurrency;
+  let Tc = req.body.toCurrency;
+  console.log("Amount: " + amnt + " From: " + Fc + " To: " + Tc);
+
+  // get currencyconversion
+  let promiseData;
+  promiseData = getExchangeRateData(Fc, Tc, amnt);
+
+  promiseData.then ( (data) => {
+    // let c_data = JSON.parse(data);
+
+    console.log("Exchange data: " + data.conversion_result);
+//    res.status(200).send({ exchange: data });
+    
+    // res.send('index', { exchange: data });
+    res.render('pages/exchangeRate', {  Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data});
+  });
+});
+
+function getExchangeRateData(fromCurrency, toCurrency, amount) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      let XchangeKey = process.env.EXCHANGE_RATE_APIKEY;
+      let XchangeURI = process.env.BASE_URI;
+      let URLStr = XchangeURI + XchangeKey + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
+
+      try {
+        if (fromCurrency === undefined) {
+          URLStr = process.env.SAMPLE2_URI;
+        }
+        console.log("Calling URL: " + URLStr);
+        request(URLStr, async function (err, response, body) {
+          console.log(response.statusCode);
+          if (response.statusCode == 429) {
+            console.log("WARNING: You have exceeded your API call limit of 1500 calls per month!");
+            resolve(null);
+          }          
+          if (response.statusCode == 200) {
+              let result = await JSON.parse(body);
+
+              resolve(result);
+          } else {
+            // Ignoring grainular status codes for now.
+            resolve(null);
+          }
+        })
+      } catch (err) {
+        console.log(err);
+      }
+      
+    }, 200);
+  })};
 
 
 

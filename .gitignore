@@ -6,3 +6,6 @@ index-temp.ejs
 utils.js
 WeatherApp_US_East1Key.ppk
 index.copy.js
+public/tests
+currencyRate.js
+views/index-temp.ejs

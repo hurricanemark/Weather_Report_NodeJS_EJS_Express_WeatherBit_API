@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+
+<body onload="addCurrencyCodes( <%= Cdata %> )">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main >
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="jumbotron jumbotron-fluid">
+                    <h1>Currency Exchange Rate</h1>
+                    <strong>Exchange data is updated daily.</strong>
+                    <hr>
+                    <div>
+                        <fieldset >
+                            <form action="/exchange" method="post">
+                                <label for="amount">Amount:</label>
+                                <input type="text" id="amount" name="amount" value="1" placeholder="Enter amount"> <br>
+
+                                <label for="fromCurrency">From currency:</label>
+                                <select id="FcurrencyCode-dropdown" name="fromCurrency" selected></select> <br>
+
+                                <label for="toCurrency">To currency:</label>
+                                <select id="TcurrencyCode-dropdown" name="toCurrency" selected>
+                                </select>
+                                <br>
+                                <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Convert">
+                            </form>                            
+                                   
+                        </fieldset>
+                    <hr />
+                    </div>
+                    <br />
+
+                    <div id="conversionResult">
+                        <% if(typeof(exchange)==="undefined"  ){ %>
+                            <p>...</p>
+                        <% } else { %>
+
+                            <p style="color:gray"><strong>Last update</strong>: <%= exchange.time_last_update_utc %></p>
+                            <p style="color:gray"><strong>Conversion rate </strong>: 1 <%= frC %> to <%= exchange.conversion_rate %> <%= toC %></p>
+
+                            <p style="color:blue"><strong> <%= amount %> <%= frC %> </strong> == <strong style="color: green"><%= exchange.conversion_result %> <%= toC %> </strong></p>
+
+
+                        <% } %>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="well">
+                    <h3>Reserved Ad space</h3>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        function addCurrencyCodes(data) {
+            console.log(data);
+            fillFromList(data);
+            fillToList(data);
+        }    
+        
+        function fillFromList(data) {
+            let Fdropdown = document.getElementById("FcurrencyCode-dropdown");
+            let Fval = "";
+            let Foption;
+            for (let i=0; i< data.length; i++) {
+                Fval = data[i].code + ' -- ' + data[i].currency + '(' + data[i].countries[0] + ')';
+                Foption = document.createElement('option');
+        
+                Foption.value = data[i].code;
+                Foption.text = Fval;
+                Fdropdown.append(Foption);
+            }
+        };
+        
+        function fillToList(data) {
+            let Tdropdown = document.getElementById("TcurrencyCode-dropdown");
+            let Tval = "";
+            let Toption;
+            for (let i=0; i< data.length; i++) {
+                Tval = data[i].code + ' -- ' + data[i].currency + '(' + data[i].countries[0] + ')';
+                Toption = document.createElement('option');
+        
+                Toption.value = data[i].code;
+                Toption.text = Tval;
+                Tdropdown.append(Toption);
+            }            
+        };
+
+        </script>
+        
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
