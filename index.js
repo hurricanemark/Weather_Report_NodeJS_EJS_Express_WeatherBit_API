@@ -7,6 +7,9 @@ import {encryptAES, decryptAES} from './crypto.js';
 // dev env
 dotenv.config();
 
+// application secrets
+// import { keys } from './config/keys.js';  
+
 let EXCHANGE_RATE_APIKEY;
 let BASE_URI;
 let SAMPLE2_URI;
@@ -14,7 +17,7 @@ let WEATHERBIT_KEY;
 let WEATHERBIT_URI;
 let GoogleclientID;
 let GoogleclientSecret;
-// if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
     BASE_URI = process.env.EXCHANGE_BASE_URI;
     SAMPLE2_URI = process.env.SAMPLE2_URI;
@@ -23,25 +26,25 @@ let GoogleclientSecret;
     GoogleclientID = process.env.GoogleclientID;
     GoogleclientSecret = process.env.GoogleclientSecret;    
 
-//} else {
-//     // dynamically importing keys.js:
-//     let AppKeys = await import('./config/keys.js');
-//     EXCHANGE_RATE_APIKEY = AppKeys.exchangerateapi.APIKEY;
-//     BASE_URI = AppKeys.exchangerateapi.BASE_URI;
-//     SAMPLE2_URI = AppKeys.exchangerateapi.SAMPLE2_URI;
-//     WEATHERBIT_KEY = AppKeys.weatherbitapi.APIKEY;
-//     WEATHERBIT_URI = AppKeys.weatherbitapi.BASE_URI;
-//     GoogleclientID = AppKeys.google.clientID;
-//     GoogleclientSecret = AppKeys.google.clientSecre;
-// }
+} else {
+    // dynamically importing keys.js using promise:
+    import('./config/keys.js').then((secrets) => {
+      EXCHANGE_RATE_APIKEY = secrets.keys.exchangerateapi.EXCHANGE_APIKEY;
+      BASE_URI = secrets.keys.exchangerateapi.EXCHANGE_BASE_URI;
+      SAMPLE2_URI = secrets.keys.exchangerateapi.SAMPLE2_URI;
+      WEATHERBIT_KEY = secrets.keys.weatherbitapi.WEATHERBIT_APIKEY;
+      WEATHERBIT_URI = secrets.keys.weatherbitapi.WEATHERBIT_BASE_URI;
+      GoogleclientID = secrets.keys.google.clientID;
+      GoogleclientSecret = secrets.keys.google.clientSecret;
+    });
+
+}
 
 
 
 // Create network routing
 const app = express();
 
-// application secrets
-import { keys } from './config/keys.js';  
 
 // routes handler for Currency Exchange methods
 import { router as currencyExchangeRoutes } from './routes/currency-exchange-routes.js';
