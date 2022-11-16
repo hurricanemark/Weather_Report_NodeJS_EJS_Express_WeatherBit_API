@@ -4,6 +4,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {encryptAES, decryptAES} from './crypto.js';
 
+// dev env
+dotenv.config();
+
+// Create network routing
+const app = express();
 
 // application secrets
 import { keys } from './config/keys.js';  
@@ -14,11 +19,9 @@ import { router as currencyExchangeRoutes } from './routes/currency-exchange-rou
 // routes handler for WeatherBit.io API methods
 import { router as weatherbitRoutes } from './routes/weatherbit-routes.js';
 
-// dev env
-dotenv.config();
+// routes handler for OAuth20 methods
+import { router as oauth20Routes } from './routes/auth-routes.js';
 
-// Create network routing
-const app = express();
 
 // EJS is accessed by default in the views directory.
 app.set('view engine', 'ejs');
@@ -34,6 +37,9 @@ app.use('/exchange', currencyExchangeRoutes);
 
 // Set up all routes to WeatherBit reports
 app.use('/weatherbit', weatherbitRoutes);
+
+// Set up all routes related to oauth2 methods
+app.use('/auth', oauth20Routes);
 
 // Homepage: get the locale from the client-side via the ejs form
 app.get('/', (req, res) => {
