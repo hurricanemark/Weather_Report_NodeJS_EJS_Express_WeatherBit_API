@@ -7,6 +7,28 @@ import {encryptAES, decryptAES} from './crypto.js';
 // dev env
 dotenv.config();
 
+let EXCHANGE_RATE_APIKEY;
+let BASE_URI;
+let SAMPLE2_URI;
+let WEATHERBIT_KEY;
+let WEATHERBIT_URI;
+
+if (process.env.NODE_ENV === "production") {
+    EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
+    BASE_URI = process.env.EXCHANGE_BASE_URI;
+    SAMPLE2_URI = process.env.SAMPLE2_URI;
+    WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
+    WEATHERBIT_URI = process.env.WEATHERBIT_URI;    
+} else {
+    EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
+    BASE_URI = keys.exchangerateapi.BASE_URI;
+    SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
+    WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
+    WEATHERBIT_URI = keys.weatherbitapi.BASE_URI;
+}
+
+
+
 // Create network routing
 const app = express();
 
@@ -69,3 +91,5 @@ app.listen(port, () => {
     console.log('Sorry, failed to launch.');
   }
 });
+
+export { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI, WEATHERBIT_KEY, WEATHERBIT_URI };
