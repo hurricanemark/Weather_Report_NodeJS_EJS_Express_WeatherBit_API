@@ -1,7 +1,8 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const User = require('../models/user-models');
-const keys = require ('./keys');
+// const keys = require ('./keys');
+import { GoogleclientID, GoogleclientSecret } from './../index.js';
 
 // serialize user structure in the mongodb
 passport.serializeUser((user, done) => {
@@ -30,8 +31,8 @@ try {
 passport.use(new GoogleStrategy({
     // options for google strategy
     callbackURL: '/auth/google/redirect',
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret
+    clientID: GoogleclientID,
+    clientSecret: GoogleclientSecret
 }, (accessToken, refreshToken, profile, done) => {
     // passport callback function
     // console.log('accessToken: ' + accessToken);

@@ -12,19 +12,26 @@ let BASE_URI;
 let SAMPLE2_URI;
 let WEATHERBIT_KEY;
 let WEATHERBIT_URI;
-
+let GoogleclientID;
+let GoogleclientSecret;
 if (process.env.NODE_ENV === "production") {
     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
     BASE_URI = process.env.EXCHANGE_BASE_URI;
     SAMPLE2_URI = process.env.SAMPLE2_URI;
     WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
-    WEATHERBIT_URI = process.env.WEATHERBIT_URI;    
+    WEATHERBIT_URI = process.env.WEATHERBIT_URI;
+    GoogleclientID = process.env.clientID,
+    GoogleclientSecret = process.env.clientSecret    
 } else {
-    EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
-    BASE_URI = keys.exchangerateapi.BASE_URI;
-    SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
-    WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
-    WEATHERBIT_URI = keys.weatherbitapi.BASE_URI;
+    // dynamically importing keys.js:
+    let AppKeys = await import('./config/keys.js');
+    EXCHANGE_RATE_APIKEY = AppKeys.exchangerateapi.APIKEY;
+    BASE_URI = AppKeys.exchangerateapi.BASE_URI;
+    SAMPLE2_URI = AppKeys.exchangerateapi.SAMPLE2_URI;
+    WEATHERBIT_KEY = AppKeys.weatherbitapi.APIKEY;
+    WEATHERBIT_URI = AppKeys.weatherbitapi.BASE_URI;
+    GoogleclientID = AppKeys.google.clientID,
+    GoogleclientSecret = AppKeys.google.clientSecret
 }
 
 
@@ -92,4 +99,4 @@ app.listen(port, () => {
   }
 });
 
-export { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI, WEATHERBIT_KEY, WEATHERBIT_URI };
+export { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI, WEATHERBIT_KEY, WEATHERBIT_URI,  GoogleclientID, GoogleclientSecret };
