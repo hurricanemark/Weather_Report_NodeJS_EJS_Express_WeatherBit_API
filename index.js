@@ -11,18 +11,14 @@ dotenv.config();
 // import { keys } from './config/keys.js';  
 
 let EXCHANGE_RATE_APIKEY;
-let BASE_URI;
-let SAMPLE2_URI;
+let EXCHANGE_BASE_URI='https://v6.exchangerate-api.com/v6/';
 let WEATHERBIT_KEY;
-let WEATHERBIT_URI;
+let WEATHERBIT_URI='https://api.weatherbit.io/v2.0/';
 let GoogleclientID;
 let GoogleclientSecret;
 if (process.env.NODE_ENV === "production") {
     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-    BASE_URI = process.env.EXCHANGE_BASE_URI;
-    SAMPLE2_URI = process.env.SAMPLE2_URI;
     WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
-    WEATHERBIT_URI = process.env.WEATHERBIT_URI;
     GoogleclientID = process.env.GoogleclientID;
     GoogleclientSecret = process.env.GoogleclientSecret;    
 
@@ -30,10 +26,7 @@ if (process.env.NODE_ENV === "production") {
     // dynamically importing keys.js using promise:
     import('./config/keys.js').then((secrets) => {
       EXCHANGE_RATE_APIKEY = secrets.keys.exchangerateapi.EXCHANGE_APIKEY;
-      BASE_URI = secrets.keys.exchangerateapi.EXCHANGE_BASE_URI;
-      SAMPLE2_URI = secrets.keys.exchangerateapi.SAMPLE2_URI;
       WEATHERBIT_KEY = secrets.keys.weatherbitapi.WEATHERBIT_APIKEY;
-      WEATHERBIT_URI = secrets.keys.weatherbitapi.WEATHERBIT_BASE_URI;
       GoogleclientID = secrets.keys.google.clientID;
       GoogleclientSecret = secrets.keys.google.clientSecret;
     });
@@ -103,4 +96,4 @@ app.listen(port, () => {
   }
 });
 
-export { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI, WEATHERBIT_KEY, WEATHERBIT_URI,  GoogleclientID, GoogleclientSecret };
+export { EXCHANGE_RATE_APIKEY, EXCHANGE_BASE_URI, WEATHERBIT_KEY, WEATHERBIT_URI,  GoogleclientID, GoogleclientSecret };
