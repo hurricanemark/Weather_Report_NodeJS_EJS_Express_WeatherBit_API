@@ -20,8 +20,8 @@ let GoogleclientSecret;
     SAMPLE2_URI = process.env.SAMPLE2_URI;
     WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
     WEATHERBIT_URI = process.env.WEATHERBIT_URI;
-    GoogleclientID = process.env.clientID,
-    GoogleclientSecret = process.env.clientSecret    
+    GoogleclientID = process.env.GoogleclientID;
+    GoogleclientSecret = process.env.GoogleclientSecret;    
 
 //} else {
 //     // dynamically importing keys.js:
@@ -31,8 +31,8 @@ let GoogleclientSecret;
 //     SAMPLE2_URI = AppKeys.exchangerateapi.SAMPLE2_URI;
 //     WEATHERBIT_KEY = AppKeys.weatherbitapi.APIKEY;
 //     WEATHERBIT_URI = AppKeys.weatherbitapi.BASE_URI;
-//     GoogleclientID = AppKeys.google.clientID,
-//     GoogleclientSecret = AppKeys.google.clientSecret
+//     GoogleclientID = AppKeys.google.clientID;
+//     GoogleclientSecret = AppKeys.google.clientSecre;
 // }
 
 
