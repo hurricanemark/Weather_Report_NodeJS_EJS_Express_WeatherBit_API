@@ -1,20 +1,8 @@
 import { data as currencyCodes } from 'currency-codes';
 import request from 'request';
 import express from 'express';
-import { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI } from '../index.js';
+import { EXCHANGE_RATE_APIKEY, EXCHANGE_BASE_URI } from '../index.js';
 
-// let EXCHANGE_RATE_APIKEY;
-// let BASE_URI;
-// let SAMPLE2_URI;
-// if (process.env.NODE_ENV === "production") {
-//     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-//     BASE_URI = process.env.EXCHANGE_BASE_URI;
-//     SAMPLE2_URI = process.env.SAMPLE2_URI;
-// } else {
-//     EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
-//     BASE_URI = keys.exchangerateapi.BASE_URI;
-//     SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
-// }
 
 const router = express.Router();
 
@@ -46,11 +34,11 @@ router.post('/', (req, res) => {
 function getExchangeRateData(fromCurrency, toCurrency, amount) {
     return new Promise(resolve => {
       setTimeout(() => {
-        let URLStr = BASE_URI + EXCHANGE_RATE_APIKEY + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
+        let URLStr = EXCHANGE_BASE_URI + EXCHANGE_RATE_APIKEY + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
   console.log(URLStr);
         try {
           if (fromCurrency === undefined) {
-            URLStr = SAMPLE2_URI;
+            URLStr = EXCHANGE_BASE_URI + EXCHANGE_RATE_APIKEY + '/pair/EUR/GBP/1';
           }
           console.log("Calling URL: " + URLStr);
           request(URLStr, async function (err, response, body) {
