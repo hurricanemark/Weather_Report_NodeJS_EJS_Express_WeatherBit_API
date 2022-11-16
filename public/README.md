@@ -8,7 +8,7 @@ To obtain the pinpoint weather data non-interactively, earth location(GPS) is a 
 
 Sample code for client-side geolocation:
 
-```c
+```javascript
     <p id="geo-coord"></p>
 
     <script type=javascript>
@@ -92,7 +92,7 @@ Partial files are pieces of reusable code segment that typically appear again an
 
 The project tree structure will look as follow:
 
-```c
+```
     + public
         + css
             - style.css
@@ -113,7 +113,7 @@ The project tree structure will look as follow:
 
 2. Create partial file `head.ejs`
 
-```c
+```html
     <meta charset="UTF-8">
     <title>Staging Weather Report with EJS Template</title>
 
@@ -125,7 +125,7 @@ The project tree structure will look as follow:
 
 3. Create partial file `header.ejs` for responsive navbar display.
 
-```c
+```html
     <!-- This code contains navigation for an HTML document and uses several classes from Bootstrap for styling. -->
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -161,7 +161,7 @@ The project tree structure will look as follow:
 
 4. Create a partial file `footer.ejs`
 
-```c
+```html
     <!-- This code contains copyright information and uses several classes from Bootstrap for styling. -->
     <p class="text-center text-muted" style="
         position:fixed;
@@ -173,7 +173,7 @@ The project tree structure will look as follow:
 5. Create an ejs template file `about.ejs`
     The template file will be injected with partial files created above.  This accomplishes two things: reuse partial code, and make sure the presentation is consistent between ejs templates under the `views` folder.
 
-```c
+```html
     <!DOCTYPE html>
     <html lang="en">
 
@@ -202,7 +202,7 @@ The project tree structure will look as follow:
 
 6. Create ejs file `utils.ejs` containing client-side functions.  Notice the ejs tags <% ... %>
 
-```c
+```javascript
     <%
 
     // Convert Unix_TimeStamp to Local DateTime.
@@ -244,7 +244,7 @@ The project tree structure will look as follow:
 
 7. Create ejs template file `index.ejs`, and inject partial files as follow.
 
-```c
+```html
     <!DOCTYPE html>
     <html lang="en">
 
@@ -275,7 +275,7 @@ The project tree structure will look as follow:
 
 1. Add routing for the `about` page
 
-```c
+```javascript
     // about page
     app.get('/about', function(req, res) {
         res.render('about');
@@ -284,7 +284,7 @@ The project tree structure will look as follow:
 
 2. Add routing for GET
 
-```c
+```javascript
     // get the user input from the client-side via the ejs form
     app.get('/', (req, res) => {
         res.render('index');
@@ -294,7 +294,7 @@ The project tree structure will look as follow:
 
 3. Add routing for POST
 
-```c
+```javascript
     // post weather data to the client-side
     app.post('/', (req, res) => { ... })
 ```
@@ -324,7 +324,7 @@ We could elect to use the DOM Storage API, also called the [Web Storage API](htt
 
 A sample of Web Storage API test:
 
-```c
+```javascript
 /* client-side script */
     <script type=javascript>
         function storageAvailable(type) {

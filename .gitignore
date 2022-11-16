@@ -9,3 +9,4 @@ index.copy.js
 public/tests
 currencyRate.js
 views/index-temp.ejs
+config/keys.js
