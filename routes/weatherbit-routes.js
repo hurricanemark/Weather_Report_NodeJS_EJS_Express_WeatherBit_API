@@ -53,16 +53,11 @@ function getWeatherAlerts(city){
         city = "&city=" + city;
       }
   
-      var Xcode = "";
-      if (process.env.NODE_ENV === 'awsdeploy') {
-        Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
-      } else { 
-        Xcode = WEATHERBIT_KEY;
-      }
+
   
       setTimeout(() => {
         // https://api.weatherbit.io/v2.0/alerts?lat=39.75895&lon=-84.19161&key=API_KEY
-        let uriWeatherBitStr = `${WEATHERBIT_URI}alerts?units=I${city}&key=${Xcode}`;
+        let uriWeatherBitStr = `${WEATHERBIT_URI}alerts?units=I${city}&key=${WEATHERBIT_KEY}`;
         let retCode;
         if (WEATHERBIT_URI.length === 0) {
           console.log('Failed to get API URI!');
@@ -107,16 +102,10 @@ function getWeatherAlerts(city){
         city = "&city=" + city;
       }
   
-      var Xcode = "";
-      if (process.env.NODE_ENV === 'awsdeploy') {
-        Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
-      } else { 
-        Xcode = WEATHERBIT_KEY;
-      }
   
       setTimeout(() => {
   
-        let uriWeatherBitStr = `${WEATHERBIT_URI}current?units=I${city}&key=${Xcode}`;
+        let uriWeatherBitStr = `${WEATHERBIT_URI}current?units=I${city}&key=${WEATHERBIT_KEY}`;
         let retCode;
         if (WEATHERBIT_URI.length === 0) {
           console.log('Failed to get aws secrets!');
@@ -159,15 +148,8 @@ function getWeatherAlerts(city){
         city = "&city=" + city;
       }
   
-      var Xcode = "";
-      if (process.env.NODE_ENV === 'awsdeploy') {
-        Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
-      } else { 
-        Xcode = WEATHERBIT_KEY;
-      }
-  
       setTimeout(() => {
-        let uriWeatherBitStr = `${WEATHERBIT_URI}forecast/daily?units=I${city}&key=${Xcode}`;
+        let uriWeatherBitStr = `${WEATHERBIT_URI}forecast/daily?units=I${city}&key=${WEATHERBIT_KEY}`;
         let retCode;
         // console.log(uriWeatherBitStr);
         try {
@@ -204,12 +186,6 @@ function getWeatherAlerts(city){
         city = "?city=" + city;
       }
   
-      var Xcode = "";
-      if (process.env.NODE_ENV === 'awsdeploy') {
-        Xcode = JSON.parse(decryptAES(WEATHERBIT_KEY)).text;
-      } else { 
-        Xcode = WEATHERBIT_KEY;
-      }
   
       setTimeout(() => {
         let e =  new Date().toISOString().slice(0, 16).replace('T', ' ')
@@ -221,7 +197,7 @@ function getWeatherAlerts(city){
         let startdate = s.split(' ')[0];
   
         let retCode;
-        let uriWeatherBitAPIStr = `${WEATHERBIT_URI}history/airquality${city}&start_date=${startdate}&end_date=${enddate}&key=${Xcode}`;
+        let uriWeatherBitAPIStr = `${WEATHERBIT_URI}history/airquality${city}&start_date=${startdate}&end_date=${enddate}&key=${WEATHERBIT_KEY}`;
   
         // console.log(uriWeatherBitAPIStr);
         try {
