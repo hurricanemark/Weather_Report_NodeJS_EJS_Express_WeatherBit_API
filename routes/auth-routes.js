@@ -1,7 +1,8 @@
-const router = require('express').Router();
-const passport = require('passport');
-const { rawListeners } = require('../models/user-models');
+import express from 'express';
+import passport from 'passport';
 
+
+const router = express.Router();
 
 // auth login
 router.get('/login', (req, res) => {
@@ -33,4 +34,4 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 });
 
 
-module.exports = router;
+export { router };

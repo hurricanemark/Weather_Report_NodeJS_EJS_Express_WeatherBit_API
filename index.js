@@ -14,6 +14,9 @@ import { router as currencyExchangeRoutes } from './routes/currency-exchange-rou
 // routes handler for WeatherBit.io API methods
 import { router as weatherbitRoutes } from './routes/weatherbit-routes.js';
 
+// routes handler for OAuth20 methods
+import { router as oauth20Routes } from './routes/auth-routes.js';
+
 // dev env
 dotenv.config();
 
@@ -34,6 +37,9 @@ app.use('/exchange', currencyExchangeRoutes);
 
 // Set up all routes to WeatherBit reports
 app.use('/weatherbit', weatherbitRoutes);
+
+// Set up all routes related to oauth2 methods
+app.use('/auth', oauth20Routes);
 
 // Homepage: get the locale from the client-side via the ejs form
 app.get('/', (req, res) => {
