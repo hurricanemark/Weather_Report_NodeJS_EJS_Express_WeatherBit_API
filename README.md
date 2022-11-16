@@ -24,7 +24,7 @@ There are weather detection stations situated in and around you.  The inner work
 
 <br />
 
-> Below is the template for a rudimentary completion of an example on interfacing with a weather data provider.  <br /><span style="color:green">For indepth logics and real life data implementation, continue to</span> [here](public/README.md).
+> Below is the template for a rudimentary completion of an example on interfacing with a weather data provider.  <br /><span style="color:green">For indepth logics and real life data implementation, continue to</span> [HERE!](public/README.md).
 
 <br />
 
@@ -49,7 +49,7 @@ First, you will need to change your `package.json` to include:
 
 Then, use imports in your `index.js`.  Here is an express start with dotenv:
 
-```c
+```javascript
 import dotenv  from "dotenv"
 import express from "express"
 
@@ -218,7 +218,7 @@ We will choose [Selenium IDE chrome extension](https://chrome.google.com/webstor
 
 4. Install [`selenium-side-runner`](https://www.selenium.dev/selenium-ide/docs/en/introduction/command-line-runner), then run the test script above from the command console.
 
-```c
+```c#
   StagingProjs> selenium-side-runner .\public\tests\SeleniumIDE_ChromeTestWeatherBitApp.side -c "browserName=chrome"
 
   info: Running test UITests

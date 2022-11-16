@@ -1,7 +1,6 @@
 <%
 const MOON = '🌙';
 const SUN = '☀️';
-
 // convert unix_timestamp to local datetime
 unixTsToLocalTime = (unix_ts) => {
     // Create a new JavaScript Date object based on the timestamp
@@ -13,11 +12,9 @@ unixTsToLocalTime = (unix_ts) => {
     var minutes = "0" + date.getMinutes();
     // Seconds part from the timestamp
     var seconds = "0" + date.getSeconds();
-
     // Will display time in 10:30:23 format
     return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 }
-
 trendingTemperature = (dataArr) => {
     var sum = 0;
     for (var item of dataArr) {
@@ -35,7 +32,6 @@ trendingTemperature = (dataArr) => {
         else { return "Considerable warming trend ahead."; }
     }
 }
-
 // check if client allows saving session data
 storageAvailable = (type) => {
     let storage;
@@ -61,26 +57,21 @@ storageAvailable = (type) => {
             (storage && storage.length !== 0);
     }
 }
-
 // save data to session memory client-side 
 saveClientData = (key, value) => {
     if (storageAvailable(String)) {
         // Yippee! We can use localStorage awesomeness
         // Save data to sessionStorage
         sessionStorage.setItem(key, value);
-
         // Get saved data from sessionStorage
         let data = sessionStorage.getItem(key);
-
         alert(methodString +' says my data is ' + data);
-
     }
     else {
         // Too bad, no localStorage for us
         alert(methodString + ' says Web Storage API is disabled.')
     }
 }
-
 // retrieve saved session data
 getClientData = (key) => {
     if (storageAvailable(String)) {
@@ -89,11 +80,9 @@ getClientData = (key) => {
         return null;
     }
 }
-
 // delete session data
 deleteClientData = (key) => {
     // Remove saved data from sessionStorage
     sessionStorage.removeItem(key); 
 }
-
 %>
