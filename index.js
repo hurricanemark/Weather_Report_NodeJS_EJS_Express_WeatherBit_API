@@ -4,6 +4,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {encryptAES, decryptAES} from './crypto.js';
 
+// dev env
+dotenv.config();
+
+// Create network routing
+const app = express();
 
 // application secrets
 import { keys } from './config/keys.js';  
@@ -17,11 +22,6 @@ import { router as weatherbitRoutes } from './routes/weatherbit-routes.js';
 // routes handler for OAuth20 methods
 import { router as oauth20Routes } from './routes/auth-routes.js';
 
-// dev env
-dotenv.config();
-
-// Create network routing
-const app = express();
 
 // EJS is accessed by default in the views directory.
 app.set('view engine', 'ejs');

@@ -3,10 +3,16 @@ import request from 'request';
 import { keys } from '../config/keys.js';
 const router = express.Router();
 
-let WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
-let WEATHERBIT_URI = keys.weatherbitapi.URI;
+let WEATHERBIT_KEY;
+let WEATHERBIT_URI;
 
-
+if (process.env.NODE_ENV === "production") {
+    WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
+    WEATHERBIT_URI = process.env.WEATHERBIT_URI;
+} else {
+    WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
+    WEATHERBIT_URI = keys.weatherbitapi.URI;
+}
 
 router.get('/', (req, res) => {
     res.render('pages/weatherbit');

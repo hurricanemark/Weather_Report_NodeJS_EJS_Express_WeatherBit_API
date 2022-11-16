@@ -1,0 +1,88 @@
+<%
+const MOON = '🌙';
+const SUN = '☀️';
+// convert unix_timestamp to local datetime
+unixTsToLocalTime = (unix_ts) => {
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    var date = new Date(unix_ts * 1000);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    var seconds = "0" + date.getSeconds();
+    // Will display time in 10:30:23 format
+    return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+}
+trendingTemperature = (dataArr) => {
+    var sum = 0;
+    for (var item of dataArr) {
+        sum += item.temp;
+    }
+    let average = sum / dataArr.length;
+    let diff = average - dataArr[0].temp;
+    if ( diff > 0 ) {
+        if (diff <= 3){ return "Slight warming trend ahead."; }
+        else if (diff > 3 && diff <= 10) { return "Moderate warming trend ahead."; }
+        else { return "Considerable warming trend ahead."; }
+    } else {
+        if (diff >= -3){ return "Slight cooling trend ahead."; }
+        else if (diff < -3 && diff <= -10) { return "Moderate cooling trend ahead."; }
+        else { return "Considerable warming trend ahead."; }
+    }
+}
+// check if client allows saving session data
+storageAvailable = (type) => {
+    let storage;
+    try {
+        storage = window[type];
+        const x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch (e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+// save data to session memory client-side 
+saveClientData = (key, value) => {
+    if (storageAvailable(String)) {
+        // Yippee! We can use localStorage awesomeness
+        // Save data to sessionStorage
+        sessionStorage.setItem(key, value);
+        // Get saved data from sessionStorage
+        let data = sessionStorage.getItem(key);
+        alert(methodString +' says my data is ' + data);
+    }
+    else {
+        // Too bad, no localStorage for us
+        alert(methodString + ' says Web Storage API is disabled.')
+    }
+}
+// retrieve saved session data
+getClientData = (key) => {
+    if (storageAvailable(String)) {
+        return sessionStorage.getItem(key);
+    } else {
+        return null;
+    }
+}
+// delete session data
+deleteClientData = (key) => {
+    // Remove saved data from sessionStorage
+    sessionStorage.removeItem(key); 
+}
+%>
