@@ -9,11 +9,11 @@ let BASE_URI;
 let SAMPLE2_URI;
 if (process.env.NODE_ENV === "production") {
     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-    BASE_URI = process.env.BASE_URI;
+    BASE_URI = process.env.EXCHANGE_BASE_URI;
     SAMPLE2_URI = process.env.SAMPLE2_URI;
 } else {
     EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
-    BASE_URI = keys.exchangerateapi.URI;
+    BASE_URI = keys.exchangerateapi.BASE_URI;
     SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
 }
 

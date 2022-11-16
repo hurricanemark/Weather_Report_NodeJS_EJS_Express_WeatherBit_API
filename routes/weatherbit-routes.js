@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
     WEATHERBIT_URI = process.env.WEATHERBIT_URI;
 } else {
     WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
-    WEATHERBIT_URI = keys.weatherbitapi.URI;
+    WEATHERBIT_URI = keys.weatherbitapi.BASE_URI;
 }
 
 router.get('/', (req, res) => {
