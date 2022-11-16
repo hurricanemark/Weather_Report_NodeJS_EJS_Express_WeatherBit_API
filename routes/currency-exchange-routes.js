@@ -1,21 +1,20 @@
 import { data as currencyCodes } from 'currency-codes';
 import request from 'request';
 import express from 'express';
+import { EXCHANGE_RATE_APIKEY, BASE_URI, SAMPLE2_URI } from '../index.js';
 
-import { keys } from '../config/keys.js';
-
-let EXCHANGE_RATE_APIKEY;
-let BASE_URI;
-let SAMPLE2_URI;
-if (process.env.NODE_ENV === "production") {
-    EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-    BASE_URI = process.env.EXCHANGE_BASE_URI;
-    SAMPLE2_URI = process.env.SAMPLE2_URI;
-} else {
-    EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
-    BASE_URI = keys.exchangerateapi.BASE_URI;
-    SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
-}
+// let EXCHANGE_RATE_APIKEY;
+// let BASE_URI;
+// let SAMPLE2_URI;
+// if (process.env.NODE_ENV === "production") {
+//     EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
+//     BASE_URI = process.env.EXCHANGE_BASE_URI;
+//     SAMPLE2_URI = process.env.SAMPLE2_URI;
+// } else {
+//     EXCHANGE_RATE_APIKEY = keys.exchangerateapi.APIKEY;
+//     BASE_URI = keys.exchangerateapi.BASE_URI;
+//     SAMPLE2_URI = keys.exchangerateapi.SAMPLE2_URI;
+// }
 
 const router = express.Router();
 
