@@ -1,15 +1,18 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20');
-const User = require('../models/user-models');
+import passport  from 'passport';
+import GoogleStrategy  from 'passport-google-oauth20';
+import { User } from '../models/user-models.js';
+
+import { keys } from './keys.js';
+
 // const keys = require ('./keys');
 import { GoogleclientID, GoogleclientSecret } from './../index.js';
 
 // serialize user structure in the mongodb
-passport.serializeUser((user, done) => {
+const serialize = passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
+const deserialize = passport.deserializeUser((id, done) => {
 try {
     User.findById(id).then((user) => {
         done(null, user);
@@ -28,11 +31,11 @@ try {
  * 
  * Go to https://console.cloud.google.com/ to create your own clientID and clientSecret.
  */
-passport.use(new GoogleStrategy({
+const googleStrategy = passport.use(new GoogleStrategy({
     // options for google strategy
     callbackURL: '/auth/google/redirect',
-    clientID: GoogleclientID,
-    clientSecret: GoogleclientSecret
+    clientID: keys.google.clientID, //GoogleclientID,
+    clientSecret: keys.google.clientSecret  //GoogleclientSecret
 }, (accessToken, refreshToken, profile, done) => {
     // passport callback function
     // console.log('accessToken: ' + accessToken);
@@ -61,3 +64,5 @@ passport.use(new GoogleStrategy({
     })
 
 }));
+
+export { serialize, deserialize, googleStrategy };

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main >
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="jumbotron jumbotron-fluid">
+                    <header>
+                        <h3>Welcome <strong style="color:goldenrod"><%= user.username %></strong></h3>
+                    </header>
+                    <main>
+                        <img src="<%= user.thumbnail %>" />
+                        <p>What do you want to do today?</p>
+                        <ul>
+                            <li>Raise an ant farm and sneak it in captain Underpant.</li>
+                            <li>Pondering where the darkness comes from.  (We know the physical source of light, but we donot know the source of darkness).</li>
+                            <li>Write a mobile app to detect liyng politicians and enrourage everyone to point the app at political rallies.</li>
+                            <li>Discover why Mars cannot have water in liquid form.</li>
+                            <li>Invent ways to collect all plastic wastes and use it to pave roads.</li>
+                            <li>Send a message to the aliens on the Betelgeuse star system.  We can supply them with earth's oligarchs as food source.</li>
+                        </ul>
+                    </main>
+
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="well">
+                    <h3>Reserved Ad space</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

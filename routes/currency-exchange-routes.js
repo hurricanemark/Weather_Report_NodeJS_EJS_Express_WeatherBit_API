@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     // console.log(currencyCodes);
     let cdat = JSON.stringify(currencyCodes);
-    res.render('pages/exchangeRate', { Cdata: cdat });
+    res.render('pages/exchangeRate', { user: req.user, Cdata: cdat });
   });
   
 router.post('/', (req, res) => {
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
 
     promiseData.then ( (data) => {
         // console.log("Exchange data: " + data.conversion_result);
-        res.render('pages/exchangeRate', {  Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data});
+        res.render('pages/exchangeRate', {  user: req.user, Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data});
     });
 });
 

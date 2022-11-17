@@ -17,7 +17,7 @@ const router = express.Router();
 // }
 
 router.get('/', (req, res) => {
-    res.render('pages/weatherbit');
+    res.render('pages/weatherbit', {user: req.user});
 });
   
 // Posting data to the client-side requires multiple API calls.
@@ -36,7 +36,11 @@ router.post('/', (req, res) => {
     }
 
     promisedData.then( (data) => {
-        res.render('pages/weatherbit', data);
+      // const data2 = {user: req.user};
+      Object.assign(data, {user: req.user});
+      
+      console.log(data);
+      res.render('pages/weatherbit', data);
     })
 });
   
@@ -250,7 +254,7 @@ function getWeatherAlerts(city){
         aData = null;
       }
       // combine 3 promises into a huge rendering passing paramters: 
-      let combinedData = { locale: city, alertStatus: aStatus, alertData: aData, curStatus: 200, curData: currentConditions,  foreStatus: 200, foreData: dailyForecast, airqStatus: 200, airqData: airQuality.data[currentHour], error: null };
+      let combinedData = { locale: city, alertStatus: aStatus, alertData: aData, curStatus: 200, curData: currentConditions,  foreStatus: 200, foreData: dailyForecast, airqStatus: 200, airqData: airQuality.data[currentHour], error: null};
       return combinedData;
     } else {
       return { locale: city, alertStatus: 400, alertData: null, curStatus: 400, curData: null, foreStatus: 400, foreData: null, airqStatus: 400, airqData: null, error: null };
