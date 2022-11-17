@@ -1,11 +1,11 @@
+
 import passport  from 'passport';
 import GoogleStrategy  from 'passport-google-oauth20';
 import { User } from '../models/user-models.js';
 
-import { keys } from './keys.js';
+import { GoogleclientID, GoogleclientSecret } from '../loadSecrets.js';
 
-// const keys = require ('./keys');
-import { GoogleclientID, GoogleclientSecret } from './../index.js';
+// const logging = console.log(GoogleclientID + '  ---  ' + GoogleclientSecret);
 
 // serialize user structure in the mongodb
 const serialize = passport.serializeUser((user, done) => {
@@ -34,8 +34,11 @@ try {
 const googleStrategy = passport.use(new GoogleStrategy({
     // options for google strategy
     callbackURL: '/auth/google/redirect',
-    clientID: keys.google.clientID, //GoogleclientID,
-    clientSecret: keys.google.clientSecret  //GoogleclientSecret
+    // clientID: keys.google.clientID, 
+    // clientSecret: keys.google.clientSecret
+    clientID: GoogleclientID,
+    clientSecret: GoogleclientSecret
+
 }, (accessToken, refreshToken, profile, done) => {
     // passport callback function
     // console.log('accessToken: ' + accessToken);
