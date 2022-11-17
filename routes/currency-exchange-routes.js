@@ -1,8 +1,8 @@
 import { data as currencyCodes } from 'currency-codes';
 import request from 'request';
 import express from 'express';
-import { EXCHANGE_RATE_APIKEY, EXCHANGE_BASE_URI } from '../index.js';
 
+import { EXCHANGE_RATE_APIKEY, EXCHANGE_RATE_URI } from '../loadSecrets.js';
 
 const router = express.Router();
 
@@ -34,11 +34,11 @@ router.post('/', (req, res) => {
 function getExchangeRateData(fromCurrency, toCurrency, amount) {
     return new Promise(resolve => {
       setTimeout(() => {
-        let URLStr = EXCHANGE_BASE_URI + EXCHANGE_RATE_APIKEY + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
+        let URLStr = EXCHANGE_RATE_URI + EXCHANGE_RATE_APIKEY + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
   console.log(URLStr);
         try {
           if (fromCurrency === undefined) {
-            URLStr = EXCHANGE_BASE_URI + EXCHANGE_RATE_APIKEY + '/pair/EUR/GBP/1';
+            URLStr = EXCHANGE_RATE_URI + EXCHANGE_RATE_APIKEY + '/pair/EUR/GBP/1';
           }
           console.log("Calling URL: " + URLStr);
           request(URLStr, async function (err, response, body) {

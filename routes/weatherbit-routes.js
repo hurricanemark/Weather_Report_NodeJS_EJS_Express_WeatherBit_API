@@ -1,20 +1,9 @@
 import express from 'express';
 import request from 'request';
 
-import { WEATHERBIT_KEY, WEATHERBIT_URI } from '../index.js';
+import { WEATHERBIT_KEY, WEATHERBIT_URI } from '../loadSecrets.js';
 
 const router = express.Router();
-
-// let WEATHERBIT_KEY;
-// let WEATHERBIT_URI;
-
-// if (process.env.NODE_ENV === "production") {
-//     WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
-//     WEATHERBIT_URI = process.env.WEATHERBIT_URI;
-// } else {
-//     WEATHERBIT_KEY = keys.weatherbitapi.APIKEY;
-//     WEATHERBIT_URI = keys.weatherbitapi.BASE_URI;
-// }
 
 router.get('/', (req, res) => {
     res.render('pages/weatherbit', {user: req.user});

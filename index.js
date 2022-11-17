@@ -9,38 +9,7 @@ import { compile } from 'ejs';
 import { serialize, deserialize, googleStrategy } from './config/passport-setup.js';
 import {encryptAES, decryptAES} from './crypto.js';
 
-// dev env
-dotenv.config();
-
-// application secrets
-// import { keys } from './config/keys.js';  
-
-let EXCHANGE_RATE_APIKEY;
-let EXCHANGE_BASE_URI='https://v6.exchangerate-api.com/v6/';
-let WEATHERBIT_KEY;
-let WEATHERBIT_URI='https://api.weatherbit.io/v2.0/';
-let GoogleclientID;
-let GoogleclientSecret;
-let MongoDBConString;
-let CookieKey = 'c93da061ab7f984267e36c8431645035d611bc892c58f0e64614c68a4384a179126e7ed0b5829e460f292f72e9ef4facb68a0894cb2425ba046b82a3bae0b529';
-
-if (process.env.NODE_ENV === "production") {
-    EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-    WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
-    GoogleclientID = process.env.GoogleclientID;
-    GoogleclientSecret = process.env.GoogleclientSecret;    
-    MongoDBConString = process.env.MONGODB_URI;
-} else {
-    // dynamically importing keys.js using promise:
-    import('./config/keys.js').then((secrets) => {
-      EXCHANGE_RATE_APIKEY = secrets.keys.exchangerateapi.EXCHANGE_APIKEY;
-      WEATHERBIT_KEY = secrets.keys.weatherbitapi.WEATHERBIT_APIKEY;
-      GoogleclientID = secrets.keys.google.clientID;
-      GoogleclientSecret = secrets.keys.google.clientSecret;
-      MongoDBConString = secrets.keys.mongodb.connectionString;
-    });
-}
-
+import { CookieKey, MongoDBConString } from './loadSecrets.js';
 
 // Create network routing
 const app = express();
@@ -130,5 +99,3 @@ app.listen(port, () => {
     console.log('Sorry, failed to launch.');
   }
 });
-
-export { EXCHANGE_RATE_APIKEY, EXCHANGE_BASE_URI, WEATHERBIT_KEY, WEATHERBIT_URI,  GoogleclientID, GoogleclientSecret };
