@@ -11,7 +11,7 @@
         <%- include('../partials/header'); %>
     </header>
 
-    <main >
+    <main>
         <div class="row">
             <div class="col-sm-10">
                 <div class="jumbotron jumbotron-fluid">
@@ -20,22 +20,32 @@
                     </header>
                     <main>
                         <img src="<%= user.thumbnail %>" />
-                        <p>What do you want to do today?</p>
-                        <ul>
-                            <li>Raise an ant farm and sneak it in captain Underpant.</li>
-                            <li>Pondering where the darkness comes from.  (We know the physical source of light, but we donot know the source of darkness).</li>
-                            <li>Write a mobile app to detect liyng politicians and enrourage everyone to point the app at political rallies.</li>
-                            <li>Discover why Mars cannot have water in liquid form.</li>
-                            <li>Invent ways to collect all plastic wastes and use it to pave roads.</li>
-                            <li>Send a message to the aliens on the Betelgeuse star system.  We can supply them with earth's oligarchs as food source.</li>
-                        </ul>
+                        <hr>
+                        <h4>Select</h4>
+                        <p><strong>Application features</strong></p>
+                        <input type="checkbox" id="weather-report" name="weather" value="weather">
+                        <label for="weather-report"> Weather Report</label><br>
+                        <input type="checkbox" id="currencyrate" name="currencyrate" value="currency">
+                        <label for="currencyrate"> Currency Exchange Rate</label><br>
+                        <input type="checkbox" id="travel-guide" name="travel" value="travel">
+                        <label for="travel-guide"> Travel Guide</label><br>
+                        <input type="checkbox" id="hotel-reservation" name="hotel" value="hotel">
+                        <label for="hotel-reservation"> Hotel Search & Reservation</label><br>
+                        <input type="checkbox" id="Restaurant-reservation" name="restaurant" value="restaurant">
+                        <label for="hotel-reservation"> Restaurant Search & Reservation</label><br>
+
+                        <hr>
+                        <p><strong>Productivity</strong></p>
+                        <input type="checkbox" id="personalManager" name="organizer" value="organizer">
+                        <label for="personalManager"> Personal Organizer</label><br><br>
+                        <input type="submit" class="btn btn-sm btn-outline-success ghost-button" name="commit-features" value="Save & Continue">
                     </main>
 
                 </div>
             </div>
 
-            <div class="col-sm-2">
-                <div class="well">
+            <div class=" col-sm-2 ">
+                <div class="well ">
                     <h3>Reserved Ad space</h3>
                 </div>
             </div>
