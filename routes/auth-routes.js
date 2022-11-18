@@ -1,12 +1,13 @@
 import express from 'express';
 import passport from 'passport';
+import { User }  from '../models/user-models.js';
 
 
 const router = express.Router();
 
 // auth login
 router.get('/login', (req, res) => {
-    res.render('login', {user: req.user});
+    res.render('pages/login', {user: req.user});
 });
 
 // auth logout

@@ -20,12 +20,24 @@
 
     </ul>
     <ul class="navbar-nav mr-auto my-2 my-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
-      </li>
+      
+      <% if (user) { %>
+        <li class="nav-item">
+          <a class="nav-link active" href="/profile">Profile</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link active" href="/auth/logout">Logout</a>
+        </li>      
+      <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link active" href="/auth/login">Login</a>
+        </li>
+      <% } %>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

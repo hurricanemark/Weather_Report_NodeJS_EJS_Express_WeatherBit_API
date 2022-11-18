@@ -1,4 +1,7 @@
-const router = require('express').Router();
+import express from 'express';
+
+const router = express.Router();
+
 
 // make sure the user has not already logged in.
 const authCheck = (req, res, next) => {
@@ -7,6 +10,7 @@ const authCheck = (req, res, next) => {
         res.redirect('/auth/login');
     } else {
         // if logged in
+        console.log("You are already logged in.");
         next();
     }
 }
@@ -14,8 +18,9 @@ const authCheck = (req, res, next) => {
 // final check with middleware authCheck.
 router.get('/', authCheck, (req, res) => {
     // Okay, user is legit.  Let display views/profile.ejs
-    res.render('profile', {user: req.user});
+    // console.log(req.user);
+    res.render('pages/profile', {user: req.user});
 
 });
 
-module.exports = router;
+export { router };
