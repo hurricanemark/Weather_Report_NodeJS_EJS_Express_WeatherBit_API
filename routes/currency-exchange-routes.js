@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     promiseData = getExchangeRateData(Fc, Tc, amnt);
 
     promiseData.then ( (data) => {
-      // console.log(data);
+      console.log(data);
       if (data != null && data.result === 'error') {
         console.log('Sending code 403: ' + data.result);
 
@@ -45,35 +45,50 @@ function getExchangeRateData(fromCurrency, toCurrency, amount) {
       setTimeout(() => {
         let URLStr = EXCHANGE_RATE_URI + EXCHANGE_RATE_APIKEY + '/pair/' + fromCurrency + '/' + toCurrency + '/' + amount;
   console.log(URLStr);
-        try {
-          if (fromCurrency === undefined) {
-            URLStr = EXCHANGE_RATE_URI + EXCHANGE_RATE_APIKEY + '/pair/EUR/GBP/1';
-          }
-          // console.log("Calling URL: " + URLStr);
-          request(URLStr, async function (err, response, body) {
-            console.log(response.statusCode);
-            if (response.statusCode == 429) {
-              console.log("WARNING: You have exceeded your API call limit of 1500 calls per month!");
-              resolve(null);
-            } 
-            if (response.statusCode == 403) {
-              console.log("WARNING: Free plan limit is used up.  Data will be available again on the 7th of next month.");
-              let result = await JSON.parse(body);
-              resolve(result);              
-            }         
-            if (response.statusCode == 200) {
-              let result = await JSON.parse(body);
-              resolve(result);
-            } else {
-              // Ignoring grainular status codes for now.
-              resolve(null);
-            }
-          })
-        } catch (err) {
-          console.log(err);
+  if (fromCurrency === toCurrency) {
+    // no need to run request.
+    let xdate = new Date();
+    let retData = {
+      result: 'success',
+      time_last_update_utc: xdate,
+      conversion_rate: amount,
+      conversion_result: amount
+    }
+
+    console.log("No need to run request.")
+    resolve(retData);
+  } else {
+      try {
+        if (fromCurrency === undefined) {
+          URLStr = EXCHANGE_RATE_URI + EXCHANGE_RATE_APIKEY + '/pair/EUR/GBP/1';
         }
-        
-      }, 200);
-    })};
+
+        // console.log("Calling URL: " + URLStr);
+        request(URLStr, async function (err, response, body) {
+          console.log(response.statusCode);
+          if (response.statusCode == 429) {
+            console.log("WARNING: You have exceeded your API call limit of 1500 calls per month!");
+            resolve(null);
+          } 
+          if (response.statusCode == 403) {
+            console.log("WARNING: Free plan limit is used up.  Data will be available again on the 7th of next month.");
+            let result = await JSON.parse(body);
+            resolve(result);              
+          }         
+          if (response.statusCode == 200) {
+            let result = await JSON.parse(body);
+            console.log(result);
+            resolve(result);
+          } else {
+            // Ignoring grainular status codes for now.
+            resolve(null);
+          }
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, 200);    
+})};
 
 export { router };    
