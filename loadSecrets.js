@@ -10,7 +10,6 @@ import * as dotenv from 'dotenv';
 
 // dev env
 dotenv.config();
-
 let EXCHANGE_RATE_APIKEY;
 let WEATHERBIT_KEY;
 let GoogleclientID;
@@ -21,12 +20,12 @@ let EXCHANGE_RATE_URI='https://v6.exchangerate-api.com/v6/';
 let CookieKey = 'c93da061ab7f984267e36c8431645035d611bc892c58f0e64614c68a4384a179126e7ed0b5829e460f292f72e9ef4facb68a0894cb2425ba046b82a3bae0b529';
 
 if (process.env.NODE_ENV === "production") {
-    EXCHANGE_RATE_APIKEY = process.env.EXCHANGE_RATE_APIKEY;
-    WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
-    GoogleclientID = process.env.GOOGLECLIENT_ID;
-    GoogleclientSecret = process.env.GOOGLECLIENT_SECRET;    
-    MongoDBConString = process.env.MONGODB_URI;
-    console.log('Loaded keys from dotenv');
+  EXCHANGE_RATE_APIKEY = process.env.EXCHANGERATE_APIKEY;
+  WEATHERBIT_KEY = process.env.WEATHERBIT_KEY;
+  GoogleclientID = process.env.GOOGLECLIENT_ID;
+  GoogleclientSecret = process.env.GOOGLECLIENT_SECRET;    
+  MongoDBConString = process.env.MONGODB_URI;
+  console.log('Loaded keys from dotenv');
 } else {
     // dynamically importing keys.js using promise:
     let secrets = await getSecrets();

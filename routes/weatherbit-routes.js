@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
       // const data2 = {user: req.user};
       Object.assign(data, {user: req.user});
       
-      console.log(data);
+      // console.log(data);
       res.render('pages/weatherbit', data);
     })
 });

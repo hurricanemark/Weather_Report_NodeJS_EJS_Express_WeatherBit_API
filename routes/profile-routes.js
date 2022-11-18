@@ -18,7 +18,7 @@ const authCheck = (req, res, next) => {
 // final check with middleware authCheck.
 router.get('/', authCheck, (req, res) => {
     // Okay, user is legit.  Let display views/profile.ejs
-    console.log(req.user);
+    // console.log(req.user);
     res.render('pages/profile', {user: req.user});
 
 });

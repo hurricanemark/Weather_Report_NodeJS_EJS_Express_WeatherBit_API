@@ -1,5 +1,21 @@
 ![](./ChapterSubject_WeatherAPI.PNG)
 
+
+# Snapshots
+![Entry point](./Homepage.PNG)
+
+
+![User profile](./About.PNG)
+
+![Sign in with Google](./SigninWithGoogle.PNG)
+
+![Login](./LoggedIn.PNG)
+
+![Currency exchange rate](./ExchangeRate.PNG)
+
+...  And more
+
+
 # Core Logic
 
 To obtain the pinpoint weather data non-interactively, earth location(GPS) is a required parameter.  For this, the longitude and latitude would suffice programmatically.  For the interactive option, input of a physical postal address (partial address of City, State, or Country) is required.  Optionally, you could also register with the google map service (*additional charge will incur*).  Then, a touch or click event on the google map will yield the latitide and longitude among other values.
