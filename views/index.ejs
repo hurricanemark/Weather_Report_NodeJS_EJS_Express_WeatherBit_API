@@ -2,39 +2,41 @@
 <html lang="en">
 
 <head>
-  <%- include('./partials/head'); %>
+    <%- include('./partials/head'); %>
 </head>
 
 <body class="container">
-  <header>
-    <%- include('./partials/header'); %>
-    <title>TechRolEmi Weather42</title>
-  </header>
-  <body>
-    <h1>Welcome!</h1>
-    <div class="xcode" style="display: none;"></div>
-    <input type="hidden" id="xcree" name="xcree" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=">
-    <div id="geoLatLng" action="showPosition()">
-        <!-- pinpoint positon verbish will be loaded into here -->
-    </div>
-    <hr>
-    <p>Take the load off, sit down, look up.  The weather is telling us something about our past actions. </p>
-    <div>
-        <fieldset>
-            <form action="/weatherbit" method="post">
-                <input name="xcode" type="hidden" class="xcode" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=" required>
-          </form>
-        </fieldset>
-    </div>
+    <header>
+        <%- include('./partials/header'); %>
+            <title>TechRolEmi Weather42</title>
+    </header>
 
-    <main>
-        <div class="currentConds"></div>
-  
-    </main>
-<footer>
-  <%- include('./partials/footer'); %>
-</footer>
-    <script type="module" src="geolocation.js"></script>
+    <body>
+        <h1>Welcome!</h1>
+        <div class="xcode" style="display: none;"></div>
+        <input type="hidden" id="xcree" name="xcree" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=">
+        <div id="geoLatLng" action="showPosition()">
+            <!-- pinpoint positon verbish will be loaded into here -->
+        </div>
+        <hr>
+        <p>Please login. </p>
+        <div>
+            <fieldset>
+                <form action="/weatherbit" method="post">
+                    <input name="xcode" type="hidden" class="xcode" value="ZTg4ZTFhODA5NmNkNDg5N2I3OWIyMzBhOWM0OWIyNDM=" required>
+                </form>
+            </fieldset>
+        </div>
+
+        <main>
+            <div class="currentConds"></div>
+
+        </main>
+        <footer>
+            <%- include('./partials/footer'); %>
+        </footer>
+        <script type="module" src="geolocation.js"></script>
 
     </body>
+
 </html>
