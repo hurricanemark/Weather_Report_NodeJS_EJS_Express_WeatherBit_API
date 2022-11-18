@@ -10,3 +10,4 @@ public/tests
 currencyRate.js
 views/index-temp.ejs
 config/keys.js
+Dockerfile.debug
