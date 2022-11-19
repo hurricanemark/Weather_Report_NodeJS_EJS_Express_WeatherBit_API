@@ -45,7 +45,7 @@
                         <% } else { %>
 
                             <p style="color:gray"><strong>Last update</strong>: <%= exchange.time_last_update_utc %></p>
-                            <p style="color:gray"><strong>Conversion rate </strong>: 1 <%= frC %> to <%= exchange.conversion_rate %> <%= toC %></p>
+                            <p style="color:gray"><strong>Conversion rate </strong>: <%= amount %> <%= frC %> to <%= exchange.conversion_rate %> <%= toC %></p>
 
                             <p style="color:blue"><strong> <%= amount %> <%= frC %> </strong> == <strong style="color: green"><%= exchange.conversion_result %> <%= toC %> </strong></p>
 
