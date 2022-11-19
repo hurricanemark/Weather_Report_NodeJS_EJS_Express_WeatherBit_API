@@ -1,0 +1,158 @@
+{
+  "id": "37e3302d-1107-499e-adcb-b32ef51244fd",
+  "version": "2.0",
+  "name": "WeatherApp",
+  "url": "http://localhost:3432",
+  "tests": [{
+    "id": "e384efa3-4906-4b4a-9da9-820ea5d97679",
+    "name": "FrontalTests",
+    "commands": [{
+      "id": "fd9419bd-5f0a-4b07-ab99-810fb27b139e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "10a206b3-3293-468e-9456-08341d3d4d98",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "925x691",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "30254ada-e4aa-4863-a2a7-6422987fe7ca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.active:nth-child(1) > .nav-link",
+      "targets": [
+        ["css=.active:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//div[@id='navbarToggler']/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/weatherbit')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6624a318-d91c-4bcc-a506-a51c37a21c4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Pinpoint Weather']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5991b0de-b214-4d55-be6e-efd2a6344152",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=ExchangeRate",
+      "targets": [
+        ["linkText=ExchangeRate", "linkText"],
+        ["css=.active:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'ExchangeRate')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/exchange')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'ExchangeRate')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "113468ca-aca6-4993-a724-1bb6a7193488",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Convert']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e991921f-859b-483d-a052-d11ea98ef420",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=About",
+      "targets": [
+        ["linkText=About", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'About')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/about')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'About')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af922f68-b60e-4865-bb8e-22f41252ccb9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Profile",
+      "targets": [
+        ["linkText=Profile", "linkText"],
+        ["css=.nav-item:nth-child(1) > .active", "css:finder"],
+        ["xpath=//a[contains(text(),'Profile')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul[2]/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/profile')]", "xpath:href"],
+        ["xpath=//ul[2]/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Profile')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be541833-d47f-4f5f-89d9-c96de8e494c1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Logout",
+      "targets": [
+        ["linkText=Logout", "linkText"],
+        ["css=.nav-item:nth-child(2) > .active", "css:finder"],
+        ["xpath=//a[contains(text(),'Logout')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul[2]/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/auth/logout')]", "xpath:href"],
+        ["xpath=//ul[2]/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6dd6e27f-02ad-455e-a0c1-84c73568fadb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.nav-item > .active", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul[2]/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/auth/login')]", "xpath:href"],
+        ["xpath=//ul[2]/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "271e8f29-6615-4236-bbdc-87b2d2c11e24",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Google+",
+      "targets": [
+        ["linkText=Google+", "linkText"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Google+')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/auth/google')]", "xpath:href"],
+        ["xpath=//main/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Google+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "9b35557c-d955-459d-a656-c0abceb1e8dc",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e384efa3-4906-4b4a-9da9-820ea5d97679"]
+  }],
+  "urls": ["http://localhost:3432/"],
+  "plugins": []
+}
