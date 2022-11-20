@@ -90,12 +90,12 @@ app.listen(port, () => {
 }).on('error', (e) => {
   console.log('Error happened: ', e.message);
   // try different port
-  try {
-    port = process.env.PORT2;
-    app.listen(port, () => {
-      console.log(`TechRolEmi is listening on port ${port}`);
-    })
-  } catch (e) {
-    console.log('Sorry, failed to launch.');
-  }
+  // try {
+  //   port = process.env.PORT2;
+  //   app.listen(port, () => {
+  //     console.log(`TechRolEmi is listening on port ${port}`);
+  //   })
+  // } catch (e) {
+  //   console.log('Sorry, failed to launch.');
+  // }
 });

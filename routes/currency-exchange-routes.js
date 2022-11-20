@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
         res.render('pages/exchangeRate', { user: req.user, Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: null, statusCode: 403, exchangeStatus: 'We apologize.  Free monthly plan has reached max quota, exchange data will be available again on the 7th of next month.  Please consider subscribe to a small monthly fee to continue normal usage.'}, ((err) => {
           console.log(err.message);
         }));
-      } else if (data.result === 'success') {
+      } else  {
         console.log("Exchange data: " + data.time_last_update_utc);
         res.render('pages/exchangeRate', { user: req.user, Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data, statusCode: 200, exchangeStatus: 'Ok'});
       }
