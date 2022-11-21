@@ -195,6 +195,58 @@ To access the Local Weather app running in docker container, point your browser 
 For the purpose of hosting this app, we select [Cyclic free-for-life tier](https://app.cyclic.sh/api/login).
 Cyclic deploys full stack NodeJS apps on AWS infrastructure directly from GitHub. It works by integrating with your GitHub repos. It will build and deploy your code on every merge or push to your default branch.
 
+**Build log on Cylic**
+
+To avoid building from the main branch on Cylic, you can specify build source as a git staging branch.
+
+```c
+2022-11-19 08:49:39: [CYCLIC] Building...
+2022-11-19 08:49:39: [CYCLIC] cloning...
+2022-11-19 08:49:40: From https://github.com/hurricanemark/Weather_Report_NodeJS_EJS_Express_WeatherBit_API
+ * branch            46b9aa68f54072cc8cf20f8936c79ad2bceaf306 -> FETCH_HEAD
+2022-11-19 08:49:40: HEAD is now at 46b9aa6 Merge pull request #62 from hurricanemark/Phase4-TeamRolEmiSeriousWorks
+2022-11-19 08:49:40: [CYCLIC] verifying...
+2022-11-19 08:49:40: [CYCLIC] using: node:v16.18.1 npm:8.11.0 runtime:nodejs16.x
+[CYCLIC] building from: /
+2022-11-19 08:49:40: [CYCLIC] installing dependencies from: package-lock.json
+2022-11-19 08:49:40: npm
+2022-11-19 08:49:40:  WARN config production Use `--omit=dev` instead.
+2022-11-19 08:49:47: npm 
+2022-11-19 08:49:47: WARN deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+2022-11-19 08:49:48: npm 
+2022-11-19 08:49:48: WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2022-11-19 08:49:48: npm WARN deprecated querystring@0.2.0: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+2022-11-19 08:49:50: npm WARN
+2022-11-19 08:49:50:  deprecated har-validator@5.1.5: this library is no longer supported
+2022-11-19 08:49:51: npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+2022-11-19 08:49:59: 
+added 925 packages in 18s
+2022-11-19 08:49:59: npm notice 
+npm notice New major version of npm available! 8.11.0 -> 9.1.2
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.1.2>
+npm notice Run `npm install -g npm@9.1.2` to update!
+npm notice 
+2022-11-19 08:49:59: [CYCLIC] running build if defined...
+2022-11-19 08:49:59: [CYCLIC] pruning dev dependencies...
+2022-11-19 08:50:01: 
+up to date, audited 489 packages in 2s
+2022-11-19 08:50:01: 
+52 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+2022-11-19 08:50:01: [CYCLIC] packaging 187.66 MB...
+2022-11-19 08:50:01: [CYCLIC] bundling from / ...
+2022-11-19 08:50:06: [CYCLIC] done packaging
+[CYCLIC] deploying...
+2022-11-19 08:50:16: deployed us-west-2 -  10.168s
+2022-11-19 08:50:16: SUCCESS
+
+took 36.7 seconds
+api deployed at:
+https://cute-teal-pigeon-sari.cyclic.app
+```
+
 Please do not abuse this live website below.  Thank you!
 [Live demo](https://techrolemiweather.cyclic.app/about)
 

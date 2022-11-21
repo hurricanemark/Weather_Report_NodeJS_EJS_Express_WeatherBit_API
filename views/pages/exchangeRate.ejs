@@ -24,13 +24,13 @@
                                 <label for="amount">Amount:</label>
                                 <input type="text" id="amount" name="amount" value="1" placeholder="Enter amount"> <br>
 
-                                <label for="fromCurrency">From currency:</label>
+                                <label for="fromCurrency">From: </label>
                                 <select id="FcurrencyCode-dropdown" name="fromCurrency"></select> <br>
 
-                                <label for="toCurrency">To currency:</label>
+                                <label for="toCurrency">To: </label>
                                 <select id="TcurrencyCode-dropdown" name="toCurrency">
                                 </select>
-                                <br>
+                                <br><br>
                                 <input type="submit" class="btn btn-sm btn-outline-success ghost-button" value="Convert">
                             </form>                            
                                    
@@ -45,7 +45,7 @@
                         <% } else { %>
 
                             <p style="color:gray"><strong>Last update</strong>: <%= exchange.time_last_update_utc %></p>
-                            <p style="color:gray"><strong>Conversion rate </strong>: 1 <%= frC %> to <%= exchange.conversion_rate %> <%= toC %></p>
+                            <p style="color:gray"><strong>Conversion rate </strong>: <%= amount %> <%= frC %> to <%= exchange.conversion_rate %> <%= toC %></p>
 
                             <p style="color:blue"><strong> <%= amount %> <%= frC %> </strong> == <strong style="color: green"><%= exchange.conversion_result %> <%= toC %> </strong></p>
 
@@ -65,9 +65,33 @@
 
         <script>
         function addCurrencyCodes(data) {
-            console.log(data);
-            fillFromList(data);
-            fillToList(data);
+            let Fdropdown = document.getElementById("FcurrencyCode-dropdown");
+            if (Fdropdown.length > 0) {
+                Fdropdown.addEventListener("change",function() { 
+                  localStorage.setItem("selFromValue",this.value); // save it 
+                }); 
+                let storedFromVal = localStorage.getItem("selFromValue"); 
+                if (storedFromVal) Fdropdown.value=storedFromVal; // set the dropdown 
+                // trigger the change in case there are other events on the select 
+                Fdropdown.onchange();
+            } else {
+                fillFromList(data);
+            }
+            const Tdropdown = document.getElementById("TcurrencyCode-dropdown"); 
+            if (Tdropdown.length > 0) {
+                
+                Tdropdown.addEventListener("change",function() { 
+                  localStorage.setItem("selFromValue",this.value); // save it 
+                }); 
+                let storedToVal = localStorage.getItem("selFromValue"); 
+                if (storedToVal) Tdropdown.value=storedToVal; // set the dropdown 
+                // trigger the change in case there are other events on the select 
+                Tdropdown.onchange();        
+
+            } else {
+                fillToList(data);
+            }
+
         }    
         
         function fillFromList(data) {
@@ -95,10 +119,31 @@
                 Toption.value = data[i].code;
                 Toption.text = Tval;
                 Tdropdown.append(Toption);
-            }            
+            }
         };
 
+
+        const myFromSel = document.getElementById("FcurrencyCode-dropdown"); 
+        myFromSel.addEventListener("change",function() { 
+          localStorage.setItem("selFromValue",this.value); // save it 
+        }); 
+        let storedFromVal = localStorage.getItem("selFromValue"); 
+        if (storedFromVal) myFromSel.value=storedFromVal; // set the dropdown 
+        // trigger the change in case there are other events on the select 
+        myFromSel.onchange();
+
+        const myToSel = document.getElementById("TcurrencyCode-dropdown"); 
+        myToSel.addEventListener("change",function() { 
+          localStorage.setItem("selFromValue",this.value); // save it 
+        }); 
+        let storedToVal = localStorage.getItem("selFromValue"); 
+        if (storedToVal) myToSel.value=storedToVal; // set the dropdown 
+        // trigger the change in case there are other events on the select 
+        myToSel.onchange();        
+
         </script>
+
+
         
     </main>
 
