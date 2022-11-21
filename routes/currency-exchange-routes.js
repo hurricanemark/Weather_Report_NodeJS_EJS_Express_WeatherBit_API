@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
         }));
       } else  {
         console.log("Exchange data: " + data.time_last_update_utc);
-        res.render('pages/exchangeRate', { user: req.user, Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data, statusCode: 200, exchangeStatus: 'Ok'});
+        res.render('pages/exchangeRate', { user: req.user, Cdata: cdat, amount: amnt, frC: Fc, toC: Tc, exchange: data, statusCode: 200, exchangeStatus: 'Okay'});
       }
     });
 });
