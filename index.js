@@ -82,7 +82,7 @@ app.get('/about', function(req, res) {
 });
 
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 3432;
 
 // creating a server that is listening on ${port} for connections.
 app.listen(port, () => {
