@@ -33,8 +33,8 @@ try {
  */
 const googleStrategy = passport.use(new GoogleStrategy({
     // options for google strategy
-    // callbackURL: '/auth/google/redirect',
     callbackURL: 'https://techrolemiweather.cyclic.app/auth/google/redirect',
+    // callbackURL: '/auth/google/redirect',
     // clientID: keys.google.clientID, 
     // clientSecret: keys.google.clientSecret
     clientID: GoogleclientID,
