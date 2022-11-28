@@ -3,6 +3,64 @@
 
 <head>
     <%- include('../partials/head'); %>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .columns {
+            float: left;
+            width: 33.3%;
+            padding: 8px;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .price:hover {
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2)
+        }
+
+        .price .header {
+            background-color: #111;
+            color: white;
+            font-size: 25px;
+        }
+
+        .price li {
+            border-bottom: 1px solid #eee;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .price .grey {
+            background-color: #eee;
+            font-size: 20px;
+        }
+
+        .button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .columns {
+                width: 100%;
+            }
+        }
+    </style>
+
 </head>
 
 
@@ -20,35 +78,70 @@
                     </header>
                     <main>
                         <img src="<%= user.thumbnail %>" />
+                        
+                        <h6>Your current configuration</h6>
                         <hr>
-                        <h4>Select</h4>
-                        <p><strong>Application features</strong></p>
-                        <input type="checkbox" id="weather-report" name="weather" value="weather" checked>
-                        <label for="weather-report"> Weather Report</label><br>
-                        <input type="checkbox" id="currencyrate" name="currencyrate" value="currency" checked>
-                        <label for="currencyrate"> Currency Exchange Rate</label><br>
-                        <input type="checkbox" id="travel-guide" name="travel" value="travel">
-                        <label for="travel-guide"> Travel Guide</label><br>
-                        <input type="checkbox" id="hotel-search" name="hotel" value="hotel">
-                        <label for="hotel-search"> Hotel Search</label><br>
-                        <input type="checkbox" id="Restaurant-serch" name="restaurant" value="restaurant">
-                        <label for="hotel-search"> Restaurant Search</label><br><br>
+                        <fieldset>
+                            <form action="/register" method="post">                        
+                                <p><strong>Basic plan</strong> (subject to data availability)</p>
+                                <input type="checkbox" id="weather-report" name="weather" value="weather" checked>
+                                <label for="weather-report"> Weather Report</label><br>
+                                <input type="checkbox" id="currencyrate" name="currencyrate" value="currency" checked>
+                                <label for="currencyrate"> Currency Exchange Rate</label><br>
+                                <input type="checkbox" id="travel-guide" name="travel" value="travel"  checked>
+                                <label for="travel-guide"> Travel Guide</label><br>
+                                <input type="checkbox" id="hotel-search" name="hotel" value="hotel"  checked>
+                                <label for="hotel-search"> Hotel Search</label><br>
+                                <input type="checkbox" id="Restaurant-serch" name="restaurant" value="restaurant" checked>
+                                <label for="hotel-search"> Restaurant Search</label><br><br>
 
-                        <input type="submit" class="btn btn-sm btn-outline-success ghost-button" name="commit-features" value="Save">
+                                <input type="submit" class="btn btn-sm btn-outline-success ghost-button" name="basic-subscription" value="Continue with Basic plan">
 
+                                <hr>
+                            </form>
+                        </fieldset>
+                        <br />
+                        <div class="columns">
+                            <ul class="price">
+                                <li class="header">Basic</li>
+                                <li class="grey">$ 0 / month</li>
+                                <li>Weather Report</li>
+                                <li>Currency Exchange Rate Calculator</li>
+                                <li>Travel Guide</li>
+                                <li>Airfare & Hotel Search</li>
+                                <li>Restaurant Search</li>
+                                <li></li>
+                                <li></li>
+                                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+                            </ul>
+                        </div>
+                        <div class="columns">
+                            <ul class="price">
+                                <li class="header" style="background-color:#04AA6D">Pro</li>
+                                <li class="grey">$ 9.99 / month</li>
+                                <li>Personalized Weather Report & Alerts</li>
+                                <li>Currency Exchange Rate Calculator</li>
+                                <li>Travel Advice</li>
+                                <li>Airfare & Hotel Reservation</li>
+                                <li>Restaurant Reservation</li>
+                                <li></li>
+                                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+                            </ul>
+                        </div>
+                
+                        <div class="columns">
+                            <ul class="price">
+                                <li class="header">Premium</li>
+                                <li class="grey">$ 14.99 / month</li>
+                                <li>Personalized Weather Report & Alerts</li>
+                                <li>Voice Controlled Currency Exchange Rate Calculator</li>
+                                <li>Travel Advice & Tour Guides</li>
+                                <li>Voice Controlled for Airfare & Hotel Reservation</li>
+                                <li>Voice Controlled for Restaurant Reservation</li>
+                                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+                            </ul>
+                        </div>
                         <hr>
-
-                        <p><strong>Productivity</strong> (members)</p>
-                        <input type="checkbox" id="weather-alert" name="weather-alrt" value="weather-alert">
-                        <label for="weather-report"> Personalized Weather Alerts</label><br>                        
-                        <input type="checkbox" id="personalManager" name="organizer" value="organizer">
-                        <label for="personalManager"> Personal Organizer</label><br>
-                        <input type="checkbox" id="hotel-reservation" name="hotel" value="hotel">
-                        <label for="hotel-reservation"> Hotel Search & Reservation</label><br>
-                        <input type="checkbox" id="Restaurant-reservation" name="restaurant" value="restaurant">
-                        <label for="hotel-reservation"> Restaurant Search & Reservation</label><br><br>
-
-                        <input type="submit" class="btn btn-sm btn-outline-success ghost-button" name="commit-subscription" value="Subscribe">
                     </main>
 
                 </div>

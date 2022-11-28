@@ -9,7 +9,10 @@ const authCheck = (req, res, next) => {
         // if user is not logged in
         res.redirect('/auth/login');
     } else {
-        // if logged in
+        // if logged in, 
+        // Todo: retrieve info from database and determine if the use is a
+        // 1. basic subscriber
+        // 2. pro or premium member.
         console.log("You are already logged in.");
         next();
     }
