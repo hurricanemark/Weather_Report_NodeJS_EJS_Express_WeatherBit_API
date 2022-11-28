@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .columns {
+            float: left;
+            width: 33.3%;
+            padding: 8px;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .price:hover {
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2)
+        }
+
+        .price .header {
+            background-color: #111;
+            color: white;
+            font-size: 25px;
+        }
+
+        .price li {
+            border-bottom: 1px solid #eee;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .price .grey {
+            background-color: #eee;
+            font-size: 20px;
+        }
+
+        .button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .columns {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+
+
+
+        <div class="columns">
+            <ul class="price">
+                <li class="header">Basic</li>
+                <li class="grey">$ 0 / year</li>
+                <li>Weather Report</li>
+                <li>Currency Exchange Rate Calculator</li>
+                <li>Travel Guide</li>
+                <li>Airfare & Hotel Search</li>
+                <li>Restaurant Search</li>
+                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <div class="columns">
+            <ul class="price">
+                <li class="header" style="background-color:#04AA6D">Pro</li>
+                <li class="grey">$ 9.99 / month</li>
+                <li>Personalized Weather Report & Alerts</li>
+                <li>Currency Exchange Rate Calculator</li>
+                <li>Travel Advice</li>
+                <li>Airfare & Hotel Reservation</li>
+                <li>Restaurant Reservation</li>
+                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <div class="columns">
+            <ul class="price">
+                <li class="header">Premium</li>
+                <li class="grey">$ 14.99 / year</li>
+                <li>Personalized Weather Report & Alerts</li>
+                <li>Voice Controlled Currency Exchange Rate Calculator</li>
+                <li>Travel Advice</li>
+                <li>Voice Controlled for Airfare & Hotel Reservation</li>
+                <li>Voice Controlled for Restaurant Reservation</li>
+                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <br><br>
+        <hr>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+
+
+</html>

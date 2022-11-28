@@ -27,6 +27,9 @@ import { router as oauth20Routes } from './routes/auth-routes.js';
 // routes handler for profile
 import { router as profileRoutes } from './routes/profile-routes.js';
 
+// routes handler for register
+import {router as registerRoutes } from './routes/register-routes.js';
+
 // EJS is accessed by default in the views directory.
 app.set('view engine', 'ejs');
 
@@ -70,6 +73,9 @@ app.use('/auth', oauth20Routes);
 
 // set up routes for user info after logged in
 app.use('/profile', profileRoutes);
+
+// set up for registering after profile authenticated
+app.use('/register', registerRoutes);
 
 // Homepage: get the locale from the client-side via the ejs form
 app.get('/', (req, res) => {
