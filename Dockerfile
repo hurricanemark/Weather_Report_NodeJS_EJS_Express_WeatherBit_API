@@ -13,9 +13,8 @@ COPY . .
 
 ENV NODE_ENV=awsdeploy
 ENV PORT=8080
-ENV WEATHERBIT_URI=https://api.weatherbit.io/v2.0/
-ENV WEATHERBIT_KEY=U2FsdGVkX18HMV5UUT9rJN76hOtIHDw1bH0beQYWH8a6E7uzKqskdgHvc6Nq2lO6O+GAb2vrcL+X8ZDqcGPuLw== 
-
+ENV WEATHERBIT_URI=http://api.weatherbit.io/v2.0/
+ENV WEATHERBIT_KEY=ec6c67acdbd84e72a367dc98290cb149
 EXPOSE 8080
 
 CMD [ "node", "index.js" ]
